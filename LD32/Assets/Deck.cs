@@ -15,7 +15,16 @@ public class Deck{
 		string drawnCard = (string) currentDeck [Random.Range(0, currentDeck.Count)];
 		currentDeck.Remove (drawnCard);
 		hand.Add (drawnCard);
+///		EventManager.CardAdded();
 		return drawnCard;
+	}
+
+	public int DeckCount(){
+		return currentDeck.Count;
+	}
+
+	public int HandCount(){
+		return hand.Count;
 	}
 
 	public void AddCardToDeck(string card){
