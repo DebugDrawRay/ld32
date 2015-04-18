@@ -18,8 +18,20 @@ public class Player : MonoBehaviour {
 
 	public bool canJump = true;
 
+	public GameObject testProjectile;
+
 	void Update() {
 		RotateCam ();
+
+		if (Input.GetButtonDown ("Fire1")) {
+			Vector3 rotN = new Vector3(playCam.transform.rotation.eulerAngles.x, playCam.transform.rotation.eulerAngles.y, playCam.transform.rotation.eulerAngles.z);
+			//rotN *= 0.5f;
+
+			Quaternion theRot = Quaternion.Euler(rotN);
+
+			GameObject bullet = (GameObject) Instantiate(testProjectile, playCam.transform.position, playCam.transform.rotation);
+			bullet.GetComponent<Projectile>().fire();
+		}
 
 		if(Input.GetButtonDown("Jump")) {
 			if(Physics.Raycast(transform.position, -transform.up, 1.5f)) {
