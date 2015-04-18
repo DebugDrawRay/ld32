@@ -7,6 +7,13 @@ public class Player : MonoBehaviour {
 	public GameObject playCam;
 	public float jumpForce;
 
+	public GameObject card1;
+	public GameObject card2;
+	public GameObject card3;
+	public GameObject card4;
+	public GameObject card5;
+	
+
 	// Use this for initialization
 	void Start () {
 		InitiateCam ();
@@ -18,8 +25,30 @@ public class Player : MonoBehaviour {
 
 	public bool canJump = true;
 
+	public GameObject testProjectile;
+
 	void Update() {
 		RotateCam ();
+
+		if (Input.GetButtonDown ("Fire1")) {
+			card1.GetComponent<UsableCard>().UseCard(gameObject);
+		}
+
+		if (Input.GetButtonDown ("Fire2")) {
+			card2.GetComponent<UsableCard>().UseCard(gameObject);
+		}
+
+		if (Input.GetButtonDown ("Fire3")) {
+			card3.GetComponent<UsableCard>().UseCard(gameObject);
+		}
+
+		if (Input.GetButtonDown ("Fire4")) {
+			card4.GetComponent<UsableCard>().UseCard(gameObject);
+		}
+
+		if (Input.GetButtonDown ("Fire5")) {
+			card5.GetComponent<UsableCard>().UseCard(gameObject);
+		}
 
 		if(Input.GetButtonDown("Jump")) {
 			if(Physics.Raycast(transform.position, -transform.up, 1.5f)) {
