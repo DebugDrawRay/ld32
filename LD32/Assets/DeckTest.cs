@@ -2,25 +2,25 @@
 using System.Collections;
 
 public class DeckTest : MonoBehaviour {
-	Deck startingDeck;
+	public Deck startingDeck;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		startingDeck = new Deck ();
-		startingDeck.AddToSeedDeck ("Card0");
-		startingDeck.AddToSeedDeck ("Card1");
-		startingDeck.AddToSeedDeck ("Card2");
-		startingDeck.AddToSeedDeck ("Card3");
-		startingDeck.AddToSeedDeck ("Card4");
-		startingDeck.AddToSeedDeck ("Card5");
-		startingDeck.AddToSeedDeck ("Card6");
-		startingDeck.AddToSeedDeck ("Card7");
+		startingDeck.AddToSeedDeck ("ace-of-cups");
+		startingDeck.AddToSeedDeck ("ace-of-cups");
+		startingDeck.AddToSeedDeck ("ace-of-cups");
+		startingDeck.AddToSeedDeck ("ace-of-cups");
+		startingDeck.AddToSeedDeck ("ace-of-cups");
+		startingDeck.AddToSeedDeck ("ace-of-cups");
+		startingDeck.AddToSeedDeck ("ace-of-cups");
+		startingDeck.AddToSeedDeck ("ace-of-cups");
 		startingDeck.InstanceSeedDeck ();
 		startingDeck.DrawCard ();
 		startingDeck.DrawCard ();
 		startingDeck.DrawCard ();
-		Debug.Log (startingDeck.UseCardInHandAtIndex (0));
-		Debug.Log (startingDeck.UseCardInHandAtIndex (0));
-		Debug.Log (startingDeck.UseCardInHandAtIndex (0));
+		//Debug.Log (startingDeck.UseCardInHandAtIndex (0));
+		//Debug.Log (startingDeck.UseCardInHandAtIndex (0));
+		//Debug.Log (startingDeck.UseCardInHandAtIndex (0));
 	}
 	
 	// Update is called once per frame

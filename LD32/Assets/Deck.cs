@@ -9,12 +9,18 @@ public class Deck{
 
 	private int maxHandSize;
 
+	private int mod;
+	//-1 means no change
+	//-2 means card added
+	//other number means card removed at index;
+
 	public string DrawCard(){
 		if(maxHandSize != -1 && hand.Count >= maxHandSize) throw new UnityException();
 		if(currentDeck.Count == 0) throw new UnityException ();
 		string drawnCard = (string) currentDeck [Random.Range(0, currentDeck.Count)];
 		currentDeck.Remove (drawnCard);
 		hand.Add (drawnCard);
+		mod = -2;
 ///		EventManager.CardAdded();
 		return drawnCard;
 	}
@@ -25,6 +31,10 @@ public class Deck{
 
 	public int HandCount(){
 		return hand.Count;
+	}
+
+	public ArrayList GetHand(){
+		return hand;
 	}
 
 	public void AddCardToDeck(string card){
@@ -48,11 +58,16 @@ public class Deck{
 		seedDeck.Add (cardname);
 	}
 
+	public int GetModifier(){
+		return mod;
+	}
+
 	// Use this for initialization
 	public Deck() {
 		seedDeck = new ArrayList();
 		hand = new ArrayList();
 		currentDeck = new ArrayList();
 		maxHandSize = -1;
+		mod = -1;
 	}
 }
