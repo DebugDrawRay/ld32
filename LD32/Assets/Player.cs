@@ -7,12 +7,35 @@ public class Player : MonoBehaviour {
 	public GameObject playCam;
 	public float jumpForce;
 
+	public Deck currentDeck;
+
 	public GameObject card1;
 	public GameObject card2;
 	public GameObject card3;
 	public GameObject card4;
 	public GameObject card5;
 	
+
+	void Awake() {
+		currentDeck = new Deck ();
+		currentDeck.AddToSeedDeck ("ace-of-cups");
+		currentDeck.AddToSeedDeck ("ace-of-cups");
+		currentDeck.AddToSeedDeck ("ace-of-cups");
+		currentDeck.AddToSeedDeck ("ace-of-cups");
+		currentDeck.AddToSeedDeck ("ace-of-cups");
+		currentDeck.AddToSeedDeck ("ace-of-cups");
+		currentDeck.AddToSeedDeck ("ace-of-cups");
+		currentDeck.AddToSeedDeck ("ace-of-cups");
+		currentDeck.AddToSeedDeck ("ace-of-cups");
+		currentDeck.AddToSeedDeck ("ace-of-cups");
+		currentDeck.InstanceSeedDeck ();
+		currentDeck.DrawCard ();
+		currentDeck.DrawCard ();
+		currentDeck.DrawCard ();
+		currentDeck.ResetModifier ();
+
+
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -30,7 +53,52 @@ public class Player : MonoBehaviour {
 	void Update() {
 		RotateCam ();
 
-		if (Input.GetButtonDown ("Fire1")) {
+		if (Input.GetButtonDown ("Draw")) {
+			currentDeck.DrawCard();
+		}
+		if (Input.GetButtonDown ("Card0")) {
+			string curCard = currentDeck.UseCardInHandAtIndex(0);
+			if(curCard != "") {
+				Debug.Log (curCard);
+				GameObject curCardPref = (GameObject) Resources.Load("CardPrefabs/" + curCard);
+				curCardPref.GetComponent<UsableCard>().UseCard(gameObject);
+			}
+		}
+		if (Input.GetButtonDown ("Card1")) {
+			string curCard = currentDeck.UseCardInHandAtIndex(1);
+			if(curCard != "") {
+				Debug.Log (curCard);
+				GameObject curCardPref = (GameObject) Resources.Load("CardPrefabs/" + curCard);
+				curCardPref.GetComponent<UsableCard>().UseCard(gameObject);
+			}
+		}
+		if (Input.GetButtonDown ("Card2")) {
+			string curCard = currentDeck.UseCardInHandAtIndex(2);
+			if(curCard != "") {
+				Debug.Log (curCard);
+				GameObject curCardPref = (GameObject) Resources.Load("CardPrefabs/" + curCard);
+				curCardPref.GetComponent<UsableCard>().UseCard(gameObject);
+			}
+		}
+		if (Input.GetButtonDown ("Card3")) {
+			string curCard = currentDeck.UseCardInHandAtIndex(3);
+			if(curCard != "") {
+				Debug.Log (curCard);
+				GameObject curCardPref = (GameObject) Resources.Load("CardPrefabs/" + curCard);
+				curCardPref.GetComponent<UsableCard>().UseCard(gameObject);
+			}
+		}
+		if (Input.GetButtonDown ("Card4")) {
+			string curCard = currentDeck.UseCardInHandAtIndex(4);
+			if(curCard != "") {
+				Debug.Log (curCard);
+				GameObject curCardPref = (GameObject) Resources.Load("CardPrefabs/" + curCard);
+				curCardPref.GetComponent<UsableCard>().UseCard(gameObject);
+			}
+		}
+
+
+		/*if (Input.GetButtonDown ("Fire1")) {
 			card1.GetComponent<UsableCard>().UseCard(gameObject);
 		}
 
@@ -48,7 +116,7 @@ public class Player : MonoBehaviour {
 
 		if (Input.GetButtonDown ("Fire5")) {
 			card5.GetComponent<UsableCard>().UseCard(gameObject);
-		}
+		}*/
 
 		if(Input.GetButtonDown("Jump")) {
 			if(Physics.Raycast(transform.position, -transform.up, 1.5f)) {

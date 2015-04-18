@@ -19,8 +19,9 @@ public class CardUIController : MonoBehaviour {
 	void Start () {
 		decksize = -1;
 		canvas = GameObject.FindGameObjectWithTag("Canvas");
-		DeckTest a = (DeckTest) GameObject.FindGameObjectWithTag ("DeckTest").GetComponent("DeckTest");
-		currentDeck = a.startingDeck;
+		//DeckTest a = (DeckTest) GameObject.FindGameObjectWithTag ("DeckTest").GetComponent("DeckTest");
+		//currentDeck = a.startingDeck;
+		currentDeck = GameObject.Find ("Player").GetComponent<Player> ().currentDeck;
 		crl = (CardResourceLoader)GameObject.Find ("CardResourceLoader").GetComponent ("CardResourceLoader");
 		cards = new ArrayList ();
 		int count = 0;
