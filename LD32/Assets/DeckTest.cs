@@ -2,29 +2,48 @@
 using System.Collections;
 
 public class DeckTest : MonoBehaviour {
-	Deck startingDeck;
+	public Deck startingDeck;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		startingDeck = new Deck ();
-		startingDeck.AddToSeedDeck ("Card0");
-		startingDeck.AddToSeedDeck ("Card1");
-		startingDeck.AddToSeedDeck ("Card2");
-		startingDeck.AddToSeedDeck ("Card3");
-		startingDeck.AddToSeedDeck ("Card4");
-		startingDeck.AddToSeedDeck ("Card5");
-		startingDeck.AddToSeedDeck ("Card6");
-		startingDeck.AddToSeedDeck ("Card7");
+		startingDeck.AddToSeedDeck ("ace-of-cups");
+		startingDeck.AddToSeedDeck ("ace-of-cups");
+		startingDeck.AddToSeedDeck ("ace-of-cups");
+		startingDeck.AddToSeedDeck ("ace-of-cups");
+		startingDeck.AddToSeedDeck ("ace-of-cups");
+		startingDeck.AddToSeedDeck ("ace-of-cups");
+		startingDeck.AddToSeedDeck ("ace-of-cups");
+		startingDeck.AddToSeedDeck ("ace-of-cups");
 		startingDeck.InstanceSeedDeck ();
 		startingDeck.DrawCard ();
 		startingDeck.DrawCard ();
 		startingDeck.DrawCard ();
-		Debug.Log (startingDeck.UseCardInHandAtIndex (0));
-		Debug.Log (startingDeck.UseCardInHandAtIndex (0));
-		Debug.Log (startingDeck.UseCardInHandAtIndex (0));
+		startingDeck.ResetModifier ();
+		//Debug.Log (startingDeck.UseCardInHandAtIndex (0));
+		//Debug.Log (startingDeck.UseCardInHandAtIndex (0));
+		//Debug.Log (startingDeck.UseCardInHandAtIndex (0));
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		Debug.Log ("CurrentHand Size: " + startingDeck.HandCount());
+		if (Input.GetButtonDown ("Draw")) {
+			startingDeck.DrawCard();
+		}
+		if (Input.GetButtonDown ("Card0")) {
+			startingDeck.UseCardInHandAtIndex(0);
+		}
+		if (Input.GetButtonDown ("Card2")) {
+			startingDeck.UseCardInHandAtIndex(2);
+		}
+		if (Input.GetButtonDown ("Card3")) {
+			startingDeck.UseCardInHandAtIndex(3);
+		}
+		if (Input.GetButtonDown ("Card4")) {
+			startingDeck.UseCardInHandAtIndex(4);
+		}
+		if (Input.GetButtonDown ("Card1")) {
+			startingDeck.UseCardInHandAtIndex(1);
+		}
 	}
 }
