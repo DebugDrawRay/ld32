@@ -24,8 +24,14 @@ public class Projectile : MonoBehaviour {
 	public float balisticImpulse;
 	public float gravityAmount;
 	
-	public List<string> statusEffects = new List<string>(); //this here tells the projectile what effects to 
+	//public List<string> statusEffects = new List<string>(); //this here tells the projectile what effects to 
 	//apply. for now its just a list of stings because im not sure how effects will work
+	public bool slows;
+	public float slowPercent;
+	public float slowTime;
+	public bool stuns;
+	public float stunTime;
+
 	
 	//for shotgun effects.
 	public bool shotgun;
@@ -60,6 +66,19 @@ public class Projectile : MonoBehaviour {
 	public GameObject parentWave;
 	public List<GameObject> enemiesHit = new List<GameObject>();
 
+	public bool isPage;
+	public float fireDelay;
+	public int fireAmount;
+	public GameObject user;
+
+	bool isFiring;
+	GameObject theUser;
+	float currentCount;
+	int bulletsFired;
+
+	public bool upKnock;
+	public float upKnockForce;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -85,6 +104,9 @@ public class Projectile : MonoBehaviour {
 			spl.GetComponent<Explosion>().enemyTag = enemyTag;
 			spl.GetComponent<Explosion>().knockBack = explosionKnock;
 
+			spl.GetComponent<Explosion>().upKnock = upKnock;
+			spl.GetComponent<Explosion>().upKnockForce = upKnockForce;
+
 		}
 
 
@@ -99,6 +121,11 @@ public class Projectile : MonoBehaviour {
 					Vector3 knockDir = coll.gameObject.transform.position - gameObject.transform.position;
 					knockDir = knockDir.normalized;
 					coll.gameObject.GetComponent<Rigidbody>().AddForce(knockDir * knockBack);
+
+					if(upKnock && !explosive) {
+						Vector3 knockDir2 = Vector3.up;
+						coll.gameObject.GetComponent<Rigidbody>().AddForce(knockDir2 * upKnockForce);
+					}
 				}
 			} else {
 				Destroy (gameObject);
@@ -111,6 +138,11 @@ public class Projectile : MonoBehaviour {
 				Vector3 knockDir = coll.gameObject.transform.position - gameObject.transform.position;
 				knockDir = knockDir.normalized;
 				coll.gameObject.GetComponent<Rigidbody>().AddForce(knockDir * knockBack);
+
+				if(upKnock && !explosive) {
+					Vector3 knockDir2 = Vector3.up;
+					coll.gameObject.GetComponent<Rigidbody>().AddForce(knockDir2 * upKnockForce);
+				}
 			}
 
 			Destroy (gameObject);
@@ -119,100 +151,139 @@ public class Projectile : MonoBehaviour {
 	}
 	
 	public void fire() {
-		if (isBalistic) {
-			//gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * balisticImpulse);
-			gameObject.transform.position = gameObject.transform.position + transform.forward * 1f;
-		}
+		if (isPage) {
+			gameObject.GetComponent<SphereCollider> ().enabled = false;
+			gameObject.GetComponent<MeshRenderer> ().enabled = false;
 
-		if (shotgun) {
-			for(int i = 0; i < spreadAmount; i++) {
-				GameObject bullet = (GameObject) Instantiate(this.gameObject, transform.position, transform.rotation);
-				bullet.GetComponent<Projectile>().shotgun = false;
+			GameObject bullet = (GameObject)Instantiate (this.gameObject, user.GetComponent<Player> ().playCam.transform.position, user.GetComponent<Player> ().playCam.transform.rotation);
+			bullet.GetComponent<Projectile> ().isPage = false;
+			bullet.GetComponent<SphereCollider> ().enabled = true;
+			bullet.GetComponent<MeshRenderer> ().enabled = true;
 
-				float arr = Random.Range(0f, spreadAngle);
-				float theta = Random.Range(0f, 360f);
 
-				float ranY = arr * Mathf.Sin(theta * Mathf.PI / 180f);
-				float ranX = arr * Mathf.Cos(theta * Mathf.PI / 180f);
+			bullet.GetComponent<Projectile> ().fire ();
+			
+			currentCount = fireDelay;
+			isFiring = true;
+			bulletsFired = 1;
+		} else {
 
-				//float shake = ranY;
-				//float shake = (-1.0f * spreadAngle) + (((2.0f * spreadAngle) / (1.0f * spreadAmount)) * (i + 0.5f));
-				//bullet.transform.localEulerAngles = new Vector3(bullet.transform.localEulerAngles.x, bullet.transform.localEulerAngles.y + shake, bullet.transform.localEulerAngles.z);
-
-				bullet.transform.RotateAround(transform.position, transform.up, ranY);
-				bullet.transform.RotateAround(transform.position, transform.right, ranX);
-
-				bullet.GetComponent<Projectile>().fire();
+			if (isBalistic) {
+				//gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * balisticImpulse);
+				gameObject.transform.position = gameObject.transform.position + transform.forward * 1f;
 			}
-			Destroy(gameObject);
-		}
 
-		if (wave) {
-			for(int i = 0; i < spreadAmount; i++) {
-				GameObject bullet = (GameObject) Instantiate(this.gameObject, transform.position, transform.rotation);
-				bullet.GetComponent<Projectile>().wave = false;
-				bullet.GetComponent<Projectile>().isWave = true;
-				bullet.GetComponent<Projectile>().life = life - 0.1f;
-				bullet.GetComponent<Projectile>().parentWave = gameObject;
+			if (shotgun) {
+				for (int i = 0; i < spreadAmount; i++) {
+					GameObject bullet = (GameObject)Instantiate (this.gameObject, transform.position, transform.rotation);
+					bullet.GetComponent<Projectile> ().shotgun = false;
+
+					float arr = Random.Range (0f, spreadAngle);
+					float theta = Random.Range (0f, 360f);
+
+					float ranY = arr * Mathf.Sin (theta * Mathf.PI / 180f);
+					float ranX = arr * Mathf.Cos (theta * Mathf.PI / 180f);
+
+					//float shake = ranY;
+					//float shake = (-1.0f * spreadAngle) + (((2.0f * spreadAngle) / (1.0f * spreadAmount)) * (i + 0.5f));
+					//bullet.transform.localEulerAngles = new Vector3(bullet.transform.localEulerAngles.x, bullet.transform.localEulerAngles.y + shake, bullet.transform.localEulerAngles.z);
+
+					bullet.transform.RotateAround (transform.position, transform.up, ranY);
+					bullet.transform.RotateAround (transform.position, transform.right, ranX);
+
+					bullet.GetComponent<Projectile> ().fire ();
+				}
+				Destroy (gameObject);
+			}
+
+			if (wave) {
+				for (int i = 0; i < spreadAmount; i++) {
+					GameObject bullet = (GameObject)Instantiate (this.gameObject, transform.position, transform.rotation);
+					bullet.GetComponent<Projectile> ().wave = false;
+					bullet.GetComponent<Projectile> ().isWave = true;
+					bullet.GetComponent<Projectile> ().life = life - 0.1f;
+					bullet.GetComponent<Projectile> ().parentWave = gameObject;
 
 
-				float shake = (-1.0f * spreadAngle) + (((2.0f * spreadAngle) / (1.0f * spreadAmount)) * (i + 0.5f));
+					float shake = (-1.0f * spreadAngle) + (((2.0f * spreadAngle) / (1.0f * spreadAmount)) * (i + 0.5f));
 
-				bullet.transform.RotateAround(transform.position, transform.up, shake);
+					bullet.transform.RotateAround (transform.position, transform.up, shake);
 
 				
-				bullet.GetComponent<Projectile>().fire();
+					bullet.GetComponent<Projectile> ().fire ();
+				}
+
+				gameObject.GetComponent<SphereCollider> ().enabled = false;
+				gameObject.GetComponent<MeshRenderer> ().enabled = false;
+
+				//Destroy(gameObject);
 			}
-
-			gameObject.GetComponent<SphereCollider>().enabled = false;
-			gameObject.GetComponent<MeshRenderer>().enabled = false;
-
-			//Destroy(gameObject);
 		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(life > 0f) {
-			life = life - 1.0f * Time.deltaTime;
-			//transform.Translate(transform.forward * 1.0f * Time.deltaTime * velocity);
+		if (isFiring && isPage) {
+			if (currentCount <= 0) {
+				if (bulletsFired < fireAmount) {
+					GameObject bullet = (GameObject)Instantiate (this.gameObject, user.GetComponent<Player> ().playCam.transform.position, user.GetComponent<Player> ().playCam.transform.rotation);
+					bullet.GetComponent<Projectile> ().isPage = false;
+					bullet.GetComponent<SphereCollider> ().enabled = true;
+					bullet.GetComponent<MeshRenderer> ().enabled = true;
+
+					bullet.GetComponent<Projectile> ().fire ();
+					bulletsFired++;
+					currentCount = fireDelay;
+				} else {
+					isFiring = false;
+					Destroy (gameObject);
+				}
+			} else {
+				currentCount -= Time.deltaTime;
+			}
+		} else {
+
+			if (life > 0f) {
+				life = life - 1.0f * Time.deltaTime;
+				//transform.Translate(transform.forward * 1.0f * Time.deltaTime * velocity);
 		
 			
-			Vector3 fMove = transform.forward * 1f;
+				Vector3 fMove = transform.forward * 1f;
 
-			if(isBalistic) {
-				//fMove = new Vector3(fMove.x, gameObject.GetComponent<Rigidbody> ().velocity.y, fMove.z);
-				Vector3 dMove = Vector3.up * 1f * balisticImpulse;
-				fMove = fMove + dMove;
-				balisticImpulse -= gravityAmount * Time.deltaTime;
-			}
+				if (isBalistic) {
+					//fMove = new Vector3(fMove.x, gameObject.GetComponent<Rigidbody> ().velocity.y, fMove.z);
+					Vector3 dMove = Vector3.up * 1f * balisticImpulse;
+					fMove = fMove + dMove;
+					balisticImpulse -= gravityAmount * Time.deltaTime;
+				}
 			
-			gameObject.GetComponent<Rigidbody> ().velocity = fMove * velocity;
-		} else {
-			Destroy(gameObject);
-		}
+				gameObject.GetComponent<Rigidbody> ().velocity = fMove * velocity;
+			} else {
+				Destroy (gameObject);
+			}
 
-		if (wave) {
-			//transform.localScale = new Vector3(transform.localScale.x + expandRate * Time.deltaTime, transform.localScale.y, transform.localScale.z);
-		}
+			if (wave) {
+				//transform.localScale = new Vector3(transform.localScale.x + expandRate * Time.deltaTime, transform.localScale.y, transform.localScale.z);
+			}
 
-		if (homing) {
-			GameObject target = FindClosestEnemy ();
+			if (homing) {
+				GameObject target = FindClosestEnemy ();
 
 
 
-			if(target != null) {
-				Vector3 aVect = transform.forward;
-				Vector3 bVect = target.transform.position - transform.position;
+				if (target != null) {
+					Vector3 aVect = transform.forward;
+					Vector3 bVect = target.transform.position - transform.position;
 
-				Vector3 cross = new Vector3(aVect.y * bVect.z - aVect.z * bVect.y, aVect.z * bVect.x - aVect.x * bVect.z, aVect.x * bVect.y - aVect.y * bVect.x);
+					Vector3 cross = new Vector3 (aVect.y * bVect.z - aVect.z * bVect.y, aVect.z * bVect.x - aVect.x * bVect.z, aVect.x * bVect.y - aVect.y * bVect.x);
 					
-				gameObject.transform.RotateAround(transform.position, cross, homeForce * Time.deltaTime);
+					gameObject.transform.RotateAround (transform.position, cross, homeForce * Time.deltaTime);
 
 
 
 				
 				
+				}
 			}
 		}
 		

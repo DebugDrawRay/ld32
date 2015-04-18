@@ -7,6 +7,13 @@ public class Player : MonoBehaviour {
 	public GameObject playCam;
 	public float jumpForce;
 
+	public GameObject card1;
+	public GameObject card2;
+	public GameObject card3;
+	public GameObject card4;
+	public GameObject card5;
+	
+
 	// Use this for initialization
 	void Start () {
 		InitiateCam ();
@@ -24,13 +31,23 @@ public class Player : MonoBehaviour {
 		RotateCam ();
 
 		if (Input.GetButtonDown ("Fire1")) {
-			Vector3 rotN = new Vector3(playCam.transform.rotation.eulerAngles.x, playCam.transform.rotation.eulerAngles.y, playCam.transform.rotation.eulerAngles.z);
-			//rotN *= 0.5f;
+			card1.GetComponent<UsableCard>().UseCard(gameObject);
+		}
 
-			Quaternion theRot = Quaternion.Euler(rotN);
+		if (Input.GetButtonDown ("Fire2")) {
+			card2.GetComponent<UsableCard>().UseCard(gameObject);
+		}
 
-			GameObject bullet = (GameObject) Instantiate(testProjectile, playCam.transform.position, playCam.transform.rotation);
-			bullet.GetComponent<Projectile>().fire();
+		if (Input.GetButtonDown ("Fire3")) {
+			card3.GetComponent<UsableCard>().UseCard(gameObject);
+		}
+
+		if (Input.GetButtonDown ("Fire4")) {
+			card4.GetComponent<UsableCard>().UseCard(gameObject);
+		}
+
+		if (Input.GetButtonDown ("Fire5")) {
+			card5.GetComponent<UsableCard>().UseCard(gameObject);
 		}
 
 		if(Input.GetButtonDown("Jump")) {

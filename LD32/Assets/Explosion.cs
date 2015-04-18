@@ -8,6 +8,9 @@ public class Explosion : MonoBehaviour {
 	public float damage;
 	public float knockBack;
 
+	public bool upKnock;
+	public float upKnockForce;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -30,6 +33,11 @@ public class Explosion : MonoBehaviour {
 			knockDir = knockDir.normalized;
 			
 			other.gameObject.GetComponent<Rigidbody>().AddForce(knockDir * knockBack);
+
+			if(upKnock) {
+				Vector3 knockDir2 = Vector3.up;
+				other.gameObject.GetComponent<Rigidbody>().AddForce(knockDir2 * upKnockForce);
+			}
 		}
 	}
 
