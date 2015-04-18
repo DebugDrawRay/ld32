@@ -5,6 +5,8 @@ public class UsableCard : MonoBehaviour {
 
 	public float coolDown;
 
+
+
 	// Use this for initialization
 	void Start () {
 	

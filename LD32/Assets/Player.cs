@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
+	public string enemyTag;
+
 	public float moveForce;
 	public GameObject playCam;
 	public float jumpForce;
@@ -20,16 +22,16 @@ public class Player : MonoBehaviour {
 
 	void Awake() {
 		currentDeck = new Deck ();
-		currentDeck.AddToSeedDeck ("ace-of-cups");
-		currentDeck.AddToSeedDeck ("ace-of-cups");
-		currentDeck.AddToSeedDeck ("ace-of-cups");
-		currentDeck.AddToSeedDeck ("ace-of-cups");
-		currentDeck.AddToSeedDeck ("ace-of-cups");
-		currentDeck.AddToSeedDeck ("ace-of-cups");
-		currentDeck.AddToSeedDeck ("ace-of-cups");
-		currentDeck.AddToSeedDeck ("ace-of-cups");
-		currentDeck.AddToSeedDeck ("ace-of-cups");
-		currentDeck.AddToSeedDeck ("ace-of-cups");
+		currentDeck.AddToSeedDeck ("two-of-cups");
+		currentDeck.AddToSeedDeck ("two-of-cups");
+		currentDeck.AddToSeedDeck ("two-of-cups");
+		currentDeck.AddToSeedDeck ("two-of-cups");
+		currentDeck.AddToSeedDeck ("two-of-cups");
+		currentDeck.AddToSeedDeck ("two-of-cups");
+		currentDeck.AddToSeedDeck ("two-of-cups");
+		currentDeck.AddToSeedDeck ("two-of-cups");
+		currentDeck.AddToSeedDeck ("two-of-cups");
+		currentDeck.AddToSeedDeck ("two-of-cups");
 		currentDeck.InstanceSeedDeck ();
 		currentDeck.DrawCard ();
 		currentDeck.DrawCard ();
