@@ -9,6 +9,12 @@ using System.Collections.Generic;
 
 
 public class Projectile : MonoBehaviour {
+	public bool setOnFire;
+	public float fireDamage;
+	public float fireTime;
+
+	public bool teleport;
+
 	//the fields are public so they can be changed in editor
 	
 	//team vars
@@ -132,6 +138,13 @@ public class Projectile : MonoBehaviour {
 			}
 		} else {
 			if (coll.gameObject.tag == enemyTag) {
+				//this is only here for now
+				if(setOnFire) {
+					coll.gameObject.GetComponent<Health>().burning = true;
+					coll.gameObject.GetComponent<Health>().burnDamage = fireDamage;
+					coll.gameObject.GetComponent<Health>().burnTime = fireTime;
+				}
+
 				//coll.gameObject.GetComponent<EnemyBase>().ApplyLifeChange(-1 * damage);
 				coll.gameObject.GetComponent<Health>().changeHealth(-damage);
 
@@ -143,6 +156,10 @@ public class Projectile : MonoBehaviour {
 					Vector3 knockDir2 = Vector3.up;
 					coll.gameObject.GetComponent<Rigidbody>().AddForce(knockDir2 * upKnockForce);
 				}
+			}
+
+			if(teleport) {
+				user.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
 			}
 
 			Destroy (gameObject);
