@@ -26,9 +26,6 @@ public class Player : MonoBehaviour {
 	public float moveNerf;
 	public float moveNerfTime;
 
-	public bool reversed;
-	public float reversedTime;
-
 	public Vector3 knockback;
 
 	public GameObject card1;
@@ -72,7 +69,7 @@ public class Player : MonoBehaviour {
 		currentDeck.AddToSeedDeck ("queen-of-cups");
 		currentDeck.AddToSeedDeck ("ace-of-cups");*/
 
-		currentDeck.AddToSeedDeck ("two-of-wands");
+		/*currentDeck.AddToSeedDeck ("two-of-wands");
 		currentDeck.AddToSeedDeck ("three-of-wands");
 		currentDeck.AddToSeedDeck ("four-of-wands");
 		currentDeck.AddToSeedDeck ("five-of-wands");
@@ -87,7 +84,7 @@ public class Player : MonoBehaviour {
 		currentDeck.AddToSeedDeck ("queen-of-wands");
 		currentDeck.AddToSeedDeck ("ace-of-wands");
 
-		/*currentDeck.AddToSeedDeck ("three-of-pentacles");
+		currentDeck.AddToSeedDeck ("three-of-pentacles");
 		currentDeck.AddToSeedDeck ("four-of-pentacles");
 		currentDeck.AddToSeedDeck ("five-of-pentacles");
 		currentDeck.AddToSeedDeck ("six-of-pentacles");
@@ -102,8 +99,8 @@ public class Player : MonoBehaviour {
 		currentDeck.AddToSeedDeck ("ace-of-pentacles");
 		currentDeck.AddToSeedDeck ("two-of-pentacles");*/
 
-		currentDeck.AddToSeedDeck ("the-sun");
-		currentDeck.AddToSeedDeck ("the-fool");
+		//currentDeck.AddToSeedDeck ("the-sun");
+		//currentDeck.AddToSeedDeck ("the-fool");
 		//currentDeck.AddToSeedDeck ("the-empress");
 		//currentDeck.AddToSeedDeck ("the-lovers");
 		//currentDeck.AddToSeedDeck ("justice");
@@ -115,31 +112,7 @@ public class Player : MonoBehaviour {
 		//currentDeck.AddToSeedDeck ("judgement");
 		//currentDeck.AddToSeedDeck ("the-devil");
 
-		//currentDeck.AddToSeedDeck ("the-emperor");
-		//currentDeck.AddToSeedDeck ("the-emperor");
-		//currentDeck.AddToSeedDeck ("the-emperor");
-
-		/*currentDeck.AddToSeedDeck ("the-high-priestess");
-		currentDeck.AddToSeedDeck ("the-high-priestess");
-		currentDeck.AddToSeedDeck ("the-high-priestess");
-		currentDeck.AddToSeedDeck ("the-high-priestess");
-		currentDeck.AddToSeedDeck ("the-high-priestess");
-		currentDeck.AddToSeedDeck ("the-high-priestess");
-		currentDeck.AddToSeedDeck ("the-high-priestess");*/
-
-
-		/*currentDeck.AddToSeedDeck ("the-hermit");
-		currentDeck.AddToSeedDeck ("the-hermit");
-		currentDeck.AddToSeedDeck ("the-hermit");
-		currentDeck.AddToSeedDeck ("the-hermit");
-
-		currentDeck.AddToSeedDeck ("strength");
-		currentDeck.AddToSeedDeck ("strength");
-		currentDeck.AddToSeedDeck ("strength");
-		currentDeck.AddToSeedDeck ("strength");
-		currentDeck.AddToSeedDeck ("strength");
-		currentDeck.AddToSeedDeck ("strength");*/
-
+		/*currentDeck.AddToSeedDeck ("the-chariot");
 		currentDeck.AddToSeedDeck ("the-chariot");
 		currentDeck.AddToSeedDeck ("the-chariot");
 		currentDeck.AddToSeedDeck ("the-chariot");
@@ -150,8 +123,7 @@ public class Player : MonoBehaviour {
 		currentDeck.AddToSeedDeck ("the-chariot");
 		currentDeck.AddToSeedDeck ("the-chariot");
 		currentDeck.AddToSeedDeck ("the-chariot");
-		currentDeck.AddToSeedDeck ("the-chariot");
-		currentDeck.AddToSeedDeck ("the-chariot");
+		currentDeck.AddToSeedDeck ("the-chariot");*/
 
 
 
@@ -206,13 +178,7 @@ public class Player : MonoBehaviour {
 			moveNerfTime -= Time.deltaTime;
 		}
 
-		if (reversedTime <= 0f) {
-			reversed = false;
-		} else {
-			reversedTime -= Time.deltaTime;
-		}
-
-		if (Input.GetButtonDown ("Draw")) {
+		if (Input.GetButtonDown ("Draw") || Input.GetButtonDown("Player1B")) {
 			currentDeck.DrawCard ();
 		}
 
@@ -277,15 +243,15 @@ public class Player : MonoBehaviour {
 				}*/
                 currentDeck.SetSelectedCard(4);
 			}
-            if(Input.GetButtonDown("Previous Selection"))
+            if(Input.GetButtonDown("Previous Selection") || Input.GetButtonDown("Player1LB"))
             {
                 currentDeck.DecrementSelectedCard();
             }
-            if(Input.GetButtonDown("Next Selection"))
+            if(Input.GetButtonDown("Next Selection") || Input.GetButtonDown("Player1RB"))
             {
                 currentDeck.IncrementSelectedCard();
             }
-            if(Input.GetButtonDown("Mouse 0"))
+            if(Input.GetButtonDown("Mouse 0") || Input.GetAxis("Player1Triggers") < -0.5f)
             {
                 string curCard = currentDeck.UseCardInHandAtIndex (currentDeck.GetSelectedCard());
 				if (curCard != "") {
@@ -326,7 +292,7 @@ public class Player : MonoBehaviour {
 			card5.GetComponent<UsableCard>().UseCard(gameObject);
 		}*/
 
-		if(Input.GetButtonDown("Jump")) {
+		if(Input.GetButtonDown("Jump")|| Input.GetButtonDown ("Player1A")) {
 			if(Physics.Raycast(transform.position, -transform.up, 1.5f)) {
 				gameObject.GetComponent<Rigidbody>().AddForce(transform.up * (jumpForce + jumpBoost));
 			}
@@ -343,17 +309,13 @@ public class Player : MonoBehaviour {
 		float h;
 		float v;
 		
-		h = Input.GetAxisRaw ("Horizontal");
-		v = Input.GetAxisRaw ("Vertical");
-
+		h = Input.GetAxis("Player1Horizontal");
+		v = Input.GetAxis ("Player1Vertical");
+		//Debug.Log ("HORIZONTAL: " + h + "\nVertical: " + v);
 		Vector3 fMove = transform.forward * v;
 		Vector3 sMove = transform.right * h;
 
 		Vector3 mover = fMove + sMove;
-
-		if (reversed) {
-			mover = mover * -1f;
-		}
 
 		//actually move the player
 		//Vector3 mover = new Vector3 (h, 0, v);
@@ -397,9 +359,12 @@ public class Player : MonoBehaviour {
 	
 	public void LookRotation(Transform character, Transform camera)
 	{
-		float yRot = Input.GetAxis("Mouse X") * XSensitivity;
-		float xRot = Input.GetAxis("Mouse Y") * YSensitivity;
-		
+		//float yRot = Input.GetAxisRaw("Mouse X") * XSensitivity;
+		//float xRot = Input.GetAxisRaw("Mouse Y") * YSensitivity;
+
+		float yRot = Input.GetAxis("Player1RightStickX") * XSensitivity;
+		float xRot = Input.GetAxis("Player1RightStickY") * YSensitivity;
+
 		charTargetRot *= Quaternion.Euler (0f, yRot, 0f);
 		camTargetRot *= Quaternion.Euler (-xRot, 0f, 0f);
 		
