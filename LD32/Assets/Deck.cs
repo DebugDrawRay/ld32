@@ -51,7 +51,9 @@ public class Deck{
 			string usedCard = (string)hand [index];
 			hand.Remove (usedCard);
 			mod = index;
-			selectedCard = -1;
+			if(selectedCard > hand.Count){
+				selectedCard = hand.Count - 1;
+			}
 			return usedCard;
 		}
 		return "";
