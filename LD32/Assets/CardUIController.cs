@@ -22,6 +22,8 @@ public class CardUIController : MonoBehaviour {
     public Image health;
     public Text healthTxt;
     float maxHealth;
+    public Image cardMeter;
+    float maxCards;
 
 	void Start () {
 		decksize = -1;
@@ -31,6 +33,7 @@ public class CardUIController : MonoBehaviour {
 		currentDeck = GameObject.Find ("Player").GetComponent<Player> ().currentDeck;
         playerHealth = GameObject.Find("Player").GetComponent<Health>();
         maxHealth = playerHealth.getHealth();
+        maxCards = currentDeck.DeckCount();
 		crl = (CardResourceLoader)GameObject.Find ("CardResourceLoader").GetComponent ("CardResourceLoader");
 		cards = new ArrayList ();
 		int count = 0;
@@ -65,6 +68,9 @@ public class CardUIController : MonoBehaviour {
 
         health.fillAmount = playerHealth.getHealth() / maxHealth;
         healthTxt.text = playerHealth.getHealth().ToString();
+
+        cardMeter.fillAmount = currentDeck.DeckCount() / maxCards;
+
 		if (currentDeck != null) {
 			if (currentDeck.DeckCount () != decksize) {
 				decksize = currentDeck.DeckCount ();

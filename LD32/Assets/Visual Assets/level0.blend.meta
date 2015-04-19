@@ -17,6 +17,24 @@ ModelImporter:
     100018: fencing_003
     100020: Cube_000
     100022: door_s
+    100024: door_l
+    100026: window_4
+    100028: Cube_003
+    100030: Cube_004
+    100032: Cube_006
+    100034: Cube_007
+    100036: Cube_008
+    100038: Cube_009
+    100040: Cube_010
+    100042: Cube_011
+    100044: Cube_012
+    100046: Cube_013
+    100048: box_l
+    100050: box_m
+    100052: box_s
+    100054: boxSet
+    100056: fencing_004
+    100058: fencing_007
     400000: Cube
     400002: Cube_001
     400004: Cube_002
@@ -29,6 +47,24 @@ ModelImporter:
     400018: fencing_003
     400020: Cube_000
     400022: door_s
+    400024: door_l
+    400026: window_4
+    400028: Cube_003
+    400030: Cube_004
+    400032: Cube_006
+    400034: Cube_007
+    400036: Cube_008
+    400038: Cube_009
+    400040: Cube_010
+    400042: Cube_011
+    400044: Cube_012
+    400046: Cube_013
+    400048: box_l
+    400050: box_m
+    400052: box_s
+    400054: boxSet
+    400056: fencing_004
+    400058: fencing_007
     2300000: Cube
     2300002: Cube_001
     2300004: Cube_002
@@ -40,6 +76,24 @@ ModelImporter:
     2300016: fencing_003
     2300018: Cube_000
     2300020: door_s
+    2300022: door_l
+    2300024: window_4
+    2300026: Cube_003
+    2300028: Cube_004
+    2300030: Cube_006
+    2300032: Cube_007
+    2300034: Cube_008
+    2300036: Cube_009
+    2300038: Cube_010
+    2300040: Cube_011
+    2300042: Cube_012
+    2300044: Cube_013
+    2300046: box_l
+    2300048: box_m
+    2300050: box_s
+    2300052: boxSet
+    2300054: fencing_004
+    2300056: fencing_007
     3300000: Cube
     3300002: Cube_001
     3300004: Cube_002
@@ -51,6 +105,24 @@ ModelImporter:
     3300016: fencing_003
     3300018: Cube_000
     3300020: door_s
+    3300022: door_l
+    3300024: window_4
+    3300026: Cube_003
+    3300028: Cube_004
+    3300030: Cube_006
+    3300032: Cube_007
+    3300034: Cube_008
+    3300036: Cube_009
+    3300038: Cube_010
+    3300040: Cube_011
+    3300042: Cube_012
+    3300044: Cube_013
+    3300046: box_l
+    3300048: box_m
+    3300050: box_s
+    3300052: boxSet
+    3300054: fencing_004
+    3300056: fencing_007
     4300000: Cube
     4300002: level
     4300004: fencing
@@ -62,6 +134,24 @@ ModelImporter:
     4300016: fencing_003
     4300018: Cube_000
     4300020: door_s
+    4300022: door_l
+    4300024: window_4
+    4300026: Cube_003
+    4300028: Cube_004
+    4300030: Cube_006
+    4300032: Cube_007
+    4300034: Cube_008
+    4300036: Cube_009
+    4300038: Cube_010
+    4300040: Cube_011
+    4300042: Cube_012
+    4300044: Cube_013
+    4300046: boxSet
+    4300048: box_s
+    4300050: box_m
+    4300052: box_l
+    4300054: fencing_004
+    4300056: fencing_007
     7400000: Default Take
     9500000: //RootNode
   materials:
