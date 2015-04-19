@@ -26,6 +26,9 @@ public class Player : MonoBehaviour {
 	public float moveNerf;
 	public float moveNerfTime;
 
+	public bool reversed;
+	public float reversedTime;
+
 	public Vector3 knockback;
 
 	public GameObject card1;
@@ -69,7 +72,7 @@ public class Player : MonoBehaviour {
 		currentDeck.AddToSeedDeck ("queen-of-cups");
 		currentDeck.AddToSeedDeck ("ace-of-cups");*/
 
-		/*currentDeck.AddToSeedDeck ("two-of-wands");
+		currentDeck.AddToSeedDeck ("two-of-wands");
 		currentDeck.AddToSeedDeck ("three-of-wands");
 		currentDeck.AddToSeedDeck ("four-of-wands");
 		currentDeck.AddToSeedDeck ("five-of-wands");
@@ -84,7 +87,7 @@ public class Player : MonoBehaviour {
 		currentDeck.AddToSeedDeck ("queen-of-wands");
 		currentDeck.AddToSeedDeck ("ace-of-wands");
 
-		currentDeck.AddToSeedDeck ("three-of-pentacles");
+		/*currentDeck.AddToSeedDeck ("three-of-pentacles");
 		currentDeck.AddToSeedDeck ("four-of-pentacles");
 		currentDeck.AddToSeedDeck ("five-of-pentacles");
 		currentDeck.AddToSeedDeck ("six-of-pentacles");
@@ -99,8 +102,8 @@ public class Player : MonoBehaviour {
 		currentDeck.AddToSeedDeck ("ace-of-pentacles");
 		currentDeck.AddToSeedDeck ("two-of-pentacles");*/
 
-		//currentDeck.AddToSeedDeck ("the-sun");
-		//currentDeck.AddToSeedDeck ("the-fool");
+		currentDeck.AddToSeedDeck ("the-sun");
+		currentDeck.AddToSeedDeck ("the-fool");
 		//currentDeck.AddToSeedDeck ("the-empress");
 		//currentDeck.AddToSeedDeck ("the-lovers");
 		//currentDeck.AddToSeedDeck ("justice");
@@ -112,7 +115,31 @@ public class Player : MonoBehaviour {
 		//currentDeck.AddToSeedDeck ("judgement");
 		//currentDeck.AddToSeedDeck ("the-devil");
 
-		/*currentDeck.AddToSeedDeck ("the-chariot");
+		//currentDeck.AddToSeedDeck ("the-emperor");
+		//currentDeck.AddToSeedDeck ("the-emperor");
+		//currentDeck.AddToSeedDeck ("the-emperor");
+
+		/*currentDeck.AddToSeedDeck ("the-high-priestess");
+		currentDeck.AddToSeedDeck ("the-high-priestess");
+		currentDeck.AddToSeedDeck ("the-high-priestess");
+		currentDeck.AddToSeedDeck ("the-high-priestess");
+		currentDeck.AddToSeedDeck ("the-high-priestess");
+		currentDeck.AddToSeedDeck ("the-high-priestess");
+		currentDeck.AddToSeedDeck ("the-high-priestess");*/
+
+
+		/*currentDeck.AddToSeedDeck ("the-hermit");
+		currentDeck.AddToSeedDeck ("the-hermit");
+		currentDeck.AddToSeedDeck ("the-hermit");
+		currentDeck.AddToSeedDeck ("the-hermit");
+
+		currentDeck.AddToSeedDeck ("strength");
+		currentDeck.AddToSeedDeck ("strength");
+		currentDeck.AddToSeedDeck ("strength");
+		currentDeck.AddToSeedDeck ("strength");
+		currentDeck.AddToSeedDeck ("strength");
+		currentDeck.AddToSeedDeck ("strength");*/
+
 		currentDeck.AddToSeedDeck ("the-chariot");
 		currentDeck.AddToSeedDeck ("the-chariot");
 		currentDeck.AddToSeedDeck ("the-chariot");
@@ -123,7 +150,8 @@ public class Player : MonoBehaviour {
 		currentDeck.AddToSeedDeck ("the-chariot");
 		currentDeck.AddToSeedDeck ("the-chariot");
 		currentDeck.AddToSeedDeck ("the-chariot");
-		currentDeck.AddToSeedDeck ("the-chariot");*/
+		currentDeck.AddToSeedDeck ("the-chariot");
+		currentDeck.AddToSeedDeck ("the-chariot");
 
 
 
@@ -176,6 +204,12 @@ public class Player : MonoBehaviour {
 			moveNerf = 0f;
 		} else {
 			moveNerfTime -= Time.deltaTime;
+		}
+
+		if (reversedTime <= 0f) {
+			reversed = false;
+		} else {
+			reversedTime -= Time.deltaTime;
 		}
 
 		if (Input.GetButtonDown ("Draw")) {
@@ -316,6 +350,10 @@ public class Player : MonoBehaviour {
 		Vector3 sMove = transform.right * h;
 
 		Vector3 mover = fMove + sMove;
+
+		if (reversed) {
+			mover = mover * -1f;
+		}
 
 		//actually move the player
 		//Vector3 mover = new Vector3 (h, 0, v);

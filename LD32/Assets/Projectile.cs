@@ -9,6 +9,9 @@ using System.Collections.Generic;
 
 
 public class Projectile : MonoBehaviour {
+	public string matName;
+
+
 	public bool setOnFire;
 	public float fireDamage;
 	public float fireTime;
@@ -168,15 +171,26 @@ public class Projectile : MonoBehaviour {
 	}
 	
 	public void fire() {
+
+		if (matName != "the-chariot") {
+			transform.GetComponentInChildren<MeshRenderer> ().material = (Material) Resources.Load ("3D/" + matName);
+		}
+
+
 		if (isPage) {
 			gameObject.GetComponent<SphereCollider> ().enabled = false;
-			gameObject.GetComponent<MeshRenderer> ().enabled = false;
 
-			GameObject bullet = (GameObject)Instantiate (this.gameObject, user.GetComponent<Player> ().playCam.transform.position, user.GetComponent<Player> ().playCam.transform.rotation);
+			gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
+
+			//gameObject.GetComponent<MeshRenderer> ().enabled = false;
+
+			GameObject bullet = (GameObject)Instantiate (this.gameObject, new Vector3(user.GetComponent<Player>().playCam.transform.position.x, user.GetComponent<Player>().playCam.transform.position.y - 0.1f, user.GetComponent<Player>().playCam.transform.position.z), user.GetComponent<Player> ().playCam.transform.rotation);
 
 			bullet.GetComponent<Projectile> ().isPage = false;
 			bullet.GetComponent<SphereCollider> ().enabled = true;
-			bullet.GetComponent<MeshRenderer> ().enabled = true;
+
+			bullet.GetComponentInChildren<MeshRenderer>().enabled = true;
+			//bullet.GetComponent<MeshRenderer> ().enabled = true;
 
 			Physics.IgnoreCollision(bullet.GetComponent<Collider>(), user.GetComponent<Collider>());
 
@@ -241,23 +255,43 @@ public class Projectile : MonoBehaviour {
 				}
 
 				gameObject.GetComponent<SphereCollider> ().enabled = false;
-				gameObject.GetComponent<MeshRenderer> ().enabled = false;
+
+				gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
+				//gameObject.GetComponent<MeshRenderer> ().enabled = false;
 
 				//Destroy(gameObject);
 			}
 		}
 	}
-	
+
+	/*IEnumerator rotateCard() {
+		float elapsedTime;
+		float maxTime;
+
+		while (true) {
+
+
+			if(elapsedTime > maxTime) {
+				elapsedTime = 0;
+			}
+
+			yield return WaitForEndOfFrame();
+		}
+	}*/
+
 	// Update is called once per frame
 	void Update () {
 		if (isFiring && isPage) {
 			if (currentCount <= 0) {
 				if (bulletsFired < fireAmount) {
-					GameObject bullet = (GameObject)Instantiate (this.gameObject, user.GetComponent<Player> ().playCam.transform.position, user.GetComponent<Player> ().playCam.transform.rotation);
+					GameObject bullet = (GameObject)Instantiate (this.gameObject, new Vector3(user.GetComponent<Player>().playCam.transform.position.x, user.GetComponent<Player>().playCam.transform.position.y - 0.1f, user.GetComponent<Player>().playCam.transform.position.z), user.GetComponent<Player> ().playCam.transform.rotation);
+					bullet.GetComponentInChildren<MeshRenderer> ().material = transform.GetComponentInChildren<MeshRenderer> ().material;
 
 					bullet.GetComponent<Projectile> ().isPage = false;
 					bullet.GetComponent<SphereCollider> ().enabled = true;
-					bullet.GetComponent<MeshRenderer> ().enabled = true;
+
+					bullet.GetComponentInChildren<MeshRenderer>().enabled = true;
+					//bullet.GetComponent<MeshRenderer> ().enabled = true;
 
 					Physics.IgnoreCollision(bullet.GetComponent<Collider>(), user.GetComponent<Collider>());
 

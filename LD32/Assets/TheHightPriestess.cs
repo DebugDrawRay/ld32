@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TheEmperor : UsableCard {
+public class TheHightPriestess : UsableCard {
 
-	public float slowAmount;
-	public float slowDurration;
-
+	public float revDurration;
+	
 	// Use this for initialization
 	void Start () {
 		
@@ -22,15 +21,15 @@ public class TheEmperor : UsableCard {
 		
 		foreach (GameObject plays in players) {
 			if(!plays.Equals(user)) {
-				plays.GetComponent<Player>().moveNerf = slowAmount;
-				plays.GetComponent<Player>().moveNerfTime = slowDurration;
+				plays.GetComponent<Player>().reversed = true;
+				plays.GetComponent<Player>().reversedTime = revDurration;
 			}
 		}
 		
 		foreach (GameObject enems in enemies) {
 			if(enems.GetComponent<RunMan>() != null) {
-				enems.GetComponent<RunMan>().moveNerf = slowAmount;
-				enems.GetComponent<RunMan>().moveNerfTime = slowDurration;
+				enems.GetComponent<RunMan>().reversed = true;
+				enems.GetComponent<RunMan>().reversedTime = revDurration;
 			}
 		}
 	}

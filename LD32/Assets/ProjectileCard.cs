@@ -85,7 +85,10 @@ public class ProjectileCard : UsableCard {
 	}
 
 	public override void UseCard(GameObject user) {
-		GameObject bullet = (GameObject) Instantiate(projectile, user.GetComponent<Player>().playCam.transform.position, user.GetComponent<Player>().playCam.transform.rotation);
+		GameObject bullet = (GameObject) Instantiate(projectile, new Vector3(user.GetComponent<Player>().playCam.transform.position.x, user.GetComponent<Player>().playCam.transform.position.y - 0.1f, user.GetComponent<Player>().playCam.transform.position.z), user.GetComponent<Player>().playCam.transform.rotation);
+
+		bullet.GetComponent<Projectile> ().matName = gameObject.name;
+
 		Physics.IgnoreCollision(bullet.GetComponent<Collider>(), user.GetComponent<Collider>());
 		bullet.GetComponent<Projectile> ().user = user;
 		//team vars
