@@ -28,7 +28,10 @@ public class TheEmperor : UsableCard {
 		}
 		
 		foreach (GameObject enems in enemies) {
-			//change enemySpeed
+			if(enems.GetComponent<RunMan>() != null) {
+				enems.GetComponent<RunMan>().moveNerf = slowAmount;
+				enems.GetComponent<RunMan>().moveNerfTime = slowDurration;
+			}
 		}
 	}
 }

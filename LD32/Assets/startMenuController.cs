@@ -56,7 +56,7 @@ public class startMenuController : MonoBehaviour
             logo.rectTransform.localRotation = Quaternion.Slerp(logoStart, logoTar, revealSpeed);
             if(logoStart.eulerAngles.y <= 1 && !timerSet)
             {
-                timer = 5;
+                timer = 1.5f;
                 timerSet = true;
             }
         }
@@ -71,7 +71,7 @@ public class startMenuController : MonoBehaviour
             timer -= Time.deltaTime;
             if(timer <= 0 && !timerSet2)
             {
-                timer2 = 4;
+                timer2 = 1.5f;
                 timerSet2 = true;
                 fade.CrossFadeAlpha(1, startRevealSpeed, false);
             }
