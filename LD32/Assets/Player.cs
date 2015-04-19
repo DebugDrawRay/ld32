@@ -114,18 +114,19 @@ public class Player : MonoBehaviour {
 
 		if (canUse) {
 			if (Input.GetButtonDown ("Card0")) {
-				string curCard = currentDeck.UseCardInHandAtIndex (0);
-				if (curCard != "") {
-					Debug.Log (curCard);
-					GameObject curCardPref = (GameObject)Resources.Load ("CardPrefabs/" + curCard);
-					curCardPref.GetComponent<UsableCard> ().UseCard (gameObject);
+                //string curCard = currentDeck.UseCardInHandAtIndex (0);
+                //if (curCard != "") {
+                //    Debug.Log (curCard);
+                //    GameObject curCardPref = (GameObject)Resources.Load ("CardPrefabs/" + curCard);
+                //    curCardPref.GetComponent<UsableCard> ().UseCard (gameObject);
 
-					canUse = false;
-					currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
-				}
+                //    canUse = false;
+                //    currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
+                //}
+                currentDeck.SetSelectedCard(0);
 			}
 			if (Input.GetButtonDown ("Card1")) {
-				string curCard = currentDeck.UseCardInHandAtIndex (1);
+				/*string curCard = currentDeck.UseCardInHandAtIndex (1);
 				if (curCard != "") {
 					Debug.Log (curCard);
 					GameObject curCardPref = (GameObject)Resources.Load ("CardPrefabs/" + curCard);
@@ -133,10 +134,11 @@ public class Player : MonoBehaviour {
 
 					canUse = false;
 					currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
-				}
+				}*/
+                currentDeck.SetSelectedCard(1);
 			}
 			if (Input.GetButtonDown ("Card2")) {
-				string curCard = currentDeck.UseCardInHandAtIndex (2);
+				/*string curCard = currentDeck.UseCardInHandAtIndex (2);
 				if (curCard != "") {
 					Debug.Log (curCard);
 					GameObject curCardPref = (GameObject)Resources.Load ("CardPrefabs/" + curCard);
@@ -144,10 +146,11 @@ public class Player : MonoBehaviour {
 
 					canUse = false;
 					currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
-				}
+				}*/
+                currentDeck.SetSelectedCard(2);
 			}
 			if (Input.GetButtonDown ("Card3")) {
-				string curCard = currentDeck.UseCardInHandAtIndex (3);
+				/*string curCard = currentDeck.UseCardInHandAtIndex (3);
 				if (curCard != "") {
 					Debug.Log (curCard);
 					GameObject curCardPref = (GameObject)Resources.Load ("CardPrefabs/" + curCard);
@@ -155,10 +158,32 @@ public class Player : MonoBehaviour {
 
 					canUse = false;
 					currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
-				}
+				}*/
+                currentDeck.SetSelectedCard(3);
 			}
 			if (Input.GetButtonDown ("Card4")) {
-				string curCard = currentDeck.UseCardInHandAtIndex (4);
+				/*string curCard = currentDeck.UseCardInHandAtIndex (4);
+				if (curCard != "") {
+					Debug.Log (curCard);
+					GameObject curCardPref = (GameObject)Resources.Load ("CardPrefabs/" + curCard);
+					curCardPref.GetComponent<UsableCard> ().UseCard (gameObject);
+
+					canUse = false;
+					currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
+				}*/
+                currentDeck.SetSelectedCard(4);
+			}
+            if(Input.GetButtonDown("Previous Selection"))
+            {
+                currentDeck.DecrementSelectedCard();
+            }
+            if(Input.GetButtonDown("Next Selection"))
+            {
+                currentDeck.IncrementSelectedCard();
+            }
+            if(Input.GetButtonDown("Mouse 0"))
+            {
+                string curCard = currentDeck.UseCardInHandAtIndex (currentDeck.GetSelectedCard());
 				if (curCard != "") {
 					Debug.Log (curCard);
 					GameObject curCardPref = (GameObject)Resources.Load ("CardPrefabs/" + curCard);
@@ -167,7 +192,7 @@ public class Player : MonoBehaviour {
 					canUse = false;
 					currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
 				}
-			}
+            }
 		} else {
 			if(currentCooldown <= 0) {
 				canUse = true;
