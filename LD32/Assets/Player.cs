@@ -17,6 +17,17 @@ public class Player : MonoBehaviour {
 	public float jumpBoost;
 	public float jumpBoostTime;
 
+	public float damageBoost;
+	public float damageBoostTime;
+
+	public float defenseBoost;
+	public float defenseBoostTime;
+
+	public float moveNerf;
+	public float moveNerfTime;
+
+	public Vector3 knockback;
+
 	public GameObject card1;
 	public GameObject card2;
 	public GameObject card3;
@@ -28,7 +39,7 @@ public class Player : MonoBehaviour {
 
 	void Awake() {
 		currentDeck = new Deck ();
-		currentDeck.AddToSeedDeck ("two-of-swords");
+		/*currentDeck.AddToSeedDeck ("two-of-swords");
 		currentDeck.AddToSeedDeck ("three-of-swords");
 		currentDeck.AddToSeedDeck ("four-of-swords");
 		currentDeck.AddToSeedDeck ("five-of-swords");
@@ -41,9 +52,9 @@ public class Player : MonoBehaviour {
 		currentDeck.AddToSeedDeck ("knight-of-swords");
 		currentDeck.AddToSeedDeck ("king-of-swords");
 		currentDeck.AddToSeedDeck ("queen-of-swords");
-		currentDeck.AddToSeedDeck ("ace-of-swords");
+		currentDeck.AddToSeedDeck ("ace-of-swords");*/
 
-		currentDeck.AddToSeedDeck ("two-of-cups");
+		/*currentDeck.AddToSeedDeck ("two-of-cups");
 		currentDeck.AddToSeedDeck ("three-of-cups");
 		currentDeck.AddToSeedDeck ("four-of-cups");
 		currentDeck.AddToSeedDeck ("five-of-cups");
@@ -56,9 +67,9 @@ public class Player : MonoBehaviour {
 		currentDeck.AddToSeedDeck ("knight-of-cups");
 		currentDeck.AddToSeedDeck ("king-of-cups");
 		currentDeck.AddToSeedDeck ("queen-of-cups");
-		currentDeck.AddToSeedDeck ("ace-of-cups");
+		currentDeck.AddToSeedDeck ("ace-of-cups");*/
 
-		currentDeck.AddToSeedDeck ("two-of-wands");
+		/*currentDeck.AddToSeedDeck ("two-of-wands");
 		currentDeck.AddToSeedDeck ("three-of-wands");
 		currentDeck.AddToSeedDeck ("four-of-wands");
 		currentDeck.AddToSeedDeck ("five-of-wands");
@@ -86,9 +97,37 @@ public class Player : MonoBehaviour {
 		currentDeck.AddToSeedDeck ("king-of-pentacles");
 		currentDeck.AddToSeedDeck ("queen-of-pentacles");
 		currentDeck.AddToSeedDeck ("ace-of-pentacles");
-		currentDeck.AddToSeedDeck ("two-of-pentacles");
+		currentDeck.AddToSeedDeck ("two-of-pentacles");*/
 
-		currentDeck.AddToSeedDeck ("the-sun");
+		/*currentDeck.AddToSeedDeck ("the-sun");
+		currentDeck.AddToSeedDeck ("the-fool");
+		currentDeck.AddToSeedDeck ("the-empress");
+		currentDeck.AddToSeedDeck ("the-lovers");
+		currentDeck.AddToSeedDeck ("justice");
+		currentDeck.AddToSeedDeck ("the-hanged-man");
+		currentDeck.AddToSeedDeck ("temperance");
+		currentDeck.AddToSeedDeck ("the-tower");
+		currentDeck.AddToSeedDeck ("the-star");
+		currentDeck.AddToSeedDeck ("the-moon");
+		currentDeck.AddToSeedDeck ("judgement");*/
+
+		currentDeck.AddToSeedDeck ("the-chariot");
+		currentDeck.AddToSeedDeck ("the-chariot");
+		currentDeck.AddToSeedDeck ("the-chariot");
+		currentDeck.AddToSeedDeck ("the-chariot");
+		currentDeck.AddToSeedDeck ("the-chariot");
+		currentDeck.AddToSeedDeck ("the-chariot");
+		currentDeck.AddToSeedDeck ("the-chariot");
+		currentDeck.AddToSeedDeck ("the-chariot");
+		currentDeck.AddToSeedDeck ("the-chariot");
+		currentDeck.AddToSeedDeck ("the-chariot");
+		currentDeck.AddToSeedDeck ("the-chariot");
+		currentDeck.AddToSeedDeck ("the-chariot");
+
+
+
+
+
 		currentDeck.InstanceSeedDeck ();
 		currentDeck.DrawCard ();
 		currentDeck.DrawCard ();
@@ -124,6 +163,18 @@ public class Player : MonoBehaviour {
 			jumpBoost = 0f;
 		} else {
 			jumpBoostTime -= Time.deltaTime;
+		}
+
+		if (damageBoostTime <= 0) {
+			damageBoost = 0f;
+		} else {
+			damageBoostTime -= Time.deltaTime;
+		}
+
+		if (moveNerfTime <= 0) {
+			moveNerf = 0f;
+		} else {
+			moveNerfTime -= Time.deltaTime;
 		}
 
 		if (Input.GetButtonDown ("Draw")) {
@@ -268,8 +319,10 @@ public class Player : MonoBehaviour {
 		//actually move the player
 		//Vector3 mover = new Vector3 (h, 0, v);
 		mover.Normalize ();
-		Vector3 fMover = mover * (moveForce + moveBoost);
+		Vector3 fMover = mover * (moveForce + moveBoost - moveNerf);
 		Vector3 finMover = new Vector3 (fMover.x, gameObject.GetComponent<Rigidbody> ().velocity.y, fMover.z);
+		finMover += knockback;
+		knockback = knockback * 0.9f;
 
 		gameObject.GetComponent<Rigidbody> ().velocity = finMover;
 

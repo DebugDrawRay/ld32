@@ -21,6 +21,13 @@ public class ProjectileCard : UsableCard {
 	//public bool stuns;
 	public float stunTime;
 
+	public bool setOnFire;
+	public float fireDamage;
+	public float fireTime;
+
+	public bool teleport;
+
+
 	//team vars
 	public string enemyTag;
 	
@@ -87,7 +94,7 @@ public class ProjectileCard : UsableCard {
 		//basic vars
 		bullet.GetComponent<Projectile>().life = life;
 		bullet.GetComponent<Projectile>().velocity = velocity;
-		bullet.GetComponent<Projectile>().damage = damage;
+		bullet.GetComponent<Projectile>().damage = damage + user.GetComponent<Player>().damageBoost;
 		bullet.GetComponent<Projectile>().knockBack = knockBack;
 		
 		bullet.GetComponent<Projectile>().isBalistic = isBalistic; //not sure this is needed. I think if we add grav we'll get it anyway
@@ -114,7 +121,7 @@ public class ProjectileCard : UsableCard {
 		//public int exMag; //number of fragments
 		//public GameObject frag; //what each fragment is
 		bullet.GetComponent<Projectile>().radius = radius; //not implimented yet. this is for an area explosion.
-		bullet.GetComponent<Projectile>().explosionDamage = explosionDamage;
+		bullet.GetComponent<Projectile>().explosionDamage = explosionDamage + user.GetComponent<Player>().damageBoost;
 		bullet.GetComponent<Projectile>().explosionKnock = explosionKnock;
 		//probably need other fields like damage, effect, ect.
 		
@@ -128,6 +135,11 @@ public class ProjectileCard : UsableCard {
 		bullet.GetComponent<Projectile>().isWave = isWave;
 		bullet.GetComponent<Projectile> ().explosion = explosion;
 
+		bullet.GetComponent<Projectile> ().setOnFire = setOnFire;
+		bullet.GetComponent<Projectile> ().fireDamage = fireDamage;
+		bullet.GetComponent<Projectile> ().fireTime = fireTime;
+
+		bullet.GetComponent<Projectile> ().teleport = teleport;
 
 		if (pageCard) {
 			bullet.GetComponent<Projectile> ().fireDelay = fireDelay;
