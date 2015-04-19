@@ -37,6 +37,8 @@ public class Player : MonoBehaviour {
 	bool canUse = true;
 	float currentCooldown;
 
+    public bool lockCursor;
+
 	void Awake() {
 		currentDeck = new Deck ();
 		/*currentDeck.AddToSeedDeck ("two-of-swords");
@@ -139,6 +141,11 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        if (lockCursor)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = true;
+        }
 		InitiateCam ();
 	}
 
