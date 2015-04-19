@@ -26,6 +26,9 @@ public class Player : MonoBehaviour {
 	public float moveNerf;
 	public float moveNerfTime;
 
+	public bool reversed;
+	public float reversedTime;
+
 	public Vector3 knockback;
 
 	public GameObject card1;
@@ -321,6 +324,12 @@ public class Player : MonoBehaviour {
 		//Vector3 mover = new Vector3 (h, 0, v);
 		mover.Normalize ();
 		Vector3 fMover = mover * (moveForce + moveBoost - moveNerf);
+
+		if (reversed) {
+			fMover = -1f * fMover;
+		}
+
+
 		Vector3 finMover = new Vector3 (fMover.x, gameObject.GetComponent<Rigidbody> ().velocity.y, fMover.z);
 		finMover += knockback;
 		knockback = knockback * 0.9f;
