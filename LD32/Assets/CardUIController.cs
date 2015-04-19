@@ -35,10 +35,16 @@ public class CardUIController : MonoBehaviour {
 		foreach(string cardname in currentDeck.GetHand()){
 			GameObject current = (GameObject) Instantiate(cardobject, new Vector3(STARTING_POSITION_X + CARD_VARIANCE * count, STARTING_POSITION_Y,0) ,Quaternion.identity);
 			current.transform.SetParent(canvas.transform);
+<<<<<<< HEAD
 			current.GetComponent<Image>().sprite = Sprite.Create (crl.Get2DCardReference(cardname), CARD_SIZE, Vector2.zero);
+=======
+			Texture2D currentTexture = crl.Get2DCardReference(cardname);
+			current.GetComponent<Image>().sprite = Sprite.Create (currentTexture, new Rect(0,0, currentTexture.width, currentTexture.height),Vector2.zero);
+>>>>>>> 15309ded7a0665661421750be0706a585c03414d
 			cards.Add ( current );
 			count++;
 		}
+
 	}
 
 	public void setCurrentDeck(Deck curDeck){
@@ -64,7 +70,12 @@ public class CardUIController : MonoBehaviour {
 			if(currentDeck.GetModifier() == -2){
 				GameObject current = (GameObject) Instantiate(cardobject, new Vector3(STARTING_POSITION_X + CARD_VARIANCE * (currentDeck.HandCount() - 1), STARTING_POSITION_Y,0) ,Quaternion.identity);
 				current.transform.SetParent(canvas.transform);
+<<<<<<< HEAD
 				current.GetComponent<Image>().sprite = Sprite.Create (crl.Get2DCardReference((string)currentDeck.GetHand()[currentDeck.HandCount() - 1]), CARD_SIZE,Vector2.zero);
+=======
+				Texture2D currentTexture = crl.Get2DCardReference((string)currentDeck.GetHand()[currentDeck.HandCount() - 1]);
+				current.GetComponent<Image>().sprite = Sprite.Create (currentTexture, new Rect(0,0, currentTexture.width, currentTexture.height),Vector2.zero);
+>>>>>>> 15309ded7a0665661421750be0706a585c03414d
 				cards.Add ( current );
 			}else if(currentDeck.GetModifier() > -1){
 				for(int index = currentDeck.GetModifier() + 1; index <= currentDeck.HandCount(); index ++){
@@ -72,8 +83,12 @@ public class CardUIController : MonoBehaviour {
 					StartCoroutine(MoveCard( (GameObject) cards[index], previousCard.transform.position));
 				}
 				GameObject deletedcard = (GameObject) cards[currentDeck.GetModifier()];
-				cards.Remove(deletedcard);
+				cards.RemoveAt(currentDeck.GetModifier());
 				Destroy(deletedcard);
+			}
+			if(currentDeck.SelectionChanged()){
+				//Deal with it
+				currentDeck.ResetSelection();
 			}
 		} else {
 			GameObject cCount = GameObject.FindGameObjectWithTag ("CardCount");
@@ -94,5 +109,6 @@ public class CardUIController : MonoBehaviour {
 			elapsedTime += Time.deltaTime;
 			yield return new WaitForEndOfFrame();
 		}
+		card.transform.position = target;
 	}
 }

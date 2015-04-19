@@ -156,9 +156,13 @@ public class Projectile : MonoBehaviour {
 			gameObject.GetComponent<MeshRenderer> ().enabled = false;
 
 			GameObject bullet = (GameObject)Instantiate (this.gameObject, user.GetComponent<Player> ().playCam.transform.position, user.GetComponent<Player> ().playCam.transform.rotation);
+
 			bullet.GetComponent<Projectile> ().isPage = false;
 			bullet.GetComponent<SphereCollider> ().enabled = true;
 			bullet.GetComponent<MeshRenderer> ().enabled = true;
+
+			Physics.IgnoreCollision(bullet.GetComponent<Collider>(), user.GetComponent<Collider>());
+
 
 
 			bullet.GetComponent<Projectile> ().fire ();
@@ -177,6 +181,9 @@ public class Projectile : MonoBehaviour {
 				for (int i = 0; i < spreadAmount; i++) {
 					GameObject bullet = (GameObject)Instantiate (this.gameObject, transform.position, transform.rotation);
 					bullet.GetComponent<Projectile> ().shotgun = false;
+
+					Physics.IgnoreCollision(bullet.GetComponent<Collider>(), user.GetComponent<Collider>());
+
 
 					float arr = Random.Range (0f, spreadAngle);
 					float theta = Random.Range (0f, 360f);
@@ -199,6 +206,9 @@ public class Projectile : MonoBehaviour {
 			if (wave) {
 				for (int i = 0; i < spreadAmount; i++) {
 					GameObject bullet = (GameObject)Instantiate (this.gameObject, transform.position, transform.rotation);
+					Physics.IgnoreCollision(bullet.GetComponent<Collider>(), user.GetComponent<Collider>());
+
+
 					bullet.GetComponent<Projectile> ().wave = false;
 					bullet.GetComponent<Projectile> ().isWave = true;
 					bullet.GetComponent<Projectile> ().life = life - 0.1f;
@@ -227,9 +237,12 @@ public class Projectile : MonoBehaviour {
 			if (currentCount <= 0) {
 				if (bulletsFired < fireAmount) {
 					GameObject bullet = (GameObject)Instantiate (this.gameObject, user.GetComponent<Player> ().playCam.transform.position, user.GetComponent<Player> ().playCam.transform.rotation);
+
 					bullet.GetComponent<Projectile> ().isPage = false;
 					bullet.GetComponent<SphereCollider> ().enabled = true;
 					bullet.GetComponent<MeshRenderer> ().enabled = true;
+
+					Physics.IgnoreCollision(bullet.GetComponent<Collider>(), user.GetComponent<Collider>());
 
 					bullet.GetComponent<Projectile> ().fire ();
 					bulletsFired++;
