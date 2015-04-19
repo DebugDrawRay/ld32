@@ -8,6 +8,11 @@ public class Health : MonoBehaviour {
 		health += change;
 	}
 
+    public float getHealth()
+    {
+        return health;
+    }
+
 	// Use this for initialization
 	void Start () {
 	
