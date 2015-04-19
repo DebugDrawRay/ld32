@@ -26,6 +26,8 @@ public class Player : MonoBehaviour {
 	public float moveNerf;
 	public float moveNerfTime;
 
+	public Vector3 knockback;
+
 	public GameObject card1;
 	public GameObject card2;
 	public GameObject card3;
@@ -319,6 +321,8 @@ public class Player : MonoBehaviour {
 		mover.Normalize ();
 		Vector3 fMover = mover * (moveForce + moveBoost - moveNerf);
 		Vector3 finMover = new Vector3 (fMover.x, gameObject.GetComponent<Rigidbody> ().velocity.y, fMover.z);
+		finMover += knockback;
+		knockback = knockback * 0.9f;
 
 		gameObject.GetComponent<Rigidbody> ().velocity = finMover;
 
