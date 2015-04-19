@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TheSun : UsableCard {
-
+public class TheHangedMan : UsableCard {
+	
 	public GameObject pillar;
 	public float frontOffset;
-
+	
 	// Use this for initialization
 	void Start () {
 		
