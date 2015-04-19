@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class CardUIController : MonoBehaviour {
 	private const int CARD_VARIANCE = 67;
-	private const int STARTING_POSITION_X = 90;
-	private const int STARTING_POSITION_Y = 70;
+	private const int STARTING_POSITION_X = 150;
+	private const int STARTING_POSITION_Y = 64;
     private Rect CARD_SIZE = new Rect(0f, 0f, 300f, 531f);
 
     private int prevCard = -1;
