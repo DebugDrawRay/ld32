@@ -80,6 +80,7 @@ public class ProjectileCard : UsableCard {
 	public override void UseCard(GameObject user) {
 		GameObject bullet = (GameObject) Instantiate(projectile, user.GetComponent<Player>().playCam.transform.position, user.GetComponent<Player>().playCam.transform.rotation);
 		Physics.IgnoreCollision(bullet.GetComponent<Collider>(), user.GetComponent<Collider>());
+		bullet.GetComponent<Projectile> ().user = user;
 
 		//team vars
 		bullet.GetComponent<Projectile>().enemyTag = user.GetComponent<Player>().enemyTag;
@@ -130,7 +131,7 @@ public class ProjectileCard : UsableCard {
 
 
 		if (pageCard) {
-			bullet.GetComponent<Projectile> ().user = user;
+
 			bullet.GetComponent<Projectile> ().fireDelay = fireDelay;
 			bullet.GetComponent<Projectile> ().fireAmount = fireAmount;
 			bullet.GetComponent<Projectile> ().isPage = true;

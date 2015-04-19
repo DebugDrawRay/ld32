@@ -28,7 +28,7 @@ public class CardUIController : MonoBehaviour {
 		foreach(string cardname in currentDeck.GetHand()){
 			GameObject current = (GameObject) Instantiate(cardobject, new Vector3(STARTING_POSITION_X + CARD_VARIANCE * count, STARTING_POSITION_Y,0) ,Quaternion.identity);
 			current.transform.SetParent(canvas.transform);
-			current.GetComponent<Image>().sprite = Sprite.Create (crl.Get2DCardReference(cardname), new Rect(0,0, 300, 531),Vector2.zero);
+			current.GetComponent<Image>().sprite = Sprite.Create (crl.Get2DCardReference(cardname), new Rect(0,0, 300, 510),Vector2.zero);
 			cards.Add ( current );
 			count++;
 		}
@@ -54,7 +54,7 @@ public class CardUIController : MonoBehaviour {
 			if(currentDeck.GetModifier() == -2){
 				GameObject current = (GameObject) Instantiate(cardobject, new Vector3(STARTING_POSITION_X + CARD_VARIANCE * (currentDeck.HandCount() - 1), STARTING_POSITION_Y,0) ,Quaternion.identity);
 				current.transform.SetParent(canvas.transform);
-				current.GetComponent<Image>().sprite = Sprite.Create (crl.Get2DCardReference((string)currentDeck.GetHand()[currentDeck.HandCount() - 1]), new Rect(0,0, 300, 531),Vector2.zero);
+				current.GetComponent<Image>().sprite = Sprite.Create (crl.Get2DCardReference((string)currentDeck.GetHand()[currentDeck.HandCount() - 1]), new Rect(0,0, 300, 510),Vector2.zero);
 				cards.Add ( current );
 			}else if(currentDeck.GetModifier() > -1){
 				for(int index = currentDeck.GetModifier() + 1; index <= currentDeck.HandCount(); index ++){

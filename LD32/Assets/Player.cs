@@ -22,16 +22,41 @@ public class Player : MonoBehaviour {
 
 	void Awake() {
 		currentDeck = new Deck ();
+		currentDeck.AddToSeedDeck ("ace-of-cups");
 		currentDeck.AddToSeedDeck ("two-of-cups");
-		currentDeck.AddToSeedDeck ("two-of-cups");
-		currentDeck.AddToSeedDeck ("two-of-cups");
-		currentDeck.AddToSeedDeck ("two-of-cups");
-		currentDeck.AddToSeedDeck ("two-of-cups");
-		currentDeck.AddToSeedDeck ("two-of-cups");
-		currentDeck.AddToSeedDeck ("two-of-cups");
-		currentDeck.AddToSeedDeck ("two-of-cups");
-		currentDeck.AddToSeedDeck ("two-of-cups");
-		currentDeck.AddToSeedDeck ("two-of-cups");
+		currentDeck.AddToSeedDeck ("three-of-cups");
+		currentDeck.AddToSeedDeck ("four-of-cups");
+		currentDeck.AddToSeedDeck ("five-of-cups");
+		currentDeck.AddToSeedDeck ("six-of-cups");
+		currentDeck.AddToSeedDeck ("seven-of-cups");
+		currentDeck.AddToSeedDeck ("eight-of-cups");
+		currentDeck.AddToSeedDeck ("nine-of-cups");
+		currentDeck.AddToSeedDeck ("ten-of-cups");
+		currentDeck.AddToSeedDeck ("page-of-cups");
+		currentDeck.AddToSeedDeck ("knight-of-cups");
+		currentDeck.AddToSeedDeck ("queen-of-cups");
+		currentDeck.AddToSeedDeck ("king-of-cups");
+
+		currentDeck.AddToSeedDeck ("ace-of-wands");
+		currentDeck.AddToSeedDeck ("two-of-wands");
+		currentDeck.AddToSeedDeck ("three-of-wands");
+		currentDeck.AddToSeedDeck ("four-of-wands");
+		currentDeck.AddToSeedDeck ("five-of-wands");
+		currentDeck.AddToSeedDeck ("six-of-wands");
+		currentDeck.AddToSeedDeck ("seven-of-wands");
+		currentDeck.AddToSeedDeck ("eight-of-wands");
+		currentDeck.AddToSeedDeck ("nine-of-wands");
+		currentDeck.AddToSeedDeck ("ten-of-wands");
+		currentDeck.AddToSeedDeck ("page-of-wands");
+		currentDeck.AddToSeedDeck ("knight-of-wands");
+		currentDeck.AddToSeedDeck ("queen-of-wands");
+		currentDeck.AddToSeedDeck ("king-of-wands");
+
+		currentDeck.AddToSeedDeck ("the-sun");
+
+
+
+
 		currentDeck.InstanceSeedDeck ();
 		currentDeck.DrawCard ();
 		currentDeck.DrawCard ();

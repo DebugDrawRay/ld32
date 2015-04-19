@@ -45,7 +45,7 @@ public class Deck{
 
 	public string UseCardInHandAtIndex(int index){
 		if (index < hand.Count &&  index >= 0) {
-			string usedCard = (string)hand [Random.Range (0, hand.Count)];
+			string usedCard = (string)hand [index];
 			hand.Remove (usedCard);
 			mod = index;
 			return usedCard;

@@ -237,11 +237,13 @@ public class Projectile : MonoBehaviour {
 			if (currentCount <= 0) {
 				if (bulletsFired < fireAmount) {
 					GameObject bullet = (GameObject)Instantiate (this.gameObject, user.GetComponent<Player> ().playCam.transform.position, user.GetComponent<Player> ().playCam.transform.rotation);
-					Physics.IgnoreCollision(bullet.GetComponent<Collider>(), user.GetComponent<Collider>());
+
 
 					bullet.GetComponent<Projectile> ().isPage = false;
 					bullet.GetComponent<SphereCollider> ().enabled = true;
 					bullet.GetComponent<MeshRenderer> ().enabled = true;
+
+					Physics.IgnoreCollision(bullet.GetComponent<Collider>(), user.GetComponent<Collider>());
 
 					bullet.GetComponent<Projectile> ().fire ();
 					bulletsFired++;
