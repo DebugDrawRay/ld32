@@ -8,7 +8,7 @@ public class CardUIController : MonoBehaviour {
 	private const int STARTING_POSITION_Y = 70;
     private Rect CARD_SIZE = new Rect(0f, 0f, 300f, 531f);
 
-    private int prevCard = 0;
+    private int prevCard = -1;
 
 	public GameObject cardobject;
 	GameObject canvas;
@@ -47,8 +47,8 @@ public class CardUIController : MonoBehaviour {
 			count++;
 		}
 
-        GameObject selection = cards[currentDeck.GetSelectedCard()] as GameObject;
-        StartCoroutine(SelectedCardControl(selection, 20f));
+        //GameObject selection = cards[currentDeck.GetSelectedCard()] as GameObject;
+        //StartCoroutine(SelectedCardControl(selection, 20f));
 
 
 	}
@@ -65,7 +65,6 @@ public class CardUIController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
         health.fillAmount = playerHealth.getHealth() / maxHealth;
         healthTxt.text = playerHealth.getHealth().ToString();
 
@@ -99,10 +98,10 @@ public class CardUIController : MonoBehaviour {
                     GameObject selection = cards[currentDeck.GetSelectedCard()] as GameObject;
                     StartCoroutine(SelectedCardControl(selection, 20f));
 
-                    if (prevCard != -1)
+                    if (prevCard != -1 && prevCard < cards.Count)
                     {
                         selection = cards[prevCard] as GameObject;
-                        StartCoroutine(SelectedCardControl(selection, -20f));
+                        StartCoroutine(SelectedCardControl(selection, 0f));
                     }
 
                     prevCard = currentDeck.GetSelectedCard();
@@ -123,8 +122,10 @@ public class CardUIController : MonoBehaviour {
 		float elapsedTime = 0;
 		float totalTime = 0.1f;
 		Vector3 startingPos = card.transform.position;
+		Vector3 endingPos = card.transform.position;
+		endingPos.x = target.x;
 		while(elapsedTime < totalTime){
-			card.transform.position = Vector3.Lerp (startingPos, target, (elapsedTime / totalTime));
+			card.transform.position = Vector3.Lerp (startingPos, endingPos, (elapsedTime / totalTime));
 			elapsedTime += Time.deltaTime;
 			yield return new WaitForEndOfFrame();
 		}
@@ -133,16 +134,15 @@ public class CardUIController : MonoBehaviour {
 
     IEnumerator SelectedCardControl(GameObject card, float offset)
     {
-        float elapsedTime = 0;
-        float totalTime = 0.1f;
-        Vector3 startingPos = card.transform.position;
-        Vector3 target = new Vector3(startingPos.x, startingPos.y + offset, startingPos.z);
-        while (elapsedTime < totalTime)
-        {
-            card.transform.position = Vector3.Lerp(startingPos, target, (elapsedTime / totalTime));
-            elapsedTime += Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-        card.transform.position = target;
+		float elapsedTime = 0;
+		float totalTime = 0.1f;
+		Vector3 startingPos = card.transform.position;
+		Vector3 target = new Vector3 (startingPos.x, STARTING_POSITION_Y + offset, startingPos.z);
+		while (elapsedTime < totalTime && card != null) {
+			card.transform.position = Vector3.Lerp (startingPos, target, (elapsedTime / totalTime));
+			elapsedTime += Time.deltaTime;
+			yield return new WaitForEndOfFrame ();
+		}
+		if(card!=null) card.transform.position = target;
     }
 }

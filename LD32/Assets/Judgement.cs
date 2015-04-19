@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TheSun : UsableCard {
+public class Judgement : UsableCard {
+	
+	public GameObject shield;
 
-	public GameObject pillar;
-	public float frontOffset;
-
+	
 	// Use this for initialization
 	void Start () {
 		
@@ -17,7 +17,8 @@ public class TheSun : UsableCard {
 	}
 	
 	public override void UseCard(GameObject user) {
-		GameObject sun = (GameObject) Instantiate (pillar, user.transform.position + (user.transform.forward * frontOffset), user.transform.rotation);
+		GameObject sun = (GameObject) Instantiate (shield, user.transform.position, user.transform.rotation);
 		sun.GetComponent<DamageArea> ().enemyTag = user.GetComponent<Player> ().enemyTag;
+		sun.transform.parent = user.transform;
 	}
 }

@@ -11,6 +11,12 @@ public class Player : MonoBehaviour {
 
 	public Deck currentDeck;
 
+	public float moveBoost;
+	public float moveBoostTime;
+
+	public float jumpBoost;
+	public float jumpBoostTime;
+
 	public GameObject card1;
 	public GameObject card2;
 	public GameObject card3;
@@ -107,6 +113,18 @@ public class Player : MonoBehaviour {
 
 	void Update() {
 		RotateCam ();
+
+		if (moveBoostTime <= 0) {
+			moveBoost = 0f;
+		} else {
+			moveBoostTime -= Time.deltaTime;
+		}
+
+		if (jumpBoostTime <= 0) {
+			jumpBoost = 0f;
+		} else {
+			jumpBoostTime -= Time.deltaTime;
+		}
 
 		if (Input.GetButtonDown ("Draw")) {
 			currentDeck.DrawCard ();
@@ -224,7 +242,7 @@ public class Player : MonoBehaviour {
 
 		if(Input.GetButtonDown("Jump")) {
 			if(Physics.Raycast(transform.position, -transform.up, 1.5f)) {
-				gameObject.GetComponent<Rigidbody>().AddForce(transform.up * jumpForce);
+				gameObject.GetComponent<Rigidbody>().AddForce(transform.up * (jumpForce + jumpBoost));
 			}
 			if(canJump) {
 				//gameObject.GetComponent<Rigidbody>().AddForce(transform.up * jumpForce);
@@ -250,7 +268,7 @@ public class Player : MonoBehaviour {
 		//actually move the player
 		//Vector3 mover = new Vector3 (h, 0, v);
 		mover.Normalize ();
-		Vector3 fMover = mover * moveForce;
+		Vector3 fMover = mover * (moveForce + moveBoost);
 		Vector3 finMover = new Vector3 (fMover.x, gameObject.GetComponent<Rigidbody> ().velocity.y, fMover.z);
 
 		gameObject.GetComponent<Rigidbody> ().velocity = finMover;
