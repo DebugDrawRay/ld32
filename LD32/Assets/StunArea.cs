@@ -5,6 +5,7 @@ public class StunArea : MonoBehaviour {
 
 	public string enemyTag;
 	public float lifeTime;
+	public float stunTime;
 	
 	// Use this for initialization
 	void Start () {
@@ -23,6 +24,11 @@ public class StunArea : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == enemyTag) {
 			//stunenemy
+			if(other.gameObject.GetComponent<RunMan>() != null) {
+				other.gameObject.GetComponent<RunMan>().stunned = true;
+				other.gameObject.GetComponent<RunMan>().stunTime = stunTime;
+			}
+
 			Destroy(gameObject);
 		}
 	}
