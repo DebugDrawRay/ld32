@@ -18,6 +18,6 @@ public class TheHangedMan : UsableCard {
 	
 	public override void UseCard(GameObject user) {
 		GameObject sun = (GameObject) Instantiate (pillar, user.transform.position + (user.transform.forward * frontOffset), user.transform.rotation);
-		sun.GetComponent<DamageArea> ().enemyTag = user.GetComponent<Player> ().enemyTag;
+		sun.GetComponent<InstantDamge> ().enemyTag = user.GetComponent<Player> ().enemyTag;
 	}
 }

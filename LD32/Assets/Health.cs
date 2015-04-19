@@ -7,7 +7,7 @@ public class Health : MonoBehaviour {
 	public float invulTime;
 
 	public void changeHealth(float change) {
-		if (!invul) {
+		if (!invul || change > 0) {
 			health += change;
 		}
 	}
