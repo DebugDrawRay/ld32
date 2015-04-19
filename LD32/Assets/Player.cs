@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
+	public string enemyTag;
+
 	public float moveForce;
 	public GameObject playCam;
 	public float jumpForce;
@@ -14,20 +16,73 @@ public class Player : MonoBehaviour {
 	public GameObject card3;
 	public GameObject card4;
 	public GameObject card5;
-	
+
+	bool canUse = true;
+	float currentCooldown;
 
 	void Awake() {
 		currentDeck = new Deck ();
+		currentDeck.AddToSeedDeck ("two-of-swords");
+		currentDeck.AddToSeedDeck ("three-of-swords");
+		currentDeck.AddToSeedDeck ("four-of-swords");
+		currentDeck.AddToSeedDeck ("five-of-swords");
+		currentDeck.AddToSeedDeck ("six-of-swords");
+		currentDeck.AddToSeedDeck ("seven-of-swords");
+		currentDeck.AddToSeedDeck ("eight-of-swords");
+		currentDeck.AddToSeedDeck ("nine-of-swords");
+		currentDeck.AddToSeedDeck ("ten-of-swords");
+		currentDeck.AddToSeedDeck ("page-of-swords");
+		currentDeck.AddToSeedDeck ("knight-of-swords");
+		currentDeck.AddToSeedDeck ("king-of-swords");
+		currentDeck.AddToSeedDeck ("queen-of-swords");
+		currentDeck.AddToSeedDeck ("ace-of-swords");
+
+		currentDeck.AddToSeedDeck ("two-of-cups");
+		currentDeck.AddToSeedDeck ("three-of-cups");
+		currentDeck.AddToSeedDeck ("four-of-cups");
+		currentDeck.AddToSeedDeck ("five-of-cups");
+		currentDeck.AddToSeedDeck ("six-of-cups");
+		currentDeck.AddToSeedDeck ("seven-of-cups");
+		currentDeck.AddToSeedDeck ("eight-of-cups");
+		currentDeck.AddToSeedDeck ("nine-of-cups");
+		currentDeck.AddToSeedDeck ("ten-of-cups");
+		currentDeck.AddToSeedDeck ("page-of-cups");
+		currentDeck.AddToSeedDeck ("knight-of-cups");
+		currentDeck.AddToSeedDeck ("king-of-cups");
+		currentDeck.AddToSeedDeck ("queen-of-cups");
 		currentDeck.AddToSeedDeck ("ace-of-cups");
-		currentDeck.AddToSeedDeck ("ace-of-cups");
-		currentDeck.AddToSeedDeck ("ace-of-cups");
-		currentDeck.AddToSeedDeck ("ace-of-cups");
-		currentDeck.AddToSeedDeck ("ace-of-cups");
-		currentDeck.AddToSeedDeck ("ace-of-cups");
-		currentDeck.AddToSeedDeck ("ace-of-cups");
-		currentDeck.AddToSeedDeck ("ace-of-cups");
-		currentDeck.AddToSeedDeck ("ace-of-cups");
-		currentDeck.AddToSeedDeck ("ace-of-cups");
+
+		currentDeck.AddToSeedDeck ("two-of-wands");
+		currentDeck.AddToSeedDeck ("three-of-wands");
+		currentDeck.AddToSeedDeck ("four-of-wands");
+		currentDeck.AddToSeedDeck ("five-of-wands");
+		currentDeck.AddToSeedDeck ("six-of-wands");
+		currentDeck.AddToSeedDeck ("seven-of-wands");
+		currentDeck.AddToSeedDeck ("eight-of-wands");
+		currentDeck.AddToSeedDeck ("nine-of-wands");
+		currentDeck.AddToSeedDeck ("ten-of-wands");
+		currentDeck.AddToSeedDeck ("page-of-wands");
+		currentDeck.AddToSeedDeck ("knight-of-wands");
+		currentDeck.AddToSeedDeck ("king-of-wands");
+		currentDeck.AddToSeedDeck ("queen-of-wands");
+		currentDeck.AddToSeedDeck ("ace-of-wands");
+
+		currentDeck.AddToSeedDeck ("three-of-pentacles");
+		currentDeck.AddToSeedDeck ("four-of-pentacles");
+		currentDeck.AddToSeedDeck ("five-of-pentacles");
+		currentDeck.AddToSeedDeck ("six-of-pentacles");
+		currentDeck.AddToSeedDeck ("seven-of-pentacles");
+		currentDeck.AddToSeedDeck ("eight-of-pentacles");
+		currentDeck.AddToSeedDeck ("nine-of-pentacles");
+		currentDeck.AddToSeedDeck ("ten-of-pentacles");
+		currentDeck.AddToSeedDeck ("page-of-pentacles");
+		currentDeck.AddToSeedDeck ("knight-of-pentacles");
+		currentDeck.AddToSeedDeck ("king-of-pentacles");
+		currentDeck.AddToSeedDeck ("queen-of-pentacles");
+		currentDeck.AddToSeedDeck ("ace-of-pentacles");
+		currentDeck.AddToSeedDeck ("two-of-pentacles");
+
+		currentDeck.AddToSeedDeck ("the-sun");
 		currentDeck.InstanceSeedDeck ();
 		currentDeck.DrawCard ();
 		currentDeck.DrawCard ();
@@ -54,46 +109,70 @@ public class Player : MonoBehaviour {
 		RotateCam ();
 
 		if (Input.GetButtonDown ("Draw")) {
-			currentDeck.DrawCard();
+			currentDeck.DrawCard ();
 		}
-		if (Input.GetButtonDown ("Card0")) {
-			string curCard = currentDeck.UseCardInHandAtIndex(0);
-			if(curCard != "") {
-				Debug.Log (curCard);
-				GameObject curCardPref = (GameObject) Resources.Load("CardPrefabs/" + curCard);
-				curCardPref.GetComponent<UsableCard>().UseCard(gameObject);
+
+		if (canUse) {
+			if (Input.GetButtonDown ("Card0")) {
+				string curCard = currentDeck.UseCardInHandAtIndex (0);
+				if (curCard != "") {
+					Debug.Log (curCard);
+					GameObject curCardPref = (GameObject)Resources.Load ("CardPrefabs/" + curCard);
+					curCardPref.GetComponent<UsableCard> ().UseCard (gameObject);
+
+					canUse = false;
+					currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
+				}
 			}
-		}
-		if (Input.GetButtonDown ("Card1")) {
-			string curCard = currentDeck.UseCardInHandAtIndex(1);
-			if(curCard != "") {
-				Debug.Log (curCard);
-				GameObject curCardPref = (GameObject) Resources.Load("CardPrefabs/" + curCard);
-				curCardPref.GetComponent<UsableCard>().UseCard(gameObject);
+			if (Input.GetButtonDown ("Card1")) {
+				string curCard = currentDeck.UseCardInHandAtIndex (1);
+				if (curCard != "") {
+					Debug.Log (curCard);
+					GameObject curCardPref = (GameObject)Resources.Load ("CardPrefabs/" + curCard);
+					curCardPref.GetComponent<UsableCard> ().UseCard (gameObject);
+
+					canUse = false;
+					currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
+				}
 			}
-		}
-		if (Input.GetButtonDown ("Card2")) {
-			string curCard = currentDeck.UseCardInHandAtIndex(2);
-			if(curCard != "") {
-				Debug.Log (curCard);
-				GameObject curCardPref = (GameObject) Resources.Load("CardPrefabs/" + curCard);
-				curCardPref.GetComponent<UsableCard>().UseCard(gameObject);
+			if (Input.GetButtonDown ("Card2")) {
+				string curCard = currentDeck.UseCardInHandAtIndex (2);
+				if (curCard != "") {
+					Debug.Log (curCard);
+					GameObject curCardPref = (GameObject)Resources.Load ("CardPrefabs/" + curCard);
+					curCardPref.GetComponent<UsableCard> ().UseCard (gameObject);
+
+					canUse = false;
+					currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
+				}
 			}
-		}
-		if (Input.GetButtonDown ("Card3")) {
-			string curCard = currentDeck.UseCardInHandAtIndex(3);
-			if(curCard != "") {
-				Debug.Log (curCard);
-				GameObject curCardPref = (GameObject) Resources.Load("CardPrefabs/" + curCard);
-				curCardPref.GetComponent<UsableCard>().UseCard(gameObject);
+			if (Input.GetButtonDown ("Card3")) {
+				string curCard = currentDeck.UseCardInHandAtIndex (3);
+				if (curCard != "") {
+					Debug.Log (curCard);
+					GameObject curCardPref = (GameObject)Resources.Load ("CardPrefabs/" + curCard);
+					curCardPref.GetComponent<UsableCard> ().UseCard (gameObject);
+
+					canUse = false;
+					currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
+				}
 			}
-		}
-		if (Input.GetButtonDown ("Card4")) {
-			string curCard = currentDeck.UseCardInHandAtIndex(4);
-			if(curCard != "") {
-				Debug.Log (curCard);
-				GameObject curCardPref = (GameObject) Resources.Load("CardPrefabs/" + curCard);
-				curCardPref.GetComponent<UsableCard>().UseCard(gameObject);
+			if (Input.GetButtonDown ("Card4")) {
+				string curCard = currentDeck.UseCardInHandAtIndex (4);
+				if (curCard != "") {
+					Debug.Log (curCard);
+					GameObject curCardPref = (GameObject)Resources.Load ("CardPrefabs/" + curCard);
+					curCardPref.GetComponent<UsableCard> ().UseCard (gameObject);
+
+					canUse = false;
+					currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
+				}
+			}
+		} else {
+			if(currentCooldown <= 0) {
+				canUse = true;
+			} else {
+				currentCooldown -= Time.deltaTime;
 			}
 		}
 

@@ -9,6 +9,9 @@ public class Deck{
 
 	private int maxHandSize;
 
+	private int selectedCard;
+	private bool selectChange;
+
 	private int mod;
 	//-1 means no change
 	//-2 means card added
@@ -45,12 +48,46 @@ public class Deck{
 
 	public string UseCardInHandAtIndex(int index){
 		if (index < hand.Count &&  index >= 0) {
-			string usedCard = (string)hand [Random.Range (0, hand.Count)];
+			string usedCard = (string)hand [index];
 			hand.Remove (usedCard);
 			mod = index;
+			selectedCard = -1;
 			return usedCard;
 		}
 		return "";
+	}
+
+	public bool SelectionChanged(){
+		return selectChange;
+	}
+
+	public void SetSelectedCard(int cardindex){
+		if (cardindex > -1 && cardindex < HandCount ()) {
+			selectedCard = cardindex;
+			selectChange = true;
+		}
+	}
+
+	public int GetSelectedCard(){
+		return selectedCard;
+	}
+
+	public void ResetSelection(){
+		selectChange = false;
+	}
+
+	public void DecrementSelectedCard(){
+		if (selectedCard > 0) {
+			selectedCard--;
+			selectChange = true;
+		}
+	}
+
+	public void IncrementSelectedCard(){
+		if (selectedCard < HandCount() - 1) {
+			selectedCard++;
+			selectChange = true;
+		}
 	}
 
 	public void InstanceSeedDeck(){
