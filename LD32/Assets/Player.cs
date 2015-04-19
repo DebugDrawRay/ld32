@@ -99,18 +99,20 @@ public class Player : MonoBehaviour {
 		currentDeck.AddToSeedDeck ("ace-of-pentacles");
 		currentDeck.AddToSeedDeck ("two-of-pentacles");*/
 
-		/*currentDeck.AddToSeedDeck ("the-sun");
-		currentDeck.AddToSeedDeck ("the-fool");
-		currentDeck.AddToSeedDeck ("the-empress");
-		currentDeck.AddToSeedDeck ("the-lovers");
-		currentDeck.AddToSeedDeck ("justice");
-		currentDeck.AddToSeedDeck ("the-hanged-man");
+		//currentDeck.AddToSeedDeck ("the-sun");
+		//currentDeck.AddToSeedDeck ("the-fool");
+		//currentDeck.AddToSeedDeck ("the-empress");
+		//currentDeck.AddToSeedDeck ("the-lovers");
+		//currentDeck.AddToSeedDeck ("justice");
+		//currentDeck.AddToSeedDeck ("the-hanged-man");
 		currentDeck.AddToSeedDeck ("temperance");
-		currentDeck.AddToSeedDeck ("the-tower");
-		currentDeck.AddToSeedDeck ("the-star");
-		currentDeck.AddToSeedDeck ("the-moon");
-		currentDeck.AddToSeedDeck ("judgement");*/
+		//currentDeck.AddToSeedDeck ("the-tower");
+		//currentDeck.AddToSeedDeck ("the-star");
+		//currentDeck.AddToSeedDeck ("the-moon");
+		//currentDeck.AddToSeedDeck ("judgement");
+		//currentDeck.AddToSeedDeck ("the-devil");
 
+		/*currentDeck.AddToSeedDeck ("the-chariot");
 		currentDeck.AddToSeedDeck ("the-chariot");
 		currentDeck.AddToSeedDeck ("the-chariot");
 		currentDeck.AddToSeedDeck ("the-chariot");
@@ -121,8 +123,7 @@ public class Player : MonoBehaviour {
 		currentDeck.AddToSeedDeck ("the-chariot");
 		currentDeck.AddToSeedDeck ("the-chariot");
 		currentDeck.AddToSeedDeck ("the-chariot");
-		currentDeck.AddToSeedDeck ("the-chariot");
-		currentDeck.AddToSeedDeck ("the-chariot");
+		currentDeck.AddToSeedDeck ("the-chariot");*/
 
 
 

@@ -23,7 +23,7 @@ public class InstantDamge : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == enemyTag) {
-			other.GetComponent<Health>().changeHealth(-damage * Time.deltaTime);
+			other.GetComponent<Health>().changeHealth(-damage);
 			Destroy(gameObject);
 		}
 	}
