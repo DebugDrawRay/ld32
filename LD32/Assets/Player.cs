@@ -26,6 +26,9 @@ public class Player : MonoBehaviour {
 	public float moveNerf;
 	public float moveNerfTime;
 
+	public bool stunned;
+	public float stunTime;
+
 	public bool reversed;
 	public float reversedTime;
 
@@ -37,12 +40,28 @@ public class Player : MonoBehaviour {
 	public GameObject card4;
 	public GameObject card5;
 
+
+	public string InputVertical;
+	public string InputHorizontal;
+	public string InputViewControlX;
+	public string InputViewControlY;
+	public string InputIncrement;
+	public string InputDecrement;
+	public string InputTriggers;
+	public string InputStart;
+	public string InputJump;
+	public string InputDraw;
+	public string InputDirectionalX;
+	public string InputDirectionalY;
+	public string InputCard4;
+
+
 	bool canUse = true;
 	float currentCooldown;
 
 	void Awake() {
 		currentDeck = new Deck ();
-		/*currentDeck.AddToSeedDeck ("two-of-swords");
+		currentDeck.AddToSeedDeck ("two-of-swords");
 		currentDeck.AddToSeedDeck ("three-of-swords");
 		currentDeck.AddToSeedDeck ("four-of-swords");
 		currentDeck.AddToSeedDeck ("five-of-swords");
@@ -55,9 +74,9 @@ public class Player : MonoBehaviour {
 		currentDeck.AddToSeedDeck ("knight-of-swords");
 		currentDeck.AddToSeedDeck ("king-of-swords");
 		currentDeck.AddToSeedDeck ("queen-of-swords");
-		currentDeck.AddToSeedDeck ("ace-of-swords");*/
+		currentDeck.AddToSeedDeck ("ace-of-swords");
 
-		/*currentDeck.AddToSeedDeck ("two-of-cups");
+		currentDeck.AddToSeedDeck ("two-of-cups");
 		currentDeck.AddToSeedDeck ("three-of-cups");
 		currentDeck.AddToSeedDeck ("four-of-cups");
 		currentDeck.AddToSeedDeck ("five-of-cups");
@@ -70,9 +89,9 @@ public class Player : MonoBehaviour {
 		currentDeck.AddToSeedDeck ("knight-of-cups");
 		currentDeck.AddToSeedDeck ("king-of-cups");
 		currentDeck.AddToSeedDeck ("queen-of-cups");
-		currentDeck.AddToSeedDeck ("ace-of-cups");*/
+		currentDeck.AddToSeedDeck ("ace-of-cups");
 
-		/*currentDeck.AddToSeedDeck ("two-of-wands");
+		currentDeck.AddToSeedDeck ("two-of-wands");
 		currentDeck.AddToSeedDeck ("three-of-wands");
 		currentDeck.AddToSeedDeck ("four-of-wands");
 		currentDeck.AddToSeedDeck ("five-of-wands");
@@ -100,7 +119,7 @@ public class Player : MonoBehaviour {
 		currentDeck.AddToSeedDeck ("king-of-pentacles");
 		currentDeck.AddToSeedDeck ("queen-of-pentacles");
 		currentDeck.AddToSeedDeck ("ace-of-pentacles");
-		currentDeck.AddToSeedDeck ("two-of-pentacles");*/
+		currentDeck.AddToSeedDeck ("two-of-pentacles");
 
 		//currentDeck.AddToSeedDeck ("the-sun");
 		//currentDeck.AddToSeedDeck ("the-fool");
@@ -179,6 +198,18 @@ public class Player : MonoBehaviour {
 			moveNerf = 0f;
 		} else {
 			moveNerfTime -= Time.deltaTime;
+		}
+
+		if (reversedTime <= 0) {
+			reversed = false;
+		} else {
+			reversedTime -= Time.deltaTime;
+		}
+
+		if (stunTime <= 0) {
+			stunned = false;
+		} else {
+			stunTime -= Time.deltaTime;
 		}
 
 		if (Input.GetButtonDown ("Draw") || Input.GetButtonDown("Player1B")) {
@@ -327,6 +358,10 @@ public class Player : MonoBehaviour {
 
 		if (reversed) {
 			fMover = -1f * fMover;
+		}
+
+		if (stunned) {
+			fMover = fMover * 0f;
 		}
 
 

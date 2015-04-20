@@ -11,6 +11,12 @@ public class Explosion : MonoBehaviour {
 	public bool upKnock;
 	public float upKnockForce;
 
+	public bool slows;
+	public float slowPercent;
+	public float slowTime;
+	public bool stuns;
+	public float stunTime;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -31,13 +37,48 @@ public class Explosion : MonoBehaviour {
 
 			Vector3 knockDir = other.gameObject.transform.position - gameObject.transform.position;
 			knockDir = knockDir.normalized;
-			
-			other.gameObject.GetComponent<Rigidbody>().AddForce(knockDir * knockBack);
+
+			if(enemyTag == "Player") {
+				other.gameObject.GetComponent<Player>().knockback += knockDir * knockBack;
+			} else {
+				other.gameObject.GetComponent<Rigidbody>().AddForce(knockDir * knockBack);
+			}
 
 			if(upKnock) {
 				Vector3 knockDir2 = Vector3.up;
 				other.gameObject.GetComponent<Rigidbody>().AddForce(knockDir2 * upKnockForce);
+
+				if(enemyTag == "Player") {
+					other.gameObject.GetComponent<Player>().knockback += knockDir2 * upKnockForce;
+				} else {
+					other.gameObject.GetComponent<Rigidbody>().AddForce(knockDir2 * upKnockForce);
+				}
 			}
+
+			if(stuns) {
+				if(other.gameObject.GetComponent<RunMan>() != null) {
+					other.gameObject.GetComponent<RunMan>().stunned = true;
+					other.gameObject.GetComponent<RunMan>().stunTime = stunTime;
+				}
+				
+				if(other.gameObject.GetComponent<Player>() != null) {
+					other.gameObject.GetComponent<Player>().stunned = true;
+					other.gameObject.GetComponent<Player>().stunTime = stunTime;
+				}
+			}
+			
+			if(slows) {
+				if(other.gameObject.GetComponent<RunMan>() != null) {
+					other.gameObject.GetComponent<RunMan>().moveNerf = slowPercent;
+					other.gameObject.GetComponent<RunMan>().moveNerfTime = slowTime;
+				}
+				
+				if(other.gameObject.GetComponent<Player>() != null) {
+					other.gameObject.GetComponent<Player>().moveNerf = slowPercent;
+					other.gameObject.GetComponent<Player>().moveNerfTime = slowTime;
+				}
+			}
+
 		}
 	}
 

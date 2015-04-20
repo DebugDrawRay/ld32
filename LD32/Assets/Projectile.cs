@@ -116,6 +116,12 @@ public class Projectile : MonoBehaviour {
 			spl.GetComponent<Explosion>().upKnock = upKnock;
 			spl.GetComponent<Explosion>().upKnockForce = upKnockForce;
 
+			spl.GetComponent<Explosion>().slows = slows;
+			spl.GetComponent<Explosion>().slowPercent = slowPercent;
+			spl.GetComponent<Explosion>().slowTime = slowTime;
+			spl.GetComponent<Explosion>().stuns = stuns;
+			spl.GetComponent<Explosion>().stunTime = stunTime;
+
 		}
 
 
@@ -129,11 +135,45 @@ public class Projectile : MonoBehaviour {
 
 					Vector3 knockDir = coll.gameObject.transform.position - gameObject.transform.position;
 					knockDir = knockDir.normalized;
-					coll.gameObject.GetComponent<Rigidbody>().AddForce(knockDir * knockBack);
+
+					if(enemyTag == "Player") {
+						coll.gameObject.GetComponent<Player>().knockback += knockDir * knockBack;
+					} else {
+						coll.gameObject.GetComponent<Rigidbody>().AddForce(knockDir * knockBack);
+					}
 
 					if(upKnock && !explosive) {
 						Vector3 knockDir2 = Vector3.up;
-						coll.gameObject.GetComponent<Rigidbody>().AddForce(knockDir2 * upKnockForce);
+
+						if(enemyTag == "Player") {
+							coll.gameObject.GetComponent<Player>().knockback += knockDir2 * upKnockForce;
+						} else {
+							coll.gameObject.GetComponent<Rigidbody>().AddForce(knockDir2 * upKnockForce);
+						}
+					}
+
+					if(stuns) {
+						if(coll.gameObject.GetComponent<RunMan>() != null) {
+							coll.gameObject.GetComponent<RunMan>().stunned = true;
+							coll.gameObject.GetComponent<RunMan>().stunTime = stunTime;
+						}
+						
+						if(coll.gameObject.GetComponent<Player>() != null) {
+							coll.gameObject.GetComponent<Player>().stunned = true;
+							coll.gameObject.GetComponent<Player>().stunTime = stunTime;
+						}
+					}
+
+					if(slows) {
+						if(coll.gameObject.GetComponent<RunMan>() != null) {
+							coll.gameObject.GetComponent<RunMan>().moveNerf = slowPercent;
+							coll.gameObject.GetComponent<RunMan>().moveNerfTime = slowTime;
+						}
+						
+						if(coll.gameObject.GetComponent<Player>() != null) {
+							coll.gameObject.GetComponent<Player>().moveNerf = slowPercent;
+							coll.gameObject.GetComponent<Player>().moveNerfTime = slowTime;
+						}
 					}
 				}
 			} else {
@@ -153,11 +193,46 @@ public class Projectile : MonoBehaviour {
 
 				Vector3 knockDir = coll.gameObject.transform.position - gameObject.transform.position;
 				knockDir = knockDir.normalized;
-				coll.gameObject.GetComponent<Rigidbody>().AddForce(knockDir * knockBack);
+
+
+				if(enemyTag == "Player") {
+					coll.gameObject.GetComponent<Player>().knockback += knockDir * knockBack;
+				} else {
+					coll.gameObject.GetComponent<Rigidbody>().AddForce(knockDir * knockBack);
+				}
 
 				if(upKnock && !explosive) {
 					Vector3 knockDir2 = Vector3.up;
-					coll.gameObject.GetComponent<Rigidbody>().AddForce(knockDir2 * upKnockForce);
+
+					if(enemyTag == "Player") {
+						coll.gameObject.GetComponent<Player>().knockback += knockDir2 * upKnockForce;
+					} else {
+						coll.gameObject.GetComponent<Rigidbody>().AddForce(knockDir2 * upKnockForce);
+					}
+				}
+
+				if(stuns) {
+					if(coll.gameObject.GetComponent<RunMan>() != null) {
+						coll.gameObject.GetComponent<RunMan>().stunned = true;
+						coll.gameObject.GetComponent<RunMan>().stunTime = stunTime;
+					}
+					
+					if(coll.gameObject.GetComponent<Player>() != null) {
+						coll.gameObject.GetComponent<Player>().stunned = true;
+						coll.gameObject.GetComponent<Player>().stunTime = stunTime;
+					}
+				}
+				
+				if(slows) {
+					if(coll.gameObject.GetComponent<RunMan>() != null) {
+						coll.gameObject.GetComponent<RunMan>().moveNerf = slowPercent;
+						coll.gameObject.GetComponent<RunMan>().moveNerfTime = slowTime;
+					}
+					
+					if(coll.gameObject.GetComponent<Player>() != null) {
+						coll.gameObject.GetComponent<Player>().moveNerf = slowPercent;
+						coll.gameObject.GetComponent<Player>().moveNerfTime = slowTime;
+					}
 				}
 			}
 
