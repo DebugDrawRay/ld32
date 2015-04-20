@@ -25,6 +25,9 @@ public class CardUIController : MonoBehaviour {
     float maxHealth;
     public Image cardMeter;
     float maxCards;
+    public Image hand;
+    public Color handBuffColor;
+    private Color handColor;
 
 
 	public void InitializeUIController(GameObject pl) {
@@ -37,6 +40,7 @@ public class CardUIController : MonoBehaviour {
         playerHealth = pl.GetComponent<Health>();
         maxHealth = playerHealth.getHealth();
         maxCards = currentDeck.DeckCount();
+        handColor = hand.color;
 		crl = (CardResourceLoader)GameObject.Find ("CardResourceLoader").GetComponent ("CardResourceLoader");
 		cards = new ArrayList ();
 		int count = 0;
@@ -71,6 +75,15 @@ public class CardUIController : MonoBehaviour {
         healthTxt.text = playerHealth.getHealth().ToString();
 
         cardMeter.fillAmount = currentDeck.DeckCount() / maxCards;
+
+        if(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().isBuffed)
+        {
+            hand.color = handBuffColor;
+        }
+        else
+        {
+            hand.color = handColor;
+        }
 
 		if (currentDeck != null) {
 			if (currentDeck.DeckCount () != decksize) {

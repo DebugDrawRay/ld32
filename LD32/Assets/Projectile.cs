@@ -88,6 +88,11 @@ public class Projectile : MonoBehaviour {
 	public bool upKnock;
 	public float upKnockForce;
 
+	public bool confuses;
+	public float confuseTime;
+
+	public float playerMomentum;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -188,6 +193,20 @@ public class Projectile : MonoBehaviour {
 					coll.gameObject.GetComponent<Health>().burnTime = fireTime;
 				}
 
+				if(confuses) {
+					if(enemyTag == "Player") {
+						coll.gameObject.GetComponent<Player>().confused = true;
+						coll.gameObject.GetComponent<Player>().confuseTime = confuseTime;
+					}
+
+					if(enemyTag == "EnemyUnit") {
+						if(coll.gameObject.GetComponent<RunMan>() != null) {
+							coll.gameObject.GetComponent<RunMan>().confused = true;
+							coll.gameObject.GetComponent<RunMan>().confuseTime = confuseTime;
+						}
+					}
+				}
+
 				//coll.gameObject.GetComponent<EnemyBase>().ApplyLifeChange(-1 * damage);
 				coll.gameObject.GetComponent<Health>().changeHealth(-damage);
 
@@ -246,6 +265,8 @@ public class Projectile : MonoBehaviour {
 	}
 	
 	public void fire() {
+
+		playerMomentum = user.GetComponent<Rigidbody> ().velocity.magnitude;
 
 		if (matName != "the-chariot") {
 			transform.GetComponentInChildren<MeshRenderer> ().material = (Material) Resources.Load ("3D/" + matName);
@@ -312,6 +333,7 @@ public class Projectile : MonoBehaviour {
 			if (wave) {
 				for (int i = 0; i < spreadAmount; i++) {
 					GameObject bullet = (GameObject)Instantiate (this.gameObject, transform.position, transform.rotation);
+					bullet.GetComponent<Collider>().enabled = true;
 					Physics.IgnoreCollision(bullet.GetComponent<Collider>(), user.GetComponent<Collider>());
 
 
@@ -396,7 +418,7 @@ public class Projectile : MonoBehaviour {
 					balisticImpulse -= gravityAmount * Time.deltaTime;
 				}
 			
-				gameObject.GetComponent<Rigidbody> ().velocity = fMove * velocity;
+				gameObject.GetComponent<Rigidbody> ().velocity = fMove * (velocity + playerMomentum);
 			} else {
 				Destroy (gameObject);
 			}
