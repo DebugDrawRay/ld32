@@ -72,6 +72,8 @@ public class ProjectileCard : UsableCard {
 	
 	public bool isWave;
 
+	public bool confuses;
+	public float confuseTime;
 
 
 	// Use this for initialization
@@ -143,6 +145,9 @@ public class ProjectileCard : UsableCard {
 		bullet.GetComponent<Projectile> ().fireTime = fireTime;
 
 		bullet.GetComponent<Projectile> ().teleport = teleport;
+
+		bullet.GetComponent<Projectile> ().confuses = confuses;
+		bullet.GetComponent<Projectile> ().confuseTime = confuseTime;
 
 		if (pageCard) {
 			bullet.GetComponent<Projectile> ().fireDelay = fireDelay;

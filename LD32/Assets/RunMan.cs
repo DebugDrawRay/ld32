@@ -16,6 +16,9 @@ public class RunMan : MonoBehaviour {
 	public bool reversed;
 	public float reversedTime;
 
+	public bool confused;
+	public float confuseTime;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -41,6 +44,12 @@ public class RunMan : MonoBehaviour {
 			reversedTime -= Time.deltaTime;
 		}
 
+		if (confuseTime <= 0) {
+			confused = false;
+		} else {
+			confuseTime -= Time.deltaTime;
+		}
+
 		if (GetComponent<NavMeshAgent> ().remainingDistance < triggerDistance) {
 			GetComponent<NavMeshAgent> ().speed = runningspeed;
 		} else {
@@ -60,6 +69,10 @@ public class RunMan : MonoBehaviour {
 
 	void OnTriggerEnter (Collider other){
 		if (other.tag == "Player") {
+			if(confused) {
+				gameObject.GetComponent<Health>().changeHealth(-10);
+			}
+
 			other.GetComponent<Health>().changeHealth(-damageValue);
 			Vector3 forceDir = other.transform.position - transform.position;
 			forceDir.Normalize();

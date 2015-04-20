@@ -88,6 +88,9 @@ public class Projectile : MonoBehaviour {
 	public bool upKnock;
 	public float upKnockForce;
 
+	public bool confuses;
+	public float confuseTime;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -186,6 +189,20 @@ public class Projectile : MonoBehaviour {
 					coll.gameObject.GetComponent<Health>().burning = true;
 					coll.gameObject.GetComponent<Health>().burnDamage = fireDamage;
 					coll.gameObject.GetComponent<Health>().burnTime = fireTime;
+				}
+
+				if(confuses) {
+					if(enemyTag == "Player") {
+						coll.gameObject.GetComponent<Player>().confused = true;
+						coll.gameObject.GetComponent<Player>().confuseTime = confuseTime;
+					}
+
+					if(enemyTag == "EnemyUnit") {
+						if(coll.gameObject.GetComponent<RunMan>() != null) {
+							coll.gameObject.GetComponent<RunMan>().confused = true;
+							coll.gameObject.GetComponent<RunMan>().confuseTime = confuseTime;
+						}
+					}
 				}
 
 				//coll.gameObject.GetComponent<EnemyBase>().ApplyLifeChange(-1 * damage);

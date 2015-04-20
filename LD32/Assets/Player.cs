@@ -32,6 +32,9 @@ public class Player : MonoBehaviour {
 	public bool reversed;
 	public float reversedTime;
 
+	public bool confused;
+	public float confuseTime;
+
 	public Vector3 knockback;
 
 	public GameObject card1;
@@ -61,7 +64,7 @@ public class Player : MonoBehaviour {
 
 	void Awake() {
 		currentDeck = new Deck ();
-        /*currentDeck.AddToSeedDeck ("two-of-swords");
+        currentDeck.AddToSeedDeck ("two-of-swords");
         currentDeck.AddToSeedDeck ("three-of-swords");
         currentDeck.AddToSeedDeck ("four-of-swords");
         currentDeck.AddToSeedDeck ("five-of-swords");
@@ -76,7 +79,7 @@ public class Player : MonoBehaviour {
         currentDeck.AddToSeedDeck ("queen-of-swords");
         currentDeck.AddToSeedDeck ("ace-of-swords");
 
-        currentDeck.AddToSeedDeck ("two-of-cups");
+        /*currentDeck.AddToSeedDeck ("two-of-cups");
         currentDeck.AddToSeedDeck ("three-of-cups");
         currentDeck.AddToSeedDeck ("four-of-cups");
         currentDeck.AddToSeedDeck ("five-of-cups");
@@ -174,6 +177,7 @@ public class Player : MonoBehaviour {
 		currentDeck.AddToSeedDeck("the-magician");
 		currentDeck.AddToSeedDeck("the-magician");*/
 
+		/*currentDeck.AddToSeedDeck ("wheel-of-fortune");
 		currentDeck.AddToSeedDeck ("wheel-of-fortune");
 		currentDeck.AddToSeedDeck ("wheel-of-fortune");
 		currentDeck.AddToSeedDeck ("wheel-of-fortune");
@@ -184,9 +188,18 @@ public class Player : MonoBehaviour {
 		currentDeck.AddToSeedDeck ("wheel-of-fortune");
 		currentDeck.AddToSeedDeck ("wheel-of-fortune");
 		currentDeck.AddToSeedDeck ("wheel-of-fortune");
-		currentDeck.AddToSeedDeck ("wheel-of-fortune");
-		currentDeck.AddToSeedDeck ("wheel-of-fortune");
+		currentDeck.AddToSeedDeck ("wheel-of-fortune");*/
 		currentDeck.AddToSeedDeck ("temperance");
+
+		/*currentDeck.AddToSeedDeck ("the-hierophant");
+		currentDeck.AddToSeedDeck ("the-hierophant");
+		currentDeck.AddToSeedDeck ("the-hierophant");
+		currentDeck.AddToSeedDeck ("the-hierophant");
+		currentDeck.AddToSeedDeck ("the-hierophant");
+		currentDeck.AddToSeedDeck ("the-hierophant");*/
+
+		currentDeck.AddToSeedDeck ("the-world");
+
 
 		currentDeck.InstanceSeedDeck ();
 		currentDeck.DrawCard ();
@@ -246,6 +259,12 @@ public class Player : MonoBehaviour {
 			stunned = false;
 		} else {
 			stunTime -= Time.deltaTime;
+		}
+
+		if (confuseTime <= 0) {
+			confused = false;
+		} else {
+			confuseTime -= Time.deltaTime;
 		}
 
 		if (Input.GetButtonDown ("Draw") || Input.GetButtonDown("Player1B")) {
@@ -323,6 +342,10 @@ public class Player : MonoBehaviour {
             }
             if(Input.GetButtonDown("Mouse 0") || Input.GetAxis("Player1Triggers") < -0.5f)
             {
+				if(confused) {
+					gameObject.GetComponent<Health>().changeHealth(-10);
+				}
+
                 string curCard = currentDeck.UseCardInHandAtIndex (currentDeck.GetSelectedCard());
 				if (curCard != "") {
 					Debug.Log (curCard);
