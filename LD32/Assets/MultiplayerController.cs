@@ -12,6 +12,8 @@ public class MultiplayerController : MonoBehaviour {
 	public GameObject P3Spawn;
 	public GameObject P4Spawn;
 
+	public GameObject CanvasPrefab;
+
 	public GameObject PlayerPrefab;
 
 	private const string P1V = "Player1Vertical";
@@ -167,24 +169,62 @@ public class MultiplayerController : MonoBehaviour {
 	void CreatePlayers(int numberOfPlayers){
 		for (int i = 0; i < numberOfPlayers; i++) {
 			GameObject currentPlayer;
+			GameObject newcanvas;
 			switch (i){
 			case 0:
 				currentPlayer = (GameObject) Instantiate(PlayerPrefab, P1Spawn.transform.position, P1Spawn.transform.rotation);
 				SetInputsToPlayer1(currentPlayer);
+
+				if(numberOfPlayers == 2){
+					currentPlayer.GetComponentInChildren<Camera>().rect = new Rect(0,0, 0.5f, 1);
+				}else if(numberOfPlayers == 1){
+					currentPlayer.GetComponentInChildren<Camera>().rect = new Rect(0,0, 1, 1);
+				}else{
+					currentPlayer.GetComponentInChildren<Camera>().rect = new Rect(0,0, 0.5f, 0.5f);
+				}
+				newcanvas = (GameObject) Instantiate(CanvasPrefab, Vector3.zero, Quaternion.identity);
+				newcanvas.GetComponent<Canvas>().worldCamera = currentPlayer.GetComponentInChildren<Camera>();
+				newcanvas.GetComponent<CardUIControllerMulti>().InitializeUIController(currentPlayer);
 				break;
 			case 1:
-				currentPlayer = (GameObject) Instantiate(PlayerPrefab, P2Spawn.transform.position, P2Spawn.transform.rotation);
+				currentPlayer =  (GameObject) Instantiate(PlayerPrefab, P2Spawn.transform.position, P2Spawn.transform.rotation);
 				SetInputsToPlayer2(currentPlayer);
+				if(numberOfPlayers == 2){
+					currentPlayer.GetComponentInChildren<Camera>().rect = new Rect(0.5f,0, 0.5f, 1);
+				}else{
+					currentPlayer.GetComponentInChildren<Camera>().rect = new Rect(0.5f,0, 0.5f, 0.5f);
+				}
+				newcanvas = (GameObject) Instantiate(CanvasPrefab, Vector3.zero, Quaternion.identity);
+				newcanvas.GetComponent<Canvas>().worldCamera = currentPlayer.GetComponentInChildren<Camera>();
+				newcanvas.GetComponent<CardUIControllerMulti>().InitializeUIController(currentPlayer);
 				break;
 			case 2:
-				currentPlayer = (GameObject) Instantiate(PlayerPrefab, P3Spawn.transform.position, P3Spawn.transform.rotation);
+				currentPlayer =  (GameObject) Instantiate(PlayerPrefab, P3Spawn.transform.position, P3Spawn.transform.rotation);
 				SetInputsToPlayer3(currentPlayer);
+				if(numberOfPlayers == 2){
+					currentPlayer.GetComponent<Camera>().rect = new Rect(0,0.5f, 0.5f, 0.5f);
+				}else{
+					currentPlayer.GetComponent<Camera>().rect = new Rect(0,0.5f, 0.5f, 0.5f);
+				}
+				newcanvas = (GameObject) Instantiate(CanvasPrefab, Vector3.zero, Quaternion.identity);
+				newcanvas.GetComponent<Canvas>().worldCamera = currentPlayer.GetComponentInChildren<Camera>();
 				break;
 			case 3:
-				currentPlayer = (GameObject) Instantiate(PlayerPrefab, P4Spawn.transform.position, P4Spawn.transform.rotation);
+				currentPlayer =  (GameObject) Instantiate(PlayerPrefab, P4Spawn.transform.position, P4Spawn.transform.rotation);
 				SetInputsToPlayer4(currentPlayer);
+				if(numberOfPlayers == 2){
+					currentPlayer.GetComponent<Camera>().rect = new Rect(0.5f,0.5f, 0.5f, 0.5f);
+				}else{
+					currentPlayer.GetComponent<Camera>().rect = new Rect(0.5f,0.5f, 0.5f, 0.5f);
+				}
+				newcanvas = (GameObject) Instantiate(CanvasPrefab, Vector3.zero, Quaternion.identity);
+				newcanvas.GetComponent<Canvas>().worldCamera = currentPlayer.GetComponentInChildren<Camera>();
 				break;
 			}
 		}
+	}
+
+	void Awake(){
+		CreatePlayers (2);
 	}
 }
