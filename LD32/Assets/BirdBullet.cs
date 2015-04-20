@@ -26,8 +26,8 @@ public class BirdBullet : MonoBehaviour {
 			other.GetComponent<Health>().changeHealth(-damageValue);
 			Vector3 forceDir = other.transform.position - transform.position;
 			forceDir.Normalize();
-			forceDir = 100 * forceDir;
-			other.GetComponent<Player>().knockback += new Vector3(forceDir.x, 0.5f, forceDir.z);
+			forceDir = 25 * forceDir;
+			other.GetComponent<Player>().knockback += new Vector3(forceDir.x, 0f, forceDir.z);
 		}
 	}
 }
