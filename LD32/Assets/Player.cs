@@ -26,6 +26,9 @@ public class Player : MonoBehaviour {
 	public float moveNerf;
 	public float moveNerfTime;
 
+	public bool stunned;
+	public float stunTime;
+
 	public bool reversed;
 	public float reversedTime;
 
@@ -36,6 +39,20 @@ public class Player : MonoBehaviour {
 	public GameObject card3;
 	public GameObject card4;
 	public GameObject card5;
+
+	public string InputVertical;
+	public string InputHorizontal;
+	public string InputViewControlX;
+	public string InputViewControlY;
+	public string InputIncrement;
+	public string InputDecrement;
+	public string InputTriggers;
+	public string InputStart;
+	public string InputJump;
+	public string InputDraw;
+	public string InputDirectionalX;
+	public string InputDirectionalY;
+	public string InputCard4;
 
 	bool canUse = true;
 	float currentCooldown;
@@ -335,6 +352,9 @@ public class Player : MonoBehaviour {
 			fMover = -1f * fMover;
 		}
 
+		if (stunned) {
+			fMover = fMover * 0f;
+		}
 
 		Vector3 finMover = new Vector3 (fMover.x, gameObject.GetComponent<Rigidbody> ().velocity.y, fMover.z);
 		finMover += knockback;
