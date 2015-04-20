@@ -91,9 +91,29 @@ public class Projectile : MonoBehaviour {
 	public bool confuses;
 	public float confuseTime;
 
+    //fx control
+    public Light dmgLight;
+
+    void Awake()
+    {
+        dmgLight.intensity = calcIntensity();
+    }
+
+    float calcIntensity()
+    {
+        if (damage != 0)
+        {
+            return damage / 10;
+        }
+        else
+        {
+            return explosionDamage / 10;
+        }
+    }
 	// Use this for initialization
-	void Start () {
-		
+	void Start () 
+    {
+        dmgLight.intensity = calcIntensity();
 	}
 
 	public GameObject explosion;
@@ -329,6 +349,7 @@ public class Projectile : MonoBehaviour {
 			if (wave) {
 				for (int i = 0; i < spreadAmount; i++) {
 					GameObject bullet = (GameObject)Instantiate (this.gameObject, transform.position, transform.rotation);
+                    bullet.GetComponent<Collider>().enabled = true;
 					Physics.IgnoreCollision(bullet.GetComponent<Collider>(), user.GetComponent<Collider>());
 
 
