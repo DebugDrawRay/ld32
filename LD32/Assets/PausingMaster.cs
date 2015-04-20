@@ -4,6 +4,7 @@ using System.Collections;
 public class PausingMaster : MonoBehaviour {
 
 	public bool paused;
+    public bool pauseGame;
 
 	// Use this for initialization
 	void Start () {
@@ -12,7 +13,8 @@ public class PausingMaster : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown ("Pause")) {
+		if (Input.GetButtonDown ("Pause") || pauseGame) {
+            pauseGame = false;
 			if(paused) {
 				Time.timeScale = 1.0f;
 
