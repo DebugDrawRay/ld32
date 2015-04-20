@@ -44,92 +44,91 @@ public class Player : MonoBehaviour {
 
 	void Awake() {
 		currentDeck = new Deck ();
-		/*currentDeck.AddToSeedDeck ("two-of-swords");
-		currentDeck.AddToSeedDeck ("three-of-swords");
-		currentDeck.AddToSeedDeck ("four-of-swords");
-		currentDeck.AddToSeedDeck ("five-of-swords");
-		currentDeck.AddToSeedDeck ("six-of-swords");
-		currentDeck.AddToSeedDeck ("seven-of-swords");
-		currentDeck.AddToSeedDeck ("eight-of-swords");
-		currentDeck.AddToSeedDeck ("nine-of-swords");
-		currentDeck.AddToSeedDeck ("ten-of-swords");
-		currentDeck.AddToSeedDeck ("page-of-swords");
-		currentDeck.AddToSeedDeck ("knight-of-swords");
-		currentDeck.AddToSeedDeck ("king-of-swords");
-		currentDeck.AddToSeedDeck ("queen-of-swords");
-		currentDeck.AddToSeedDeck ("ace-of-swords");*/
+        currentDeck.AddToSeedDeck ("two-of-swords");
+        currentDeck.AddToSeedDeck ("three-of-swords");
+        currentDeck.AddToSeedDeck ("four-of-swords");
+        currentDeck.AddToSeedDeck ("five-of-swords");
+        currentDeck.AddToSeedDeck ("six-of-swords");
+        currentDeck.AddToSeedDeck ("seven-of-swords");
+        currentDeck.AddToSeedDeck ("eight-of-swords");
+        currentDeck.AddToSeedDeck ("nine-of-swords");
+        currentDeck.AddToSeedDeck ("ten-of-swords");
+        currentDeck.AddToSeedDeck ("page-of-swords");
+        currentDeck.AddToSeedDeck ("knight-of-swords");
+        currentDeck.AddToSeedDeck ("king-of-swords");
+        currentDeck.AddToSeedDeck ("queen-of-swords");
+        currentDeck.AddToSeedDeck ("ace-of-swords");
 
-		/*currentDeck.AddToSeedDeck ("two-of-cups");
-		currentDeck.AddToSeedDeck ("three-of-cups");
-		currentDeck.AddToSeedDeck ("four-of-cups");
-		currentDeck.AddToSeedDeck ("five-of-cups");
-		currentDeck.AddToSeedDeck ("six-of-cups");
-		currentDeck.AddToSeedDeck ("seven-of-cups");
-		currentDeck.AddToSeedDeck ("eight-of-cups");
-		currentDeck.AddToSeedDeck ("nine-of-cups");
-		currentDeck.AddToSeedDeck ("ten-of-cups");
-		currentDeck.AddToSeedDeck ("page-of-cups");
-		currentDeck.AddToSeedDeck ("knight-of-cups");
-		currentDeck.AddToSeedDeck ("king-of-cups");
-		currentDeck.AddToSeedDeck ("queen-of-cups");
-		currentDeck.AddToSeedDeck ("ace-of-cups");*/
+        currentDeck.AddToSeedDeck ("two-of-cups");
+        currentDeck.AddToSeedDeck ("three-of-cups");
+        currentDeck.AddToSeedDeck ("four-of-cups");
+        currentDeck.AddToSeedDeck ("five-of-cups");
+        currentDeck.AddToSeedDeck ("six-of-cups");
+        currentDeck.AddToSeedDeck ("seven-of-cups");
+        currentDeck.AddToSeedDeck ("eight-of-cups");
+        currentDeck.AddToSeedDeck ("nine-of-cups");
+        currentDeck.AddToSeedDeck ("ten-of-cups");
+        currentDeck.AddToSeedDeck ("page-of-cups");
+        currentDeck.AddToSeedDeck ("knight-of-cups");
+        currentDeck.AddToSeedDeck ("king-of-cups");
+        currentDeck.AddToSeedDeck ("queen-of-cups");
+        currentDeck.AddToSeedDeck ("ace-of-cups");
 
-		/*currentDeck.AddToSeedDeck ("two-of-wands");
-		currentDeck.AddToSeedDeck ("three-of-wands");
-		currentDeck.AddToSeedDeck ("four-of-wands");
-		currentDeck.AddToSeedDeck ("five-of-wands");
-		currentDeck.AddToSeedDeck ("six-of-wands");
-		currentDeck.AddToSeedDeck ("seven-of-wands");
-		currentDeck.AddToSeedDeck ("eight-of-wands");
-		currentDeck.AddToSeedDeck ("nine-of-wands");
-		currentDeck.AddToSeedDeck ("ten-of-wands");
-		currentDeck.AddToSeedDeck ("page-of-wands");
-		currentDeck.AddToSeedDeck ("knight-of-wands");
-		currentDeck.AddToSeedDeck ("king-of-wands");
-		currentDeck.AddToSeedDeck ("queen-of-wands");
-		currentDeck.AddToSeedDeck ("ace-of-wands");
+        currentDeck.AddToSeedDeck ("two-of-wands");
+        currentDeck.AddToSeedDeck ("three-of-wands");
+        currentDeck.AddToSeedDeck ("four-of-wands");
+        currentDeck.AddToSeedDeck ("five-of-wands");
+        currentDeck.AddToSeedDeck ("six-of-wands");
+        currentDeck.AddToSeedDeck ("seven-of-wands");
+        currentDeck.AddToSeedDeck ("eight-of-wands");
+        currentDeck.AddToSeedDeck ("nine-of-wands");
+        currentDeck.AddToSeedDeck ("ten-of-wands");
+        currentDeck.AddToSeedDeck ("page-of-wands");
+        currentDeck.AddToSeedDeck ("knight-of-wands");
+        currentDeck.AddToSeedDeck ("king-of-wands");
+        currentDeck.AddToSeedDeck ("queen-of-wands");
+        currentDeck.AddToSeedDeck ("ace-of-wands");
 
-		currentDeck.AddToSeedDeck ("three-of-pentacles");
-		currentDeck.AddToSeedDeck ("four-of-pentacles");
-		currentDeck.AddToSeedDeck ("five-of-pentacles");
-		currentDeck.AddToSeedDeck ("six-of-pentacles");
-		currentDeck.AddToSeedDeck ("seven-of-pentacles");
-		currentDeck.AddToSeedDeck ("eight-of-pentacles");
-		currentDeck.AddToSeedDeck ("nine-of-pentacles");
-		currentDeck.AddToSeedDeck ("ten-of-pentacles");
-		currentDeck.AddToSeedDeck ("page-of-pentacles");
-		currentDeck.AddToSeedDeck ("knight-of-pentacles");
-		currentDeck.AddToSeedDeck ("king-of-pentacles");
-		currentDeck.AddToSeedDeck ("queen-of-pentacles");
-		currentDeck.AddToSeedDeck ("ace-of-pentacles");
-		currentDeck.AddToSeedDeck ("two-of-pentacles");*/
+        currentDeck.AddToSeedDeck ("three-of-pentacles");
+        currentDeck.AddToSeedDeck ("four-of-pentacles");
+        currentDeck.AddToSeedDeck ("five-of-pentacles");
+        currentDeck.AddToSeedDeck ("six-of-pentacles");
+        currentDeck.AddToSeedDeck ("seven-of-pentacles");
+        currentDeck.AddToSeedDeck ("eight-of-pentacles");
+        currentDeck.AddToSeedDeck ("nine-of-pentacles");
+        currentDeck.AddToSeedDeck ("ten-of-pentacles");
+        currentDeck.AddToSeedDeck ("page-of-pentacles");
+        currentDeck.AddToSeedDeck ("knight-of-pentacles");
+        currentDeck.AddToSeedDeck ("king-of-pentacles");
+        currentDeck.AddToSeedDeck ("queen-of-pentacles");
+        currentDeck.AddToSeedDeck ("ace-of-pentacles");
+        currentDeck.AddToSeedDeck ("two-of-pentacles");
 
-		//currentDeck.AddToSeedDeck ("the-sun");
-		//currentDeck.AddToSeedDeck ("the-fool");
-		//currentDeck.AddToSeedDeck ("the-empress");
-		//currentDeck.AddToSeedDeck ("the-lovers");
-		//currentDeck.AddToSeedDeck ("justice");
-		//currentDeck.AddToSeedDeck ("the-hanged-man");
-		currentDeck.AddToSeedDeck ("temperance");
-		//currentDeck.AddToSeedDeck ("the-tower");
-		//currentDeck.AddToSeedDeck ("the-star");
-		//currentDeck.AddToSeedDeck ("the-moon");
-		//currentDeck.AddToSeedDeck ("judgement");
-		//currentDeck.AddToSeedDeck ("the-devil");
+        currentDeck.AddToSeedDeck("the-sun");
+        currentDeck.AddToSeedDeck("the-fool");
+        currentDeck.AddToSeedDeck("the-empress");
+        currentDeck.AddToSeedDeck("the-lovers");
+        currentDeck.AddToSeedDeck("justice");
+        currentDeck.AddToSeedDeck("the-hanged-man");
+        currentDeck.AddToSeedDeck("temperance");
+        currentDeck.AddToSeedDeck("the-tower");
+        currentDeck.AddToSeedDeck("the-star");
+        currentDeck.AddToSeedDeck("the-moon");
+        currentDeck.AddToSeedDeck("judgement");
+        currentDeck.AddToSeedDeck("the-devil");
 
-		/*currentDeck.AddToSeedDeck ("the-chariot");
-		currentDeck.AddToSeedDeck ("the-chariot");
-		currentDeck.AddToSeedDeck ("the-chariot");
-		currentDeck.AddToSeedDeck ("the-chariot");
-		currentDeck.AddToSeedDeck ("the-chariot");
-		currentDeck.AddToSeedDeck ("the-chariot");
-		currentDeck.AddToSeedDeck ("the-chariot");
-		currentDeck.AddToSeedDeck ("the-chariot");
-		currentDeck.AddToSeedDeck ("the-chariot");
-		currentDeck.AddToSeedDeck ("the-chariot");
-		currentDeck.AddToSeedDeck ("the-chariot");
-		currentDeck.AddToSeedDeck ("the-chariot");*/
-
+        /*currentDeck.AddToSeedDeck ("the-chariot");
+        currentDeck.AddToSeedDeck ("the-chariot");
+        currentDeck.AddToSeedDeck ("the-chariot");
+        currentDeck.AddToSeedDeck ("the-chariot");
+        currentDeck.AddToSeedDeck ("the-chariot");
+        currentDeck.AddToSeedDeck ("the-chariot");
+        currentDeck.AddToSeedDeck ("the-chariot");
+        currentDeck.AddToSeedDeck ("the-chariot");
+        currentDeck.AddToSeedDeck ("the-chariot");
+        currentDeck.AddToSeedDeck ("the-chariot");
+        currentDeck.AddToSeedDeck ("the-chariot");
+        currentDeck.AddToSeedDeck ("the-chariot");*/
 
 
 
@@ -319,8 +318,8 @@ public class Player : MonoBehaviour {
 		float h;
 		float v;
 		
-		h = Input.GetAxis("Player1Horizontal");
-		v = Input.GetAxis ("Player1Vertical");
+		h = Input.GetAxis("Horizontal");
+		v = Input.GetAxis ("Vertical");
 		//Debug.Log ("HORIZONTAL: " + h + "\nVertical: " + v);
 		Vector3 fMove = transform.forward * v;
 		Vector3 sMove = transform.right * h;
@@ -375,11 +374,11 @@ public class Player : MonoBehaviour {
 	
 	public void LookRotation(Transform character, Transform camera)
 	{
-		//float yRot = Input.GetAxisRaw("Mouse X") * XSensitivity;
-		//float xRot = Input.GetAxisRaw("Mouse Y") * YSensitivity;
+		float yRot = Input.GetAxisRaw("Mouse X") * XSensitivity;
+		float xRot = Input.GetAxisRaw("Mouse Y") * YSensitivity;
 
-		float yRot = Input.GetAxis("Player1RightStickX") * XSensitivity;
-		float xRot = Input.GetAxis("Player1RightStickY") * YSensitivity;
+		//float yRot = Input.GetAxis("Player1RightStickX") * XSensitivity;
+		//float xRot = Input.GetAxis("Player1RightStickY") * YSensitivity;
 
 		charTargetRot *= Quaternion.Euler (0f, yRot, 0f);
 		camTargetRot *= Quaternion.Euler (-xRot, 0f, 0f);
