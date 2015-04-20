@@ -57,6 +57,8 @@ public class Player : MonoBehaviour {
 	public string InputDirectionalY;
 	public string InputCard4;
 
+	bool fired = false;
+
 	bool canUse = true;
 	float currentCooldown;
 
@@ -223,12 +225,12 @@ public class Player : MonoBehaviour {
 				confuseTime -= Time.deltaTime;
 			}
 
-			if (Input.GetButtonDown ("Draw") || Input.GetButtonDown ("Player1B")) {
+			if (Input.GetButtonDown ("Draw") || Input.GetButtonDown (InputDraw)) {
 				currentDeck.DrawCard ();
 			}
 
 			if (canUse) {
-				if (Input.GetButtonDown ("Card0")) {
+				if (Input.GetButtonDown ("Card0") || Input.GetAxis(InputDirectionalX) < 0) {
 					//string curCard = currentDeck.UseCardInHandAtIndex (0);
 					//if (curCard != "") {
 					//    Debug.Log (curCard);
@@ -240,7 +242,7 @@ public class Player : MonoBehaviour {
 					//}
 					currentDeck.SetSelectedCard (0);
 				}
-				if (Input.GetButtonDown ("Card1")) {
+				if (Input.GetButtonDown ("Card1") || Input.GetAxis (InputDirectionalY) > 0) {
 					/*string curCard = currentDeck.UseCardInHandAtIndex (1);
 				if (curCard != "") {
 					Debug.Log (curCard);
@@ -252,7 +254,7 @@ public class Player : MonoBehaviour {
 				}*/
 					currentDeck.SetSelectedCard (1);
 				}
-				if (Input.GetButtonDown ("Card2")) {
+				if (Input.GetButtonDown ("Card2") || Input.GetAxis (InputDirectionalX) > 0) {
 					/*string curCard = currentDeck.UseCardInHandAtIndex (2);
 				if (curCard != "") {
 					Debug.Log (curCard);
@@ -264,7 +266,7 @@ public class Player : MonoBehaviour {
 				}*/
 					currentDeck.SetSelectedCard (2);
 				}
-				if (Input.GetButtonDown ("Card3")) {
+				if (Input.GetButtonDown ("Card3") || Input.GetAxis (InputDirectionalY) < 0)  {
 					/*string curCard = currentDeck.UseCardInHandAtIndex (3);
 				if (curCard != "") {
 					Debug.Log (curCard);
@@ -276,7 +278,7 @@ public class Player : MonoBehaviour {
 				}*/
 					currentDeck.SetSelectedCard (3);
 				}
-				if (Input.GetButtonDown ("Card4")) {
+				if (Input.GetButtonDown ("Card4") || Input.GetButtonDown(InputCard4)) {
 					/*string curCard = currentDeck.UseCardInHandAtIndex (4);
 				if (curCard != "") {
 					Debug.Log (curCard);
@@ -288,13 +290,13 @@ public class Player : MonoBehaviour {
 				}*/
 					currentDeck.SetSelectedCard (4);
 				}
-				if (Input.GetButtonDown ("Previous Selection") || Input.GetButtonDown ("Player1LB")) {
+				if (Input.GetButtonDown ("Previous Selection") || Input.GetButtonDown (InputDecrement)) {
 					currentDeck.DecrementSelectedCard ();
 				}
-				if (Input.GetButtonDown ("Next Selection") || Input.GetButtonDown ("Player1RB")) {
+				if (Input.GetButtonDown ("Next Selection") || Input.GetButtonDown (InputIncrement)) {
 					currentDeck.IncrementSelectedCard ();
 				}
-				if (Input.GetButtonDown ("Mouse 0") || Input.GetAxis ("Player1Triggers") < -0.5f) {
+				if (Input.GetButtonDown ("Mouse 0") || Input.GetAxis (InputTriggers) < -0.5f && !fired) {
 					if (confused) {
 						gameObject.GetComponent<Health> ().changeHealth (-10);
 					}
@@ -309,6 +311,8 @@ public class Player : MonoBehaviour {
 						currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
 					}
 				}
+				if(Input.GetAxis (InputTriggers) > -0.5f)
+				fired = false;
 			} else {
 				if (currentCooldown <= 0) {
 					canUse = true;
@@ -338,7 +342,7 @@ public class Player : MonoBehaviour {
 			card5.GetComponent<UsableCard>().UseCard(gameObject);
 		}*/
 
-			if (Input.GetButtonDown ("Jump") || Input.GetButtonDown ("Player1A")) {
+			if (Input.GetButtonDown ("Jump") || Input.GetButtonDown (InputJump)) {
 				if (Physics.Raycast (transform.position, -transform.up, 1.5f)) {
 					gameObject.GetComponent<Rigidbody> ().AddForce (transform.up * (jumpForce + jumpBoost));
 				}
