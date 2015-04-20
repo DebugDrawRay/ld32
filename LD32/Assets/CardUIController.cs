@@ -4,14 +4,15 @@ using UnityEngine.UI;
 
 public class CardUIController : MonoBehaviour {
 	private const int CARD_VARIANCE = 67;
-	private const int STARTING_POSITION_X = 150;
+	private const int STARTING_POSITION_X = -332;
 	private const int STARTING_POSITION_Y = 64;
     private Rect CARD_SIZE = new Rect(0f, 0f, 300f, 531f);
 
     private int prevCard = -1;
 
 	public GameObject cardobject;
-	GameObject canvas;
+	public GameObject canvas;
+	public Text cardcount;
 
 	Deck currentDeck;
     Health playerHealth;
@@ -25,21 +26,23 @@ public class CardUIController : MonoBehaviour {
     public Image cardMeter;
     float maxCards;
 
-	void Start () {
+
+	public void InitializeUIController(GameObject pl) {
 		decksize = -1;
-		canvas = GameObject.FindGameObjectWithTag("Canvas");
+		this.cardcount = cardcount;
+		this.canvas = canvas;
 		//DeckTest a = (DeckTest) GameObject.FindGameObjectWithTag ("DeckTest").GetComponent("DeckTest");
 		//currentDeck = a.startingDeck;
-		currentDeck = GameObject.Find ("Player").GetComponent<Player> ().currentDeck;
-        playerHealth = GameObject.Find("Player").GetComponent<Health>();
+		currentDeck = pl.GetComponent<Player> ().currentDeck;
+        playerHealth = pl.GetComponent<Health>();
         maxHealth = playerHealth.getHealth();
         maxCards = currentDeck.DeckCount();
 		crl = (CardResourceLoader)GameObject.Find ("CardResourceLoader").GetComponent ("CardResourceLoader");
 		cards = new ArrayList ();
 		int count = 0;
 		foreach(string cardname in currentDeck.GetHand()){
-			GameObject current = (GameObject) Instantiate(cardobject, new Vector3(STARTING_POSITION_X + CARD_VARIANCE * count, STARTING_POSITION_Y,0) ,Quaternion.identity);
-			current.transform.SetParent(canvas.transform);
+			GameObject current = (GameObject) Instantiate(cardobject, new Vector2(STARTING_POSITION_X + CARD_VARIANCE * count, STARTING_POSITION_Y) ,Quaternion.identity);
+			current.transform.SetParent(canvas.transform, false);
 			current.GetComponent<Image>().sprite = Sprite.Create (crl.Get2DCardReference(cardname), CARD_SIZE, Vector2.zero);
             Texture2D currentTexture = crl.Get2DCardReference(cardname);
 			current.GetComponent<Image>().sprite = Sprite.Create (currentTexture, new Rect(0,0, currentTexture.width, currentTexture.height),Vector2.zero);
@@ -58,8 +61,7 @@ public class CardUIController : MonoBehaviour {
 	}
 
 	public void DrawDeckSize(){
-		GameObject cCount = GameObject.FindGameObjectWithTag ("CardCount");
-		cardCountAsText = cCount.GetComponent<Text> ();
+		cardCountAsText = cardcount.GetComponent<Text> ();
 		cardCountAsText.text = decksize.ToString();
 	}
 
@@ -76,8 +78,8 @@ public class CardUIController : MonoBehaviour {
 				DrawDeckSize ();
 			}
 			if(currentDeck.GetModifier() == -2){
-				GameObject current = (GameObject) Instantiate(cardobject, new Vector3(STARTING_POSITION_X + CARD_VARIANCE * (currentDeck.HandCount() - 1), STARTING_POSITION_Y,0) ,Quaternion.identity);
-				current.transform.SetParent(canvas.transform);
+				GameObject current = (GameObject) Instantiate(cardobject, new Vector2(STARTING_POSITION_X + CARD_VARIANCE * (currentDeck.HandCount() - 1), STARTING_POSITION_Y) ,Quaternion.identity);
+				current.transform.SetParent(canvas.transform, false);
 				current.GetComponent<Image>().sprite = Sprite.Create (crl.Get2DCardReference((string)currentDeck.GetHand()[currentDeck.HandCount() - 1]), CARD_SIZE,Vector2.zero);
 				Texture2D currentTexture = crl.Get2DCardReference((string)currentDeck.GetHand()[currentDeck.HandCount() - 1]);
 				current.GetComponent<Image>().sprite = Sprite.Create (currentTexture, new Rect(0,0, currentTexture.width, currentTexture.height),Vector2.zero);
@@ -85,7 +87,7 @@ public class CardUIController : MonoBehaviour {
 			}else if(currentDeck.GetModifier() > -1){
 				for(int index = currentDeck.GetModifier() + 1; index <= currentDeck.HandCount(); index ++){
 					GameObject previousCard = (GameObject) cards[index - 1];
-					StartCoroutine(MoveCard( (GameObject) cards[index], previousCard.transform.position));
+					StartCoroutine(MoveCard((GameObject)cards[index], previousCard.GetComponent<RectTransform>().anchoredPosition));
 				}
 				GameObject deletedcard = (GameObject) cards[currentDeck.GetModifier()];
 				cards.RemoveAt(currentDeck.GetModifier());
@@ -95,7 +97,7 @@ public class CardUIController : MonoBehaviour {
 				//Deal with it
                 if (currentDeck.GetSelectedCard() != prevCard)
                 {
-                    GameObject selection = cards[currentDeck.GetSelectedCard()] as GameObject;
+                    GameObject selection = (GameObject) cards[currentDeck.GetSelectedCard()];
                     StartCoroutine(SelectedCardControl(selection, 20f));
 
                     if (prevCard != -1 && prevCard < cards.Count)
@@ -109,8 +111,7 @@ public class CardUIController : MonoBehaviour {
                 }
 			}
 		} else {
-			GameObject cCount = GameObject.FindGameObjectWithTag ("CardCount");
-			cardCountAsText = cCount.GetComponent<Text> ();
+			cardCountAsText = cardcount.GetComponent<Text> ();
 			cardCountAsText.text = "Butts";
 			//DeckTest a = (DeckTest) GameObject.FindGameObjectWithTag ("DeckTest").GetComponent("DeckTest");
 			//currentDeck = a.startingDeck;
@@ -118,31 +119,36 @@ public class CardUIController : MonoBehaviour {
 		currentDeck.ResetModifier();
 	}
 
-	IEnumerator MoveCard(GameObject card, Vector3 target){
+	IEnumerator MoveCard(GameObject card, Vector2 target){
 		float elapsedTime = 0;
 		float totalTime = 0.1f;
-		Vector3 startingPos = card.transform.position;
-		Vector3 endingPos = card.transform.position;
-		endingPos.x = target.x;
+		Vector2 startingPos = card.GetComponent<RectTransform>().anchoredPosition;
+		Vector2 endingPos = new Vector2(target.x, startingPos.y);
 		while(elapsedTime < totalTime){
-			card.transform.position = Vector3.Lerp (startingPos, endingPos, (elapsedTime / totalTime));
+			if(card != null)
+				card.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp (startingPos, endingPos, (elapsedTime / totalTime));
 			elapsedTime += Time.deltaTime;
 			yield return new WaitForEndOfFrame();
 		}
-		card.transform.position = target;
+		if(card != null)
+			card.GetComponent<RectTransform>().anchoredPosition = endingPos;
+		//card.transform.position.z = 0;
 	}
 
     IEnumerator SelectedCardControl(GameObject card, float offset)
     {
+
 		float elapsedTime = 0;
 		float totalTime = 0.1f;
-		Vector3 startingPos = card.transform.position;
-		Vector3 target = new Vector3 (startingPos.x, STARTING_POSITION_Y + offset, startingPos.z);
+		Vector2 startingPos = card.GetComponent<RectTransform>().anchoredPosition;
+		Vector2 target = new Vector2(startingPos.x, STARTING_POSITION_Y + offset);
 		while (elapsedTime < totalTime && card != null) {
-			card.transform.position = Vector3.Lerp (startingPos, target, (elapsedTime / totalTime));
+			if(card != null)
+				card.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp (startingPos, target, (elapsedTime / totalTime));
 			elapsedTime += Time.deltaTime;
 			yield return new WaitForEndOfFrame ();
 		}
-		if(card!=null) card.transform.position = target;
+		if(card!=null) card.GetComponent<RectTransform>().anchoredPosition = target;
+		//card.transform.position.z = 0;
     }
 }

@@ -23,7 +23,7 @@ public class RunMan : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (stunTime <= 0f) {
+		/*if (stunTime <= 0f) {
 			stunned = false;
 		} else {
 			stunTime -= Time.deltaTime;
@@ -55,7 +55,7 @@ public class RunMan : MonoBehaviour {
 
 		if (stunned) {
 			GetComponent<NavMeshAgent> ().speed = 0f;
-		}
+		}*/
 	}
 
 	void OnTriggerEnter (Collider other){
