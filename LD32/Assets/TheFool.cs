@@ -22,7 +22,6 @@ public class TheFool : UsableCard {
 
 		sun.GetComponent<StunArea> ().enemyTag = user.GetComponent<Player> ().enemyTag;
 
-
 	}
 }
 

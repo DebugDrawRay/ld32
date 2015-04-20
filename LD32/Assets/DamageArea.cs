@@ -6,6 +6,7 @@ public class DamageArea : MonoBehaviour {
 	public string enemyTag;
 	public float damage;
 	public float lifeTime;
+	public int ownerNum;
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +25,10 @@ public class DamageArea : MonoBehaviour {
 	void OnTriggerStay(Collider other) {
 		if (other.gameObject.tag == enemyTag) {
 			other.GetComponent<Health>().changeHealth(-damage * Time.deltaTime);
+
+			if(other.GetComponent<PlayerMulti>() != null) {
+				other.GetComponent<PlayerMulti>().lastDamageFrom = ownerNum;
+			}
 		}
 	}
 

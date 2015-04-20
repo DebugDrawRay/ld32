@@ -13,6 +13,9 @@ public class FowardMove : MonoBehaviour {
 			if(em.GetComponent<EnemyChase>() != null) {
 				em.GetComponent<EnemyChase>().target = transform;
 			}
+			if(em.GetComponent<EnemyChaseBird>() != null) {
+				em.GetComponent<EnemyChaseBird>().playerT = transform;
+			}
 		}
 	}
 	
@@ -24,6 +27,9 @@ public class FowardMove : MonoBehaviour {
 			foreach (GameObject em in enemies) {
 				if(em.GetComponent<EnemyChase>() != null) {
 					em.GetComponent<EnemyChase>().target = GameObject.Find("Player").transform;
+				}
+				if(em.GetComponent<EnemyChaseBird>() != null) {
+					em.GetComponent<EnemyChaseBird>().playerT = GameObject.Find("Player").transform;
 				}
 			}
 

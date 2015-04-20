@@ -6,6 +6,7 @@ public class InstantDamge : MonoBehaviour {
 	public string enemyTag;
 	public float damage;
 	public float lifeTime;
+	public int ownerNum;
 	
 	// Use this for initialization
 	void Start () {
@@ -24,6 +25,11 @@ public class InstantDamge : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == enemyTag) {
 			other.GetComponent<Health>().changeHealth(-damage);
+
+			if(other.GetComponent<PlayerMulti>() != null) {
+				other.GetComponent<PlayerMulti>().lastDamageFrom = ownerNum;
+			}
+
 			Destroy(gameObject);
 		}
 	}

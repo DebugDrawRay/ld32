@@ -2,10 +2,37 @@
 using System.Collections;
 
 public class EnemyChase : MonoBehaviour {
+	public float activateRange;
+	public bool activated;
+
+	int wallMask = 1 << 10;
+
 	public Transform target;
+
+	void Start () {
+		//target = playerT.position;
+		//target = null;
+	}
 
 	// Update is called once per frame
 	void Update () {
-		GetComponent<NavMeshAgent> ().SetDestination (target.position);
+		GetComponent<NavMeshAgent> ().SetDestination (transform.position);
+
+		if (!activated) {
+			Vector3 distToP = target.position - transform.position;
+			float disP = distToP.magnitude;
+			
+			if (disP < activateRange) {
+				if (Physics.Raycast (transform.position, target.position, disP, wallMask)) {
+					
+				} else {
+					activated = true;
+				}
+			}
+			
+		} else {
+			GetComponent<NavMeshAgent> ().SetDestination (target.position);
+		}
+
 	}
 }

@@ -162,6 +162,11 @@ public class Projectile : MonoBehaviour {
 							coll.gameObject.GetComponent<RunMan>().stunned = true;
 							coll.gameObject.GetComponent<RunMan>().stunTime = stunTime;
 						}
+
+						if(coll.gameObject.GetComponent<EnemyChaseBird>() != null) {
+							coll.gameObject.GetComponent<EnemyChaseBird>().stunned = true;
+							coll.gameObject.GetComponent<EnemyChaseBird>().stunTime = stunTime;
+						}
 						
 						if(coll.gameObject.GetComponent<Player>() != null) {
 							coll.gameObject.GetComponent<Player>().stunned = true;
@@ -177,6 +182,11 @@ public class Projectile : MonoBehaviour {
 						if(coll.gameObject.GetComponent<RunMan>() != null) {
 							coll.gameObject.GetComponent<RunMan>().moveNerf = slowPercent;
 							coll.gameObject.GetComponent<RunMan>().moveNerfTime = slowTime;
+						}
+
+						if(coll.gameObject.GetComponent<EnemyChaseBird>() != null) {
+							coll.gameObject.GetComponent<EnemyChaseBird>().moveNerf = slowPercent;
+							coll.gameObject.GetComponent<EnemyChaseBird>().moveNerfTime = slowTime;
 						}
 						
 						if(coll.gameObject.GetComponent<Player>() != null) {
@@ -212,6 +222,11 @@ public class Projectile : MonoBehaviour {
 							coll.gameObject.GetComponent<RunMan>().confused = true;
 							coll.gameObject.GetComponent<RunMan>().confuseTime = confuseTime;
 						}
+						if(coll.gameObject.GetComponent<EnemyChaseBird>() != null) {
+							coll.gameObject.GetComponent<EnemyChaseBird>().confused = true;
+							coll.gameObject.GetComponent<EnemyChaseBird>().confuseTime = confuseTime;
+						}
+
 					}
 				}
 
@@ -243,7 +258,12 @@ public class Projectile : MonoBehaviour {
 						coll.gameObject.GetComponent<RunMan>().stunned = true;
 						coll.gameObject.GetComponent<RunMan>().stunTime = stunTime;
 					}
-					
+
+					if(coll.gameObject.GetComponent<EnemyChaseBird>() != null) {
+						coll.gameObject.GetComponent<EnemyChaseBird>().stunned = true;
+						coll.gameObject.GetComponent<EnemyChaseBird>().stunTime = stunTime;
+					}
+
 					if(coll.gameObject.GetComponent<Player>() != null) {
 						coll.gameObject.GetComponent<Player>().stunned = true;
 						coll.gameObject.GetComponent<Player>().stunTime = stunTime;
@@ -260,7 +280,12 @@ public class Projectile : MonoBehaviour {
 						coll.gameObject.GetComponent<RunMan>().moveNerf = slowPercent;
 						coll.gameObject.GetComponent<RunMan>().moveNerfTime = slowTime;
 					}
-					
+
+					if(coll.gameObject.GetComponent<EnemyChaseBird>() != null) {
+						coll.gameObject.GetComponent<EnemyChaseBird>().moveNerf = slowPercent;
+						coll.gameObject.GetComponent<EnemyChaseBird>().moveNerfTime = slowTime;
+					}
+
 					if(coll.gameObject.GetComponent<PlayerMulti>() != null) {
 						coll.gameObject.GetComponent<PlayerMulti>().moveNerf = slowPercent;
 						coll.gameObject.GetComponent<PlayerMulti>().moveNerfTime = slowTime;
@@ -270,6 +295,12 @@ public class Projectile : MonoBehaviour {
 
 			if(teleport) {
 				user.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+			}
+
+			if(coll.gameObject.GetComponent<PlayerMulti>() != null) {
+				if(user.GetComponent<PlayerMulti>() != null) {
+					coll.gameObject.GetComponent<PlayerMulti>().lastDamageFrom = gameObject.GetComponent<PlayerMulti>().playerNumber;
+				}
 			}
 
 			Destroy (gameObject);
@@ -485,37 +516,38 @@ public class Projectile : MonoBehaviour {
 		
 		// Iterate through them and find the closest one
 		foreach (GameObject go in gos)  {
-			//Fist check if its in the wedge where the projectile can see
-			bool inSight = false;
-			//Vector2 targetDir = go.transform.position - transform.position;
-			//Vector2 forward = transform.up;
-			//float angle = Vector3.Angle(targetDir, forward);
-			
-			
-			//Debug.Log(angle);
-			
-			//if(Mathf.Abs(angle) < homeAngle) {
-				inSight = true;
-			//}
-			
-			//now check to see if there is anything in the way
-			Vector3 diff = (go.transform.position - transform.position);
-			float curDistance = diff.magnitude; 
-			
-			bool clear = true;
-			//Debug.DrawRay(transform.position, (go.transform.position - transform.position) * 1, Color.red);
-			
-			//if(Physics2D.Raycast (transform.position, go.transform.position - transform.position, curDistance, wallMask)) {
-				//clear = false;
-			//}
-			
-			//if the current distance is less than the distance the projectile can see and the sightlines
-			//are clear then we see if its a better option than the one we already have.
-			if (curDistance < distance && curDistance < homeDistance && clear && inSight) {     
-				closest = go; 
-				distance = curDistance;
+			if(!go.Equals(user)) {
+				//Fist check if its in the wedge where the projectile can see
+				bool inSight = false;
+				//Vector2 targetDir = go.transform.position - transform.position;
+				//Vector2 forward = transform.up;
+				//float angle = Vector3.Angle(targetDir, forward);
+				
+				
+				//Debug.Log(angle);
+				
+				//if(Mathf.Abs(angle) < homeAngle) {
+					inSight = true;
+				//}
+				
+				//now check to see if there is anything in the way
+				Vector3 diff = (go.transform.position - transform.position);
+				float curDistance = diff.magnitude; 
+				
+				bool clear = true;
+				//Debug.DrawRay(transform.position, (go.transform.position - transform.position) * 1, Color.red);
+				
+				//if(Physics2D.Raycast (transform.position, go.transform.position - transform.position, curDistance, wallMask)) {
+					//clear = false;
+				//}
+				
+				//if the current distance is less than the distance the projectile can see and the sightlines
+				//are clear then we see if its a better option than the one we already have.
+				if (curDistance < distance && curDistance < homeDistance && clear && inSight) {     
+					closest = go; 
+					distance = curDistance;
+				}
 			}
-			
 		} 
 		
 		return closest;    

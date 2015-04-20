@@ -39,7 +39,13 @@ public class Explosion : MonoBehaviour {
 			knockDir = knockDir.normalized;
 
 			if(enemyTag == "Player") {
-				other.gameObject.GetComponent<Player>().knockback += knockDir * knockBack;
+				if(other.gameObject.GetComponent<Player>() != null) {
+					other.gameObject.GetComponent<Player>().knockback += knockDir * knockBack;
+				}
+
+				if(other.gameObject.GetComponent<PlayerMulti>() != null) {
+					other.gameObject.GetComponent<PlayerMulti>().knockback += knockDir * knockBack;
+				}
 			} else {
 				other.gameObject.GetComponent<Rigidbody>().AddForce(knockDir * knockBack);
 			}
@@ -49,7 +55,12 @@ public class Explosion : MonoBehaviour {
 				other.gameObject.GetComponent<Rigidbody>().AddForce(knockDir2 * upKnockForce);
 
 				if(enemyTag == "Player") {
-					other.gameObject.GetComponent<Player>().knockback += knockDir2 * upKnockForce;
+					if(other.gameObject.GetComponent<Player>() != null) {
+						other.gameObject.GetComponent<Player>().knockback += knockDir2 * upKnockForce;
+					}
+					if(other.gameObject.GetComponent<PlayerMulti>() != null) {
+						other.gameObject.GetComponent<PlayerMulti>().knockback += knockDir2 * upKnockForce;
+					}
 				} else {
 					other.gameObject.GetComponent<Rigidbody>().AddForce(knockDir2 * upKnockForce);
 				}
@@ -60,7 +71,12 @@ public class Explosion : MonoBehaviour {
 					other.gameObject.GetComponent<RunMan>().stunned = true;
 					other.gameObject.GetComponent<RunMan>().stunTime = stunTime;
 				}
-				
+
+				if(other.gameObject.GetComponent<EnemyChaseBird>() != null) {
+					other.gameObject.GetComponent<EnemyChaseBird>().stunned = true;
+					other.gameObject.GetComponent<EnemyChaseBird>().stunTime = stunTime;
+				}
+
 				if(other.gameObject.GetComponent<Player>() != null) {
 					other.gameObject.GetComponent<Player>().stunned = true;
 					other.gameObject.GetComponent<Player>().stunTime = stunTime;
@@ -71,6 +87,11 @@ public class Explosion : MonoBehaviour {
 				if(other.gameObject.GetComponent<RunMan>() != null) {
 					other.gameObject.GetComponent<RunMan>().moveNerf = slowPercent;
 					other.gameObject.GetComponent<RunMan>().moveNerfTime = slowTime;
+				}
+
+				if(other.gameObject.GetComponent<EnemyChaseBird>() != null) {
+					other.gameObject.GetComponent<EnemyChaseBird>().moveNerf = slowPercent;
+					other.gameObject.GetComponent<EnemyChaseBird>().moveNerfTime = slowTime;
 				}
 				
 				if(other.gameObject.GetComponent<Player>() != null) {

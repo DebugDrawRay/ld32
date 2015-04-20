@@ -74,6 +74,13 @@ public class WheelOfFortune : UsableCard {
 			
 			sun4.GetComponent<DamageArea> ().enemyTag = user.GetComponent<Player> ().enemyTag;
 
+			if (user.GetComponent<PlayerMulti> () != null) {
+				sun.GetComponent<DamageArea> ().ownerNum = user.GetComponent<PlayerMulti> ().playerNumber;
+				sun2.GetComponent<DamageArea> ().ownerNum = user.GetComponent<PlayerMulti> ().playerNumber;
+				sun3.GetComponent<DamageArea> ().ownerNum = user.GetComponent<PlayerMulti> ().playerNumber;
+				sun4.GetComponent<DamageArea> ().ownerNum = user.GetComponent<PlayerMulti> ().playerNumber;
+			}
+
 
 		} else if (choice < 50) {
 			Instantiate (mun, user.transform.position + (user.transform.forward * mfrontOffset), user.transform.rotation);

@@ -21,8 +21,15 @@ public class TheHightPriestess : UsableCard {
 		
 		foreach (GameObject plays in players) {
 			if(!plays.Equals(user)) {
-				plays.GetComponent<Player>().reversed = true;
-				plays.GetComponent<Player>().reversedTime = revDurration;
+				if(plays.GetComponent<Player>() != null) {
+					plays.GetComponent<Player>().reversed = true;
+					plays.GetComponent<Player>().reversedTime = revDurration;
+				}
+
+				if(plays.GetComponent<PlayerMulti>() != null) {
+					plays.GetComponent<PlayerMulti>().reversed = true;
+					plays.GetComponent<PlayerMulti>().reversedTime = revDurration;
+				}
 			}
 		}
 		
@@ -30,6 +37,11 @@ public class TheHightPriestess : UsableCard {
 			if(enems.GetComponent<RunMan>() != null) {
 				enems.GetComponent<RunMan>().reversed = true;
 				enems.GetComponent<RunMan>().reversedTime = revDurration;
+			}
+
+			if(enems.GetComponent<EnemyChaseBird>() != null) {
+				enems.GetComponent<EnemyChaseBird>().reversed = true;
+				enems.GetComponent<EnemyChaseBird>().reversedTime = revDurration;
 			}
 		}
 	}

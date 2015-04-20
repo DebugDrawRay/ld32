@@ -68,6 +68,52 @@ public class PlayerMulti : MonoBehaviour {
 
 	public GameObject pauseObject;
 
+	public int playerNumber;
+	public int lastDamageFrom;
+
+	public void OnDeath() {
+		GameObject spawns = GameObject.Find ("PlayerSpawner");
+		int pick = Random.Range (0, 4);
+
+		if (pick == 0) {
+			transform.position = spawns.GetComponent<MultiplayerController>().P1Spawn.transform.position;
+		}
+		if (pick == 1) {
+			transform.position = spawns.GetComponent<MultiplayerController>().P1Spawn.transform.position;
+		}
+		if (pick == 2) {
+			transform.position = spawns.GetComponent<MultiplayerController>().P1Spawn.transform.position;
+		}
+		if (pick == 3) {
+			transform.position = spawns.GetComponent<MultiplayerController>().P1Spawn.transform.position;
+		}
+
+		GameObject mast = GameObject.Find ("TheGameMaster");
+
+		if (mast != null) {
+			if(lastDamageFrom == 1 && lastDamageFrom != playerNumber) {
+				mast.GetComponent<KillMaster>().scorePlayer1 += 1;
+			}
+			if(lastDamageFrom == 2 && lastDamageFrom != playerNumber) {
+				mast.GetComponent<KillMaster>().scorePlayer1 += 2;
+			}
+			if(lastDamageFrom == 3 && lastDamageFrom != playerNumber) {
+				mast.GetComponent<KillMaster>().scorePlayer1 += 3;
+			}
+			if(lastDamageFrom == 4 && lastDamageFrom != playerNumber) {
+				mast.GetComponent<KillMaster>().scorePlayer1 += 4;
+			}
+		}
+
+		currentDeck.InstanceSeedDeck ();
+		currentDeck.DrawCard ();
+		currentDeck.DrawCard ();
+		currentDeck.DrawCard ();
+		currentDeck.DrawCard ();
+		currentDeck.DrawCard ();
+
+	}
+
 	void Awake() {
 		currentDeck = new Deck ();
         currentDeck.AddToSeedDeck ("two-of-swords");

@@ -59,7 +59,24 @@ public class Health : MonoBehaviour {
 		}
 
 		if (health <= 0f) {
-			Destroy(gameObject);
+
+			if(gameObject.GetComponent<RunMan>() != null) {
+				Destroy(gameObject);
+			}
+			if(gameObject.GetComponent<EnemyChaseBird>() != null) {
+				Destroy(gameObject);
+			}
+
+			if(gameObject.GetComponent<Player>() != null) {
+				health = 100f;
+				gameObject.GetComponent<Player>().OnDeath();
+			}
+
+			if(gameObject.GetComponent<PlayerMulti>() != null) {
+				health = 100f;
+				gameObject.GetComponent<PlayerMulti>().OnDeath();
+			}
+
 		}
 	}
 }

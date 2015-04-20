@@ -66,6 +66,10 @@ public class Player : MonoBehaviour {
 
 	public GameObject pauseObject;
 
+	public void OnDeath() {
+
+	}
+
 	void Awake() {
 		currentDeck = new Deck ();
         currentDeck.AddToSeedDeck ("two-of-swords");
