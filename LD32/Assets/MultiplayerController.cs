@@ -169,19 +169,19 @@ public class MultiplayerController : MonoBehaviour {
 			GameObject currentPlayer;
 			switch (i){
 			case 0:
-				currentPlayer = Instantiate(PlayerPrefab, P1Spawn.transform.position, P1Spawn.transform.rotation);
+				currentPlayer = (GameObject) Instantiate(PlayerPrefab, P1Spawn.transform.position, P1Spawn.transform.rotation);
 				SetInputsToPlayer1(currentPlayer);
 				break;
 			case 1:
-				currentPlayer = Instantiate(PlayerPrefab, P2Spawn.transform.position, P2Spawn.transform.rotation);
+				currentPlayer = (GameObject) Instantiate(PlayerPrefab, P2Spawn.transform.position, P2Spawn.transform.rotation);
 				SetInputsToPlayer2(currentPlayer);
 				break;
 			case 2:
-				currentPlayer = Instantiate(PlayerPrefab, P3Spawn.transform.position, P3Spawn.transform.rotation);
+				currentPlayer = (GameObject) Instantiate(PlayerPrefab, P3Spawn.transform.position, P3Spawn.transform.rotation);
 				SetInputsToPlayer3(currentPlayer);
 				break;
 			case 3:
-				currentPlayer = Instantiate(PlayerPrefab, P4Spawn.transform.position, P4Spawn.transform.rotation);
+				currentPlayer = (GameObject) Instantiate(PlayerPrefab, P4Spawn.transform.position, P4Spawn.transform.rotation);
 				SetInputsToPlayer4(currentPlayer);
 				break;
 			}

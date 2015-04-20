@@ -61,7 +61,7 @@ public class Player : MonoBehaviour {
 
 	void Awake() {
 		currentDeck = new Deck ();
-        currentDeck.AddToSeedDeck ("two-of-swords");
+        /*currentDeck.AddToSeedDeck ("two-of-swords");
         currentDeck.AddToSeedDeck ("three-of-swords");
         currentDeck.AddToSeedDeck ("four-of-swords");
         currentDeck.AddToSeedDeck ("five-of-swords");
@@ -132,7 +132,7 @@ public class Player : MonoBehaviour {
         currentDeck.AddToSeedDeck("the-star");
         currentDeck.AddToSeedDeck("the-moon");
         currentDeck.AddToSeedDeck("judgement");
-        currentDeck.AddToSeedDeck("the-devil");
+        currentDeck.AddToSeedDeck("the-devil");*/
 
         /*currentDeck.AddToSeedDeck ("the-chariot");
         currentDeck.AddToSeedDeck ("the-chariot");
@@ -148,7 +148,45 @@ public class Player : MonoBehaviour {
         currentDeck.AddToSeedDeck ("the-chariot");*/
 
 
+		/*currentDeck.AddToSeedDeck("the-moon");
+		currentDeck.AddToSeedDeck("the-moon");
+		currentDeck.AddToSeedDeck("the-moon");
+		currentDeck.AddToSeedDeck("the-moon");
+		currentDeck.AddToSeedDeck("the-moon");
+		currentDeck.AddToSeedDeck("the-moon");
 
+
+		currentDeck.AddToSeedDeck("death");
+		currentDeck.AddToSeedDeck("death");
+		currentDeck.AddToSeedDeck("death");
+		currentDeck.AddToSeedDeck("death");
+		currentDeck.AddToSeedDeck("death");
+		currentDeck.AddToSeedDeck("death");
+		currentDeck.AddToSeedDeck("death");
+		currentDeck.AddToSeedDeck("death");
+
+		currentDeck.AddToSeedDeck("the-magician");
+		currentDeck.AddToSeedDeck("the-magician");
+		currentDeck.AddToSeedDeck("the-magician");
+		currentDeck.AddToSeedDeck("the-magician");
+		currentDeck.AddToSeedDeck("the-magician");
+		currentDeck.AddToSeedDeck("the-magician");
+		currentDeck.AddToSeedDeck("the-magician");
+		currentDeck.AddToSeedDeck("the-magician");*/
+
+		currentDeck.AddToSeedDeck ("wheel-of-fortune");
+		currentDeck.AddToSeedDeck ("wheel-of-fortune");
+		currentDeck.AddToSeedDeck ("wheel-of-fortune");
+		currentDeck.AddToSeedDeck ("wheel-of-fortune");
+		currentDeck.AddToSeedDeck ("wheel-of-fortune");
+		currentDeck.AddToSeedDeck ("wheel-of-fortune");
+		currentDeck.AddToSeedDeck ("wheel-of-fortune");
+		currentDeck.AddToSeedDeck ("wheel-of-fortune");
+		currentDeck.AddToSeedDeck ("wheel-of-fortune");
+		currentDeck.AddToSeedDeck ("wheel-of-fortune");
+		currentDeck.AddToSeedDeck ("wheel-of-fortune");
+		currentDeck.AddToSeedDeck ("wheel-of-fortune");
+		currentDeck.AddToSeedDeck ("temperance");
 
 		currentDeck.InstanceSeedDeck ();
 		currentDeck.DrawCard ();
@@ -202,6 +240,12 @@ public class Player : MonoBehaviour {
 			moveNerf = 0f;
 		} else {
 			moveNerfTime -= Time.deltaTime;
+		}
+
+		if (stunTime <= 0) {
+			stunned = false;
+		} else {
+			stunTime -= Time.deltaTime;
 		}
 
 		if (Input.GetButtonDown ("Draw") || Input.GetButtonDown("Player1B")) {
