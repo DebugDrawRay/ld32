@@ -91,29 +91,11 @@ public class Projectile : MonoBehaviour {
 	public bool confuses;
 	public float confuseTime;
 
-    //fx control
-    public Light dmgLight;
+	public float playerMomentum;
 
-    void Awake()
-    {
-        dmgLight.intensity = calcIntensity();
-    }
-
-    float calcIntensity()
-    {
-        if (damage != 0)
-        {
-            return damage / 10;
-        }
-        else
-        {
-            return explosionDamage / 10;
-        }
-    }
 	// Use this for initialization
-	void Start () 
-    {
-        dmgLight.intensity = calcIntensity();
+	void Start () {
+		
 	}
 
 	public GameObject explosion;
@@ -284,6 +266,8 @@ public class Projectile : MonoBehaviour {
 	
 	public void fire() {
 
+		playerMomentum = user.GetComponent<Rigidbody> ().velocity.magnitude;
+
 		if (matName != "the-chariot") {
 			transform.GetComponentInChildren<MeshRenderer> ().material = (Material) Resources.Load ("3D/" + matName);
 		}
@@ -349,7 +333,7 @@ public class Projectile : MonoBehaviour {
 			if (wave) {
 				for (int i = 0; i < spreadAmount; i++) {
 					GameObject bullet = (GameObject)Instantiate (this.gameObject, transform.position, transform.rotation);
-                    bullet.GetComponent<Collider>().enabled = true;
+					bullet.GetComponent<Collider>().enabled = true;
 					Physics.IgnoreCollision(bullet.GetComponent<Collider>(), user.GetComponent<Collider>());
 
 
@@ -434,7 +418,7 @@ public class Projectile : MonoBehaviour {
 					balisticImpulse -= gravityAmount * Time.deltaTime;
 				}
 			
-				gameObject.GetComponent<Rigidbody> ().velocity = fMove * velocity;
+				gameObject.GetComponent<Rigidbody> ().velocity = fMove * (velocity + playerMomentum);
 			} else {
 				Destroy (gameObject);
 			}

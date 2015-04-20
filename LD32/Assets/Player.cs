@@ -11,8 +11,6 @@ public class Player : MonoBehaviour {
 
 	public Deck currentDeck;
 
-    public bool isBuffed;
-
 	public float moveBoost;
 	public float moveBoostTime;
 
@@ -64,145 +62,94 @@ public class Player : MonoBehaviour {
 
     public bool lockCursor;
 
+	public GameObject pauseObject;
+
 	void Awake() {
 		currentDeck = new Deck ();
-        currentDeck.AddToSeedDeck("two-of-swords");
-        currentDeck.AddToSeedDeck("three-of-swords");
-        currentDeck.AddToSeedDeck("four-of-swords");
-        currentDeck.AddToSeedDeck("five-of-swords");
-        currentDeck.AddToSeedDeck("six-of-swords");
-        currentDeck.AddToSeedDeck("seven-of-swords");
-        currentDeck.AddToSeedDeck("eight-of-swords");
-        currentDeck.AddToSeedDeck("nine-of-swords");
-        currentDeck.AddToSeedDeck("ten-of-swords");
-        currentDeck.AddToSeedDeck("page-of-swords");
-        currentDeck.AddToSeedDeck("knight-of-swords");
-        currentDeck.AddToSeedDeck("king-of-swords");
-        currentDeck.AddToSeedDeck("queen-of-swords");
-        currentDeck.AddToSeedDeck("ace-of-swords");
+        currentDeck.AddToSeedDeck ("two-of-swords");
+        currentDeck.AddToSeedDeck ("three-of-swords");
+        currentDeck.AddToSeedDeck ("four-of-swords");
+        currentDeck.AddToSeedDeck ("five-of-swords");
+        currentDeck.AddToSeedDeck ("six-of-swords");
+        currentDeck.AddToSeedDeck ("seven-of-swords");
+        currentDeck.AddToSeedDeck ("eight-of-swords");
+        currentDeck.AddToSeedDeck ("nine-of-swords");
+        currentDeck.AddToSeedDeck ("ten-of-swords");
+        currentDeck.AddToSeedDeck ("page-of-swords");
+        currentDeck.AddToSeedDeck ("knight-of-swords");
+        currentDeck.AddToSeedDeck ("king-of-swords");
+        currentDeck.AddToSeedDeck ("queen-of-swords");
+        currentDeck.AddToSeedDeck ("ace-of-swords");
 
-        currentDeck.AddToSeedDeck("two-of-cups");
-        currentDeck.AddToSeedDeck("three-of-cups");
-        currentDeck.AddToSeedDeck("four-of-cups");
-        currentDeck.AddToSeedDeck("five-of-cups");
-        currentDeck.AddToSeedDeck("six-of-cups");
-        currentDeck.AddToSeedDeck("seven-of-cups");
-        currentDeck.AddToSeedDeck("eight-of-cups");
-        currentDeck.AddToSeedDeck("nine-of-cups");
-        currentDeck.AddToSeedDeck("ten-of-cups");
-        currentDeck.AddToSeedDeck("page-of-cups");
-        currentDeck.AddToSeedDeck("knight-of-cups");
-        currentDeck.AddToSeedDeck("king-of-cups");
-        currentDeck.AddToSeedDeck("queen-of-cups");
-        currentDeck.AddToSeedDeck("ace-of-cups");
+        currentDeck.AddToSeedDeck ("two-of-cups");
+        currentDeck.AddToSeedDeck ("three-of-cups");
+        currentDeck.AddToSeedDeck ("four-of-cups");
+        currentDeck.AddToSeedDeck ("five-of-cups");
+        currentDeck.AddToSeedDeck ("six-of-cups");
+        currentDeck.AddToSeedDeck ("seven-of-cups");
+        currentDeck.AddToSeedDeck ("eight-of-cups");
+        currentDeck.AddToSeedDeck ("nine-of-cups");
+        currentDeck.AddToSeedDeck ("ten-of-cups");
+        currentDeck.AddToSeedDeck ("page-of-cups");
+        currentDeck.AddToSeedDeck ("knight-of-cups");
+        currentDeck.AddToSeedDeck ("king-of-cups");
+        currentDeck.AddToSeedDeck ("queen-of-cups");
+        currentDeck.AddToSeedDeck ("ace-of-cups");
 
-        currentDeck.AddToSeedDeck("two-of-wands");
-        currentDeck.AddToSeedDeck("three-of-wands");
-        currentDeck.AddToSeedDeck("four-of-wands");
-        currentDeck.AddToSeedDeck("five-of-wands");
-        currentDeck.AddToSeedDeck("six-of-wands");
-        currentDeck.AddToSeedDeck("seven-of-wands");
-        currentDeck.AddToSeedDeck("eight-of-wands");
-        currentDeck.AddToSeedDeck("nine-of-wands");
-        currentDeck.AddToSeedDeck("ten-of-wands");
-        currentDeck.AddToSeedDeck("page-of-wands");
-        currentDeck.AddToSeedDeck("knight-of-wands");
-        currentDeck.AddToSeedDeck("king-of-wands");
-        currentDeck.AddToSeedDeck("queen-of-wands");
-        currentDeck.AddToSeedDeck("ace-of-wands");
+        currentDeck.AddToSeedDeck ("two-of-wands");
+        currentDeck.AddToSeedDeck ("three-of-wands");
+        currentDeck.AddToSeedDeck ("four-of-wands");
+        currentDeck.AddToSeedDeck ("five-of-wands");
+        currentDeck.AddToSeedDeck ("six-of-wands");
+        currentDeck.AddToSeedDeck ("seven-of-wands");
+        currentDeck.AddToSeedDeck ("eight-of-wands");
+        currentDeck.AddToSeedDeck ("nine-of-wands");
+        currentDeck.AddToSeedDeck ("ten-of-wands");
+        currentDeck.AddToSeedDeck ("page-of-wands");
+        currentDeck.AddToSeedDeck ("knight-of-wands");
+        currentDeck.AddToSeedDeck ("king-of-wands");
+        currentDeck.AddToSeedDeck ("queen-of-wands");
+        currentDeck.AddToSeedDeck ("ace-of-wands");
 
-        currentDeck.AddToSeedDeck("three-of-pentacles");
-        currentDeck.AddToSeedDeck("four-of-pentacles");
-        currentDeck.AddToSeedDeck("five-of-pentacles");
-        currentDeck.AddToSeedDeck("six-of-pentacles");
-        currentDeck.AddToSeedDeck("seven-of-pentacles");
-        currentDeck.AddToSeedDeck("eight-of-pentacles");
-        currentDeck.AddToSeedDeck("nine-of-pentacles");
-        currentDeck.AddToSeedDeck("ten-of-pentacles");
-        currentDeck.AddToSeedDeck("page-of-pentacles");
-        currentDeck.AddToSeedDeck("knight-of-pentacles");
-        currentDeck.AddToSeedDeck("king-of-pentacles");
-        currentDeck.AddToSeedDeck("queen-of-pentacles");
-        currentDeck.AddToSeedDeck("ace-of-pentacles");
-        currentDeck.AddToSeedDeck("two-of-pentacles");
+        currentDeck.AddToSeedDeck ("three-of-pentacles");
+        currentDeck.AddToSeedDeck ("four-of-pentacles");
+        currentDeck.AddToSeedDeck ("five-of-pentacles");
+        currentDeck.AddToSeedDeck ("six-of-pentacles");
+        currentDeck.AddToSeedDeck ("seven-of-pentacles");
+        currentDeck.AddToSeedDeck ("eight-of-pentacles");
+        currentDeck.AddToSeedDeck ("nine-of-pentacles");
+        currentDeck.AddToSeedDeck ("ten-of-pentacles");
+        currentDeck.AddToSeedDeck ("page-of-pentacles");
+        currentDeck.AddToSeedDeck ("knight-of-pentacles");
+        currentDeck.AddToSeedDeck ("king-of-pentacles");
+        currentDeck.AddToSeedDeck ("queen-of-pentacles");
+        currentDeck.AddToSeedDeck ("ace-of-pentacles");
+        currentDeck.AddToSeedDeck ("two-of-pentacles");
 
+		currentDeck.AddToSeedDeck("the-fool");
+		currentDeck.AddToSeedDeck("the-magician");
+		currentDeck.AddToSeedDeck("the-high-priestess");
+		currentDeck.AddToSeedDeck("the-empress");
+		currentDeck.AddToSeedDeck("the-emperor");
+		currentDeck.AddToSeedDeck("the-hierophant");
+		currentDeck.AddToSeedDeck("the-lovers");
+		currentDeck.AddToSeedDeck("the-chariot");
+		currentDeck.AddToSeedDeck("strength");
+		currentDeck.AddToSeedDeck("the-hermit");
+		currentDeck.AddToSeedDeck("wheel-of-fortune");
+		currentDeck.AddToSeedDeck("justice");
+		currentDeck.AddToSeedDeck("the-hanged-man");
+		currentDeck.AddToSeedDeck("death");
+		currentDeck.AddToSeedDeck("temperance");
+		currentDeck.AddToSeedDeck("the-devil");
+		currentDeck.AddToSeedDeck("the-tower");
+		currentDeck.AddToSeedDeck("the-star");
+		currentDeck.AddToSeedDeck("the-moon");
         currentDeck.AddToSeedDeck("the-sun");
-        currentDeck.AddToSeedDeck("the-fool");
-        currentDeck.AddToSeedDeck("the-empress");
-        currentDeck.AddToSeedDeck("the-lovers");
-        currentDeck.AddToSeedDeck("justice");
-        currentDeck.AddToSeedDeck("the-hanged-man");
-        currentDeck.AddToSeedDeck("temperance");
-        currentDeck.AddToSeedDeck("the-tower");
-        currentDeck.AddToSeedDeck("the-star");
-        currentDeck.AddToSeedDeck("the-moon");
-        currentDeck.AddToSeedDeck("judgement");
-        currentDeck.AddToSeedDeck("the-devil");
-        currentDeck.AddToSeedDeck("death");
-
-        /*currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");*/
-
-
-		/*currentDeck.AddToSeedDeck("the-moon");
-		currentDeck.AddToSeedDeck("the-moon");
-		currentDeck.AddToSeedDeck("the-moon");
-		currentDeck.AddToSeedDeck("the-moon");
-		currentDeck.AddToSeedDeck("the-moon");
-		currentDeck.AddToSeedDeck("the-moon");*/
-
-
-		/*currentDeck.AddToSeedDeck("death");
-		currentDeck.AddToSeedDeck("death");
-		currentDeck.AddToSeedDeck("death");
-		currentDeck.AddToSeedDeck("death");
-		currentDeck.AddToSeedDeck("death");
-		currentDeck.AddToSeedDeck("death");
-		currentDeck.AddToSeedDeck("death");
-		currentDeck.AddToSeedDeck("death");/*
-
-		currentDeck.AddToSeedDeck("the-magician");
-		currentDeck.AddToSeedDeck("the-magician");
-		currentDeck.AddToSeedDeck("the-magician");
-		currentDeck.AddToSeedDeck("the-magician");
-		currentDeck.AddToSeedDeck("the-magician");
-		currentDeck.AddToSeedDeck("the-magician");
-		currentDeck.AddToSeedDeck("the-magician");
-		currentDeck.AddToSeedDeck("the-magician");*/
-
-		/*currentDeck.AddToSeedDeck ("wheel-of-fortune");
-		currentDeck.AddToSeedDeck ("wheel-of-fortune");
-		currentDeck.AddToSeedDeck ("wheel-of-fortune");
-		currentDeck.AddToSeedDeck ("wheel-of-fortune");
-		currentDeck.AddToSeedDeck ("wheel-of-fortune");
-		currentDeck.AddToSeedDeck ("wheel-of-fortune");
-		currentDeck.AddToSeedDeck ("wheel-of-fortune");
-		currentDeck.AddToSeedDeck ("wheel-of-fortune");
-		currentDeck.AddToSeedDeck ("wheel-of-fortune");
-		currentDeck.AddToSeedDeck ("wheel-of-fortune");
-		currentDeck.AddToSeedDeck ("wheel-of-fortune");
-		currentDeck.AddToSeedDeck ("wheel-of-fortune");*/
-		currentDeck.AddToSeedDeck ("temperance");
-
-		/*currentDeck.AddToSeedDeck ("the-hierophant");
-		currentDeck.AddToSeedDeck ("the-hierophant");
-		currentDeck.AddToSeedDeck ("the-hierophant");
-		currentDeck.AddToSeedDeck ("the-hierophant");
-		currentDeck.AddToSeedDeck ("the-hierophant");
-		currentDeck.AddToSeedDeck ("the-hierophant");*/
-
+		currentDeck.AddToSeedDeck("judgement");
 		currentDeck.AddToSeedDeck ("the-world");
-
+        
+        
 
 		currentDeck.InstanceSeedDeck ();
 		currentDeck.DrawCard ();
@@ -215,10 +162,12 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		pauseObject = GameObject.Find ("PauseMaster");
+
         if (lockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = true;
+			Cursor.visible = false;
         }
 		InitiateCam ();
 	}
@@ -232,143 +181,144 @@ public class Player : MonoBehaviour {
 	public GameObject testProjectile;
 
 	void Update() {
-		RotateCam ();
+		if (pauseObject.GetComponent<PausingMaster> ().paused) {
 
-		if (moveBoostTime <= 0) {
-			moveBoost = 0f;
 		} else {
-			moveBoostTime -= Time.deltaTime;
-		}
 
-		if (jumpBoostTime <= 0) {
-			jumpBoost = 0f;
-		} else {
-			jumpBoostTime -= Time.deltaTime;
-		}
+			RotateCam ();
 
-		if (damageBoostTime <= 0) {
-			damageBoost = 0f;
-		} else {
-			damageBoostTime -= Time.deltaTime;
-		}
-
-		if (moveNerfTime <= 0) {
-			moveNerf = 0f;
-		} else {
-			moveNerfTime -= Time.deltaTime;
-		}
-
-		if (stunTime <= 0) {
-			stunned = false;
-		} else {
-			stunTime -= Time.deltaTime;
-		}
-
-		if (confuseTime <= 0) {
-			confused = false;
-		} else {
-			confuseTime -= Time.deltaTime;
-		}
-
-		if (Input.GetButtonDown ("Draw") || Input.GetButtonDown("Player1B")) {
-			currentDeck.DrawCard ();
-		}
-
-		if (canUse) {
-			if (Input.GetButtonDown ("Card0")) {
-                //string curCard = currentDeck.UseCardInHandAtIndex (0);
-                //if (curCard != "") {
-                //    Debug.Log (curCard);
-                //    GameObject curCardPref = (GameObject)Resources.Load ("CardPrefabs/" + curCard);
-                //    curCardPref.GetComponent<UsableCard> ().UseCard (gameObject);
-
-                //    canUse = false;
-                //    currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
-                //}
-                currentDeck.SetSelectedCard(0);
-			}
-			if (Input.GetButtonDown ("Card1")) {
-				/*string curCard = currentDeck.UseCardInHandAtIndex (1);
-				if (curCard != "") {
-					Debug.Log (curCard);
-					GameObject curCardPref = (GameObject)Resources.Load ("CardPrefabs/" + curCard);
-					curCardPref.GetComponent<UsableCard> ().UseCard (gameObject);
-
-					canUse = false;
-					currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
-				}*/
-                currentDeck.SetSelectedCard(1);
-			}
-			if (Input.GetButtonDown ("Card2")) {
-				/*string curCard = currentDeck.UseCardInHandAtIndex (2);
-				if (curCard != "") {
-					Debug.Log (curCard);
-					GameObject curCardPref = (GameObject)Resources.Load ("CardPrefabs/" + curCard);
-					curCardPref.GetComponent<UsableCard> ().UseCard (gameObject);
-
-					canUse = false;
-					currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
-				}*/
-                currentDeck.SetSelectedCard(2);
-			}
-			if (Input.GetButtonDown ("Card3")) {
-				/*string curCard = currentDeck.UseCardInHandAtIndex (3);
-				if (curCard != "") {
-					Debug.Log (curCard);
-					GameObject curCardPref = (GameObject)Resources.Load ("CardPrefabs/" + curCard);
-					curCardPref.GetComponent<UsableCard> ().UseCard (gameObject);
-
-					canUse = false;
-					currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
-				}*/
-                currentDeck.SetSelectedCard(3);
-			}
-			if (Input.GetButtonDown ("Card4")) {
-				/*string curCard = currentDeck.UseCardInHandAtIndex (4);
-				if (curCard != "") {
-					Debug.Log (curCard);
-					GameObject curCardPref = (GameObject)Resources.Load ("CardPrefabs/" + curCard);
-					curCardPref.GetComponent<UsableCard> ().UseCard (gameObject);
-
-					canUse = false;
-					currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
-				}*/
-                currentDeck.SetSelectedCard(4);
-			}
-            if(Input.GetButtonDown("Previous Selection") || Input.GetButtonDown("Player1LB"))
-            {
-                currentDeck.DecrementSelectedCard();
-            }
-            if(Input.GetButtonDown("Next Selection") || Input.GetButtonDown("Player1RB"))
-            {
-                currentDeck.IncrementSelectedCard();
-            }
-            if(Input.GetButtonDown("Mouse 0") || Input.GetAxis("Player1Triggers") < -0.5f)
-            {
-				if(confused) {
-					gameObject.GetComponent<Health>().changeHealth(-10);
-				}
-
-                string curCard = currentDeck.UseCardInHandAtIndex (currentDeck.GetSelectedCard());
-				if (curCard != "") {
-					Debug.Log (curCard);
-					GameObject curCardPref = (GameObject)Resources.Load ("CardPrefabs/" + curCard);
-					curCardPref.GetComponent<UsableCard> ().UseCard (gameObject);
-
-					canUse = false;
-					currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
-				}
-            }
-		} else {
-			if(currentCooldown <= 0) {
-				canUse = true;
+			if (moveBoostTime <= 0) {
+				moveBoost = 0f;
 			} else {
-				currentCooldown -= Time.deltaTime;
+				moveBoostTime -= Time.deltaTime;
 			}
-		}
+
+			if (jumpBoostTime <= 0) {
+				jumpBoost = 0f;
+			} else {
+				jumpBoostTime -= Time.deltaTime;
+			}
+
+			if (damageBoostTime <= 0) {
+				damageBoost = 0f;
+			} else {
+				damageBoostTime -= Time.deltaTime;
+			}
+
+			if (moveNerfTime <= 0) {
+				moveNerf = 0f;
+			} else {
+				moveNerfTime -= Time.deltaTime;
+			}
+
+			if (stunTime <= 0) {
+				stunned = false;
+			} else {
+				stunTime -= Time.deltaTime;
+			}
+
+			if (confuseTime <= 0) {
+				confused = false;
+			} else {
+				confuseTime -= Time.deltaTime;
+			}
+
+			if (Input.GetButtonDown ("Draw") || Input.GetButtonDown ("Player1B")) {
+				currentDeck.DrawCard ();
+			}
+
+			if (canUse) {
+				if (Input.GetButtonDown ("Card0")) {
+					//string curCard = currentDeck.UseCardInHandAtIndex (0);
+					//if (curCard != "") {
+					//    Debug.Log (curCard);
+					//    GameObject curCardPref = (GameObject)Resources.Load ("CardPrefabs/" + curCard);
+					//    curCardPref.GetComponent<UsableCard> ().UseCard (gameObject);
+
+					//    canUse = false;
+					//    currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
+					//}
+					currentDeck.SetSelectedCard (0);
+				}
+				if (Input.GetButtonDown ("Card1")) {
+					/*string curCard = currentDeck.UseCardInHandAtIndex (1);
+				if (curCard != "") {
+					Debug.Log (curCard);
+					GameObject curCardPref = (GameObject)Resources.Load ("CardPrefabs/" + curCard);
+					curCardPref.GetComponent<UsableCard> ().UseCard (gameObject);
+
+					canUse = false;
+					currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
+				}*/
+					currentDeck.SetSelectedCard (1);
+				}
+				if (Input.GetButtonDown ("Card2")) {
+					/*string curCard = currentDeck.UseCardInHandAtIndex (2);
+				if (curCard != "") {
+					Debug.Log (curCard);
+					GameObject curCardPref = (GameObject)Resources.Load ("CardPrefabs/" + curCard);
+					curCardPref.GetComponent<UsableCard> ().UseCard (gameObject);
+
+					canUse = false;
+					currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
+				}*/
+					currentDeck.SetSelectedCard (2);
+				}
+				if (Input.GetButtonDown ("Card3")) {
+					/*string curCard = currentDeck.UseCardInHandAtIndex (3);
+				if (curCard != "") {
+					Debug.Log (curCard);
+					GameObject curCardPref = (GameObject)Resources.Load ("CardPrefabs/" + curCard);
+					curCardPref.GetComponent<UsableCard> ().UseCard (gameObject);
+
+					canUse = false;
+					currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
+				}*/
+					currentDeck.SetSelectedCard (3);
+				}
+				if (Input.GetButtonDown ("Card4")) {
+					/*string curCard = currentDeck.UseCardInHandAtIndex (4);
+				if (curCard != "") {
+					Debug.Log (curCard);
+					GameObject curCardPref = (GameObject)Resources.Load ("CardPrefabs/" + curCard);
+					curCardPref.GetComponent<UsableCard> ().UseCard (gameObject);
+
+					canUse = false;
+					currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
+				}*/
+					currentDeck.SetSelectedCard (4);
+				}
+				if (Input.GetButtonDown ("Previous Selection") || Input.GetButtonDown ("Player1LB")) {
+					currentDeck.DecrementSelectedCard ();
+				}
+				if (Input.GetButtonDown ("Next Selection") || Input.GetButtonDown ("Player1RB")) {
+					currentDeck.IncrementSelectedCard ();
+				}
+				if (Input.GetButtonDown ("Mouse 0") || Input.GetAxis ("Player1Triggers") < -0.5f) {
+					if (confused) {
+						gameObject.GetComponent<Health> ().changeHealth (-10);
+					}
+
+					string curCard = currentDeck.UseCardInHandAtIndex (currentDeck.GetSelectedCard ());
+					if (curCard != "") {
+						Debug.Log (curCard);
+						GameObject curCardPref = (GameObject)Resources.Load ("CardPrefabs/" + curCard);
+						curCardPref.GetComponent<UsableCard> ().UseCard (gameObject);
+
+						canUse = false;
+						currentCooldown = curCardPref.GetComponent<UsableCard> ().coolDown;
+					}
+				}
+			} else {
+				if (currentCooldown <= 0) {
+					canUse = true;
+				} else {
+					currentCooldown -= Time.deltaTime;
+				}
+			}
 
 
-		/*if (Input.GetButtonDown ("Fire1")) {
+			/*if (Input.GetButtonDown ("Fire1")) {
 			card1.GetComponent<UsableCard>().UseCard(gameObject);
 		}
 
@@ -388,24 +338,15 @@ public class Player : MonoBehaviour {
 			card5.GetComponent<UsableCard>().UseCard(gameObject);
 		}*/
 
-		if(Input.GetButtonDown("Jump")|| Input.GetButtonDown ("Player1A")) {
-			if(Physics.Raycast(transform.position, -transform.up, 1.5f)) {
-				gameObject.GetComponent<Rigidbody>().AddForce(transform.up * (jumpForce + jumpBoost));
-			}
-			if(canJump) {
-				//gameObject.GetComponent<Rigidbody>().AddForce(transform.up * jumpForce);
+			if (Input.GetButtonDown ("Jump") || Input.GetButtonDown ("Player1A")) {
+				if (Physics.Raycast (transform.position, -transform.up, 1.5f)) {
+					gameObject.GetComponent<Rigidbody> ().AddForce (transform.up * (jumpForce + jumpBoost));
+				}
+				if (canJump) {
+					//gameObject.GetComponent<Rigidbody>().AddForce(transform.up * jumpForce);
+				}
 			}
 		}
-
-        if(moveBoost > 0 || jumpBoost > 0 || damageBoost > 0 || defenseBoost > 0 || moveNerf > 0 || stunned || reversed || confused)
-        {
-            isBuffed = true;
-        }
-        else
-        {
-            isBuffed = false;
-        }
-
 	}
 
 	// Update is called once per frame
