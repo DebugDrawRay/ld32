@@ -225,6 +225,6 @@ public class MultiplayerController : MonoBehaviour {
 	}
 
 	void Awake(){
-		CreatePlayers (1);
+		CreatePlayers (2);
 	}
 }
