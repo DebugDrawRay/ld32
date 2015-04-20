@@ -35,6 +35,8 @@ public class Player : MonoBehaviour {
 	public bool confused;
 	public float confuseTime;
 
+	public bool isBuffed;
+
 	public Vector3 knockback;
 
 	public GameObject card1;
@@ -148,16 +150,13 @@ public class Player : MonoBehaviour {
         currentDeck.AddToSeedDeck("the-sun");
 		currentDeck.AddToSeedDeck("judgement");
 		currentDeck.AddToSeedDeck ("the-world");
-        
-        
 
 		currentDeck.InstanceSeedDeck ();
 		currentDeck.DrawCard ();
 		currentDeck.DrawCard ();
 		currentDeck.DrawCard ();
 		currentDeck.ResetModifier ();
-
-
+		
 	}
 
 	// Use this for initialization
@@ -345,6 +344,14 @@ public class Player : MonoBehaviour {
 				if (canJump) {
 					//gameObject.GetComponent<Rigidbody>().AddForce(transform.up * jumpForce);
 				}
+			}
+			if(moveBoost > 0 || jumpBoost > 0 || damageBoost > 0 || defenseBoost > 0 || moveNerf > 0 || stunned || reversed || confused)
+			{
+				isBuffed = true;
+			}
+			else
+			{
+				isBuffed = false;
 			}
 		}
 	}
