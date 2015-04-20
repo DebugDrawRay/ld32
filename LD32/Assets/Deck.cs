@@ -7,7 +7,7 @@ public class Deck{
 	private ArrayList hand;
 	private ArrayList currentDeck;
 
-	private int maxHandSize;
+	private int maxHandSize = 5;
 
 	private int selectedCard;
 	private bool selectChange;
@@ -18,7 +18,7 @@ public class Deck{
 	//other number means card removed at index;
 
 	public string DrawCard(){
-		if ((maxHandSize == -1 || hand.Count >= maxHandSize) && currentDeck.Count != 0) {
+		if ((maxHandSize == -1 || hand.Count < maxHandSize) && currentDeck.Count != 0) {
 			string drawnCard = (string)currentDeck [Random.Range (0, currentDeck.Count)];
 			currentDeck.Remove (drawnCard);
 			hand.Add (drawnCard);
@@ -113,7 +113,7 @@ public class Deck{
 		seedDeck = new ArrayList();
 		hand = new ArrayList();
 		currentDeck = new ArrayList();
-		maxHandSize = -1;
+		maxHandSize = 5;
 		mod = -1;
 	}
 }
