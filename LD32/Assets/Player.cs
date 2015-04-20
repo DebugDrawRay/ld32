@@ -79,7 +79,7 @@ public class Player : MonoBehaviour {
         currentDeck.AddToSeedDeck ("queen-of-swords");
         currentDeck.AddToSeedDeck ("ace-of-swords");
 
-        /*currentDeck.AddToSeedDeck ("two-of-cups");
+        currentDeck.AddToSeedDeck ("two-of-cups");
         currentDeck.AddToSeedDeck ("three-of-cups");
         currentDeck.AddToSeedDeck ("four-of-cups");
         currentDeck.AddToSeedDeck ("five-of-cups");
@@ -124,82 +124,30 @@ public class Player : MonoBehaviour {
         currentDeck.AddToSeedDeck ("ace-of-pentacles");
         currentDeck.AddToSeedDeck ("two-of-pentacles");
 
+		currentDeck.AddToSeedDeck("the-fool");
+		currentDeck.AddToSeedDeck("the-magician");
+		currentDeck.AddToSeedDeck("the-high-priestess");
+		currentDeck.AddToSeedDeck("the-empress");
+		currentDeck.AddToSeedDeck("the-emperor");
+		currentDeck.AddToSeedDeck("the-hierophant");
+		currentDeck.AddToSeedDeck("the-lovers");
+		currentDeck.AddToSeedDeck("the-chariot");
+		currentDeck.AddToSeedDeck("strength");
+		currentDeck.AddToSeedDeck("the-hermit");
+		currentDeck.AddToSeedDeck("wheel-of-fortune");
+		currentDeck.AddToSeedDeck("justice");
+		currentDeck.AddToSeedDeck("the-hanged-man");
+		currentDeck.AddToSeedDeck("death");
+		currentDeck.AddToSeedDeck("temperance");
+		currentDeck.AddToSeedDeck("the-devil");
+		currentDeck.AddToSeedDeck("the-tower");
+		currentDeck.AddToSeedDeck("the-star");
+		currentDeck.AddToSeedDeck("the-moon");
         currentDeck.AddToSeedDeck("the-sun");
-        currentDeck.AddToSeedDeck("the-fool");
-        currentDeck.AddToSeedDeck("the-empress");
-        currentDeck.AddToSeedDeck("the-lovers");
-        currentDeck.AddToSeedDeck("justice");
-        currentDeck.AddToSeedDeck("the-hanged-man");
-        currentDeck.AddToSeedDeck("temperance");
-        currentDeck.AddToSeedDeck("the-tower");
-        currentDeck.AddToSeedDeck("the-star");
-        currentDeck.AddToSeedDeck("the-moon");
-        currentDeck.AddToSeedDeck("judgement");
-        currentDeck.AddToSeedDeck("the-devil");*/
-
-        /*currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");*/
-
-
-		/*currentDeck.AddToSeedDeck("the-moon");
-		currentDeck.AddToSeedDeck("the-moon");
-		currentDeck.AddToSeedDeck("the-moon");
-		currentDeck.AddToSeedDeck("the-moon");
-		currentDeck.AddToSeedDeck("the-moon");
-		currentDeck.AddToSeedDeck("the-moon");
-
-
-		currentDeck.AddToSeedDeck("death");
-		currentDeck.AddToSeedDeck("death");
-		currentDeck.AddToSeedDeck("death");
-		currentDeck.AddToSeedDeck("death");
-		currentDeck.AddToSeedDeck("death");
-		currentDeck.AddToSeedDeck("death");
-		currentDeck.AddToSeedDeck("death");
-		currentDeck.AddToSeedDeck("death");
-
-		currentDeck.AddToSeedDeck("the-magician");
-		currentDeck.AddToSeedDeck("the-magician");
-		currentDeck.AddToSeedDeck("the-magician");
-		currentDeck.AddToSeedDeck("the-magician");
-		currentDeck.AddToSeedDeck("the-magician");
-		currentDeck.AddToSeedDeck("the-magician");
-		currentDeck.AddToSeedDeck("the-magician");
-		currentDeck.AddToSeedDeck("the-magician");*/
-
-		/*currentDeck.AddToSeedDeck ("wheel-of-fortune");
-		currentDeck.AddToSeedDeck ("wheel-of-fortune");
-		currentDeck.AddToSeedDeck ("wheel-of-fortune");
-		currentDeck.AddToSeedDeck ("wheel-of-fortune");
-		currentDeck.AddToSeedDeck ("wheel-of-fortune");
-		currentDeck.AddToSeedDeck ("wheel-of-fortune");
-		currentDeck.AddToSeedDeck ("wheel-of-fortune");
-		currentDeck.AddToSeedDeck ("wheel-of-fortune");
-		currentDeck.AddToSeedDeck ("wheel-of-fortune");
-		currentDeck.AddToSeedDeck ("wheel-of-fortune");
-		currentDeck.AddToSeedDeck ("wheel-of-fortune");
-		currentDeck.AddToSeedDeck ("wheel-of-fortune");*/
-		currentDeck.AddToSeedDeck ("temperance");
-
-		/*currentDeck.AddToSeedDeck ("the-hierophant");
-		currentDeck.AddToSeedDeck ("the-hierophant");
-		currentDeck.AddToSeedDeck ("the-hierophant");
-		currentDeck.AddToSeedDeck ("the-hierophant");
-		currentDeck.AddToSeedDeck ("the-hierophant");
-		currentDeck.AddToSeedDeck ("the-hierophant");*/
-
+		currentDeck.AddToSeedDeck("judgement");
 		currentDeck.AddToSeedDeck ("the-world");
-
+        
+        
 
 		currentDeck.InstanceSeedDeck ();
 		currentDeck.DrawCard ();

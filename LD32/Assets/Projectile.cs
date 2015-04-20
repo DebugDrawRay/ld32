@@ -91,6 +91,8 @@ public class Projectile : MonoBehaviour {
 	public bool confuses;
 	public float confuseTime;
 
+	public float playerMomentum;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -264,6 +266,8 @@ public class Projectile : MonoBehaviour {
 	
 	public void fire() {
 
+		playerMomentum = user.GetComponent<Rigidbody> ().velocity.magnitude;
+
 		if (matName != "the-chariot") {
 			transform.GetComponentInChildren<MeshRenderer> ().material = (Material) Resources.Load ("3D/" + matName);
 		}
@@ -329,6 +333,7 @@ public class Projectile : MonoBehaviour {
 			if (wave) {
 				for (int i = 0; i < spreadAmount; i++) {
 					GameObject bullet = (GameObject)Instantiate (this.gameObject, transform.position, transform.rotation);
+					bullet.GetComponent<Collider>().enabled = true;
 					Physics.IgnoreCollision(bullet.GetComponent<Collider>(), user.GetComponent<Collider>());
 
 
@@ -413,7 +418,7 @@ public class Projectile : MonoBehaviour {
 					balisticImpulse -= gravityAmount * Time.deltaTime;
 				}
 			
-				gameObject.GetComponent<Rigidbody> ().velocity = fMove * velocity;
+				gameObject.GetComponent<Rigidbody> ().velocity = fMove * (velocity + playerMomentum);
 			} else {
 				Destroy (gameObject);
 			}
