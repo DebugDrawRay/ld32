@@ -29,6 +29,8 @@ ModelImporter:
     100042: box_s_001
     100044: box_l_001
     100046: box_m_001
+    100048: box_s_003
+    100050: door_l_001
     400000: Cube
     400002: Cube_001
     400004: Cube_002
@@ -53,6 +55,8 @@ ModelImporter:
     400042: box_s_001
     400044: box_l_001
     400046: box_m_001
+    400048: box_s_003
+    400050: door_l_001
     2300000: Cube
     2300002: Cube_001
     2300004: Cube_002
@@ -76,6 +80,8 @@ ModelImporter:
     2300040: box_s_001
     2300042: box_l_001
     2300044: box_m_001
+    2300046: box_s_003
+    2300048: door_l_001
     3300000: Cube
     3300002: Cube_001
     3300004: Cube_002
@@ -99,6 +105,8 @@ ModelImporter:
     3300040: box_s_001
     3300042: box_l_001
     3300044: box_m_001
+    3300046: box_s_003
+    3300048: door_l_001
     4300000: Plane
     4300002: Cube
     4300004: Cube_003
@@ -122,6 +130,8 @@ ModelImporter:
     4300040: box_s_001
     4300042: box_l_001
     4300044: box_m_001
+    4300046: box_s_003
+    4300048: door_l_001
     7400000: Default Take
     9500000: //RootNode
   materials:
