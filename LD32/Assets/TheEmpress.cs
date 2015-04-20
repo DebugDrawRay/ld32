@@ -17,7 +17,12 @@ public class TheEmpress : UsableCard {
 	}
 	
 	public override void UseCard(GameObject user) {
-		user.GetComponent<Player> ().moveBoost = boostAmount;
-		user.GetComponent<Player> ().moveBoostTime = boostTime;
+		if (user.GetComponent<Player>() != null) {
+			user.GetComponent<Player> ().moveBoost = boostAmount;
+			user.GetComponent<Player> ().moveBoostTime = boostTime;
+		} else {
+			user.GetComponent<PlayerMulti> ().moveBoost = boostAmount;
+			user.GetComponent<PlayerMulti> ().moveBoostTime = boostTime;
+		}
 	}
 }

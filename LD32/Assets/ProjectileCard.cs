@@ -2,32 +2,32 @@
 using System.Collections;
 
 public class ProjectileCard : UsableCard {
-
+	
 	public GameObject projectile;
-
+	
 	public bool pageCard;
 	public float fireDelay;
 	public int fireAmount;
-
+	
 	public bool knightCard;
 	public float knockUp;
-
+	
 	public bool queenCard;
 	//public bool slows;
 	public float slowPercent;
 	public float slowTime;
-
+	
 	public bool kingCard;
 	//public bool stuns;
 	public float stunTime;
-
+	
 	public bool setOnFire;
 	public float fireDamage;
 	public float fireTime;
-
+	
 	public bool teleport;
-
-
+	
+	
 	//team vars
 	public string enemyTag;
 	
@@ -43,8 +43,8 @@ public class ProjectileCard : UsableCard {
 	
 	//public List<string> statusEffects = new List<string>(); //this here tells the projectile what effects to 
 	//apply. for now its just a list of stings because im not sure how effects will work
-
-
+	
+	
 	
 	
 	//for shotgun effects.
@@ -69,37 +69,48 @@ public class ProjectileCard : UsableCard {
 	public float homeForce;
 	//public float homeAngle; //angle to see target and start homing (cone in front)
 	//public float closeAngleFixed; //the rate at witch the projectile can turn
-	
-	public bool isWave;
 
+	public bool isWave;
+	
 	public bool confuses;
 	public float confuseTime;
-
-
+	
+	
 	// Use this for initialization
 	void Start () {
-	
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
-
+	
 	public override void UseCard(GameObject user) {
-		GameObject bullet = (GameObject) Instantiate(projectile, new Vector3(user.GetComponent<Player>().playCam.transform.position.x, user.GetComponent<Player>().playCam.transform.position.y - 0.1f, user.GetComponent<Player>().playCam.transform.position.z), user.GetComponent<Player>().playCam.transform.rotation);
-
+		GameObject bullet;
+		if(user.GetComponent<Player>()!=null){
+			bullet = (GameObject) Instantiate(projectile, new Vector3(user.GetComponent<Player>().playCam.transform.position.x, user.GetComponent<Player>().playCam.transform.position.y - 0.1f, user.GetComponent<Player>().playCam.transform.position.z), user.GetComponent<Player>().playCam.transform.rotation);
+		}else{
+			bullet = (GameObject) Instantiate(projectile, new Vector3(user.GetComponent<PlayerMulti>().playCam.transform.position.x, user.GetComponent<PlayerMulti>().playCam.transform.position.y - 0.1f, user.GetComponent<PlayerMulti>().playCam.transform.position.z), user.GetComponent<PlayerMulti>().playCam.transform.rotation);
+		}
 		bullet.GetComponent<Projectile> ().matName = gameObject.name;
-
+		
 		Physics.IgnoreCollision(bullet.GetComponent<Collider>(), user.GetComponent<Collider>());
 		bullet.GetComponent<Projectile> ().user = user;
 		//team vars
-		bullet.GetComponent<Projectile>().enemyTag = user.GetComponent<Player>().enemyTag;
-		
+		if (user.GetComponent<Player> () != null) {
+			bullet.GetComponent<Projectile> ().enemyTag = user.GetComponent<Player> ().enemyTag;
+			bullet.GetComponent<Projectile> ().damage = damage + user.GetComponent<Player> ().damageBoost;
+			bullet.GetComponent<Projectile>().explosionDamage = explosionDamage + user.GetComponent<Player>().damageBoost;
+		} else {
+			bullet.GetComponent<Projectile> ().enemyTag = user.GetComponent<PlayerMulti> ().enemyTag;
+			bullet.GetComponent<Projectile> ().damage = damage + user.GetComponent<PlayerMulti> ().damageBoost;
+			bullet.GetComponent<Projectile>().explosionDamage = explosionDamage + user.GetComponent<PlayerMulti>().damageBoost;
+		}
 		//basic vars
 		bullet.GetComponent<Projectile>().life = life;
 		bullet.GetComponent<Projectile>().velocity = velocity;
-		bullet.GetComponent<Projectile>().damage = damage + user.GetComponent<Player>().damageBoost;
+		
 		bullet.GetComponent<Projectile>().knockBack = knockBack;
 		
 		bullet.GetComponent<Projectile>().isBalistic = isBalistic; //not sure this is needed. I think if we add grav we'll get it anyway
@@ -126,7 +137,7 @@ public class ProjectileCard : UsableCard {
 		//public int exMag; //number of fragments
 		//public GameObject frag; //what each fragment is
 		bullet.GetComponent<Projectile>().radius = radius; //not implimented yet. this is for an area explosion.
-		bullet.GetComponent<Projectile>().explosionDamage = explosionDamage + user.GetComponent<Player>().damageBoost;
+		
 		bullet.GetComponent<Projectile>().explosionKnock = explosionKnock;
 		//probably need other fields like damage, effect, ect.
 		
@@ -139,16 +150,16 @@ public class ProjectileCard : UsableCard {
 		
 		bullet.GetComponent<Projectile>().isWave = isWave;
 		bullet.GetComponent<Projectile> ().explosion = explosion;
-
+		
 		bullet.GetComponent<Projectile> ().setOnFire = setOnFire;
 		bullet.GetComponent<Projectile> ().fireDamage = fireDamage;
 		bullet.GetComponent<Projectile> ().fireTime = fireTime;
-
+		
 		bullet.GetComponent<Projectile> ().teleport = teleport;
-
+		
 		bullet.GetComponent<Projectile> ().confuses = confuses;
 		bullet.GetComponent<Projectile> ().confuseTime = confuseTime;
-
+		
 		if (pageCard) {
 			bullet.GetComponent<Projectile> ().fireDelay = fireDelay;
 			bullet.GetComponent<Projectile> ().fireAmount = fireAmount;
@@ -168,8 +179,8 @@ public class ProjectileCard : UsableCard {
 			bullet.GetComponent<Projectile> ().stuns = true;
 			bullet.GetComponent<Projectile> ().stunTime = stunTime;
 		}
-
+		
 		bullet.GetComponent<Projectile>().fire();
 	}
-
+	
 }

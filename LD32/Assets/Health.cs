@@ -25,6 +25,11 @@ public class Health : MonoBehaviour {
 		}
 	}
 
+	public void killEntity(){
+		health = 0;
+		//other stuff as necessary.
+	}
+
     public float getHealth()
     {
         return health;

@@ -99,7 +99,7 @@ public class MultiplayerController : MonoBehaviour {
 	}
 
 	void SetInputsToPlayer1(GameObject player){
-		Player control = player.GetComponent<Player> ();
+		PlayerMulti control = player.GetComponent<PlayerMulti> ();
 		control.InputVertical = P1V;
 		control.InputHorizontal = P1H;
 		control.InputViewControlX = P1RSX;
@@ -116,7 +116,7 @@ public class MultiplayerController : MonoBehaviour {
 	}
 
 	void SetInputsToPlayer2(GameObject player){
-		Player control = player.GetComponent<Player> ();
+		PlayerMulti control = player.GetComponent<PlayerMulti> ();
 		control.InputVertical = P2V;
 		control.InputHorizontal = P2H;
 		control.InputViewControlX = P2RSX;
@@ -133,7 +133,7 @@ public class MultiplayerController : MonoBehaviour {
 	}
 
 	void SetInputsToPlayer3(GameObject player){
-		Player control = player.GetComponent<Player> ();
+		PlayerMulti control = player.GetComponent<PlayerMulti> ();
 		control.InputVertical = P3V;
 		control.InputHorizontal = P3H;
 		control.InputViewControlX = P3RSX;
@@ -150,7 +150,7 @@ public class MultiplayerController : MonoBehaviour {
 	}
 
 	void SetInputsToPlayer4(GameObject player){
-		Player control = player.GetComponent<Player> ();
+		PlayerMulti control = player.GetComponent<PlayerMulti> ();
 		control.InputVertical = P4V;
 		control.InputHorizontal = P4H;
 		control.InputViewControlX = P4RSX;
@@ -225,6 +225,11 @@ public class MultiplayerController : MonoBehaviour {
 	}
 
 	void Awake(){
-		CreatePlayers (2);
+		GameObject PCH = (GameObject) GameObject.FindGameObjectWithTag ("PlayerCountHandler");
+		if (PCH != null) {
+			CreatePlayers (PCH.GetComponent<PlayerCountHandler>().numberOfPlayers);
+		} else {
+			CreatePlayers(2);
+		}
 	}
 }

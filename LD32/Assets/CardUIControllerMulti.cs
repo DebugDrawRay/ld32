@@ -36,7 +36,7 @@ public class CardUIControllerMulti : MonoBehaviour {
 		currentPlayer = pl;
 		//DeckTest a = (DeckTest) GameObject.FindGameObjectWithTag ("DeckTest").GetComponent("DeckTest");
 		//currentDeck = a.startingDeck;
-		currentDeck = pl.GetComponent<Player> ().currentDeck;
+		currentDeck = pl.GetComponent<PlayerMulti> ().currentDeck;
         playerHealth = pl.GetComponent<Health>();
         maxHealth = playerHealth.getHealth();
         maxCards = currentDeck.DeckCount();
@@ -77,7 +77,7 @@ public class CardUIControllerMulti : MonoBehaviour {
         cardMeter.fillAmount = currentDeck.DeckCount() / maxCards;
 
 
-		if(currentPlayer.GetComponent<Player>().isBuffed)
+		if(currentPlayer.GetComponent<PlayerMulti>().isBuffed)
 		{
 			hand.color = handBuffColor;
 		}

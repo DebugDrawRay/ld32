@@ -142,7 +142,7 @@ public class Projectile : MonoBehaviour {
 					knockDir = knockDir.normalized;
 
 					if(enemyTag == "Player") {
-						coll.gameObject.GetComponent<Player>().knockback += knockDir * knockBack;
+						coll.gameObject.GetComponent<PlayerMulti>().knockback += knockDir * knockBack;
 					} else {
 						coll.gameObject.GetComponent<Rigidbody>().AddForce(knockDir * knockBack);
 					}
@@ -151,7 +151,7 @@ public class Projectile : MonoBehaviour {
 						Vector3 knockDir2 = Vector3.up;
 
 						if(enemyTag == "Player") {
-							coll.gameObject.GetComponent<Player>().knockback += knockDir2 * upKnockForce;
+							coll.gameObject.GetComponent<PlayerMulti>().knockback += knockDir2 * upKnockForce;
 						} else {
 							coll.gameObject.GetComponent<Rigidbody>().AddForce(knockDir2 * upKnockForce);
 						}
@@ -167,6 +167,10 @@ public class Projectile : MonoBehaviour {
 							coll.gameObject.GetComponent<Player>().stunned = true;
 							coll.gameObject.GetComponent<Player>().stunTime = stunTime;
 						}
+						if(coll.gameObject.GetComponent<PlayerMulti>() != null) {
+							coll.gameObject.GetComponent<PlayerMulti>().stunned = true;
+							coll.gameObject.GetComponent<PlayerMulti>().stunTime = stunTime;
+						}
 					}
 
 					if(slows) {
@@ -178,6 +182,10 @@ public class Projectile : MonoBehaviour {
 						if(coll.gameObject.GetComponent<Player>() != null) {
 							coll.gameObject.GetComponent<Player>().moveNerf = slowPercent;
 							coll.gameObject.GetComponent<Player>().moveNerfTime = slowTime;
+						}
+						if(coll.gameObject.GetComponent<PlayerMulti>() != null) {
+							coll.gameObject.GetComponent<PlayerMulti>().moveNerf = slowPercent;
+							coll.gameObject.GetComponent<PlayerMulti>().moveNerfTime = slowTime;
 						}
 					}
 				}
@@ -195,8 +203,8 @@ public class Projectile : MonoBehaviour {
 
 				if(confuses) {
 					if(enemyTag == "Player") {
-						coll.gameObject.GetComponent<Player>().confused = true;
-						coll.gameObject.GetComponent<Player>().confuseTime = confuseTime;
+						coll.gameObject.GetComponent<PlayerMulti>().confused = true;
+						coll.gameObject.GetComponent<PlayerMulti>().confuseTime = confuseTime;
 					}
 
 					if(enemyTag == "EnemyUnit") {
@@ -215,7 +223,7 @@ public class Projectile : MonoBehaviour {
 
 
 				if(enemyTag == "Player") {
-					coll.gameObject.GetComponent<Player>().knockback += knockDir * knockBack;
+					coll.gameObject.GetComponent<PlayerMulti>().knockback += knockDir * knockBack;
 				} else {
 					coll.gameObject.GetComponent<Rigidbody>().AddForce(knockDir * knockBack);
 				}
@@ -224,7 +232,7 @@ public class Projectile : MonoBehaviour {
 					Vector3 knockDir2 = Vector3.up;
 
 					if(enemyTag == "Player") {
-						coll.gameObject.GetComponent<Player>().knockback += knockDir2 * upKnockForce;
+						coll.gameObject.GetComponent<PlayerMulti>().knockback += knockDir2 * upKnockForce;
 					} else {
 						coll.gameObject.GetComponent<Rigidbody>().AddForce(knockDir2 * upKnockForce);
 					}
@@ -240,6 +248,11 @@ public class Projectile : MonoBehaviour {
 						coll.gameObject.GetComponent<Player>().stunned = true;
 						coll.gameObject.GetComponent<Player>().stunTime = stunTime;
 					}
+
+					if(coll.gameObject.GetComponent<PlayerMulti>() != null) {
+						coll.gameObject.GetComponent<PlayerMulti>().stunned = true;
+						coll.gameObject.GetComponent<PlayerMulti>().stunTime = stunTime;
+					}
 				}
 				
 				if(slows) {
@@ -248,9 +261,9 @@ public class Projectile : MonoBehaviour {
 						coll.gameObject.GetComponent<RunMan>().moveNerfTime = slowTime;
 					}
 					
-					if(coll.gameObject.GetComponent<Player>() != null) {
-						coll.gameObject.GetComponent<Player>().moveNerf = slowPercent;
-						coll.gameObject.GetComponent<Player>().moveNerfTime = slowTime;
+					if(coll.gameObject.GetComponent<PlayerMulti>() != null) {
+						coll.gameObject.GetComponent<PlayerMulti>().moveNerf = slowPercent;
+						coll.gameObject.GetComponent<PlayerMulti>().moveNerfTime = slowTime;
 					}
 				}
 			}
@@ -279,9 +292,12 @@ public class Projectile : MonoBehaviour {
 			gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
 
 			//gameObject.GetComponent<MeshRenderer> ().enabled = false;
-
-			GameObject bullet = (GameObject)Instantiate (this.gameObject, new Vector3(user.GetComponent<Player>().playCam.transform.position.x, user.GetComponent<Player>().playCam.transform.position.y - 0.1f, user.GetComponent<Player>().playCam.transform.position.z), user.GetComponent<Player> ().playCam.transform.rotation);
-
+			GameObject bullet;
+			if(user.GetComponent<Player>() != null){
+				bullet = (GameObject)Instantiate (this.gameObject, new Vector3(user.GetComponent<Player>().playCam.transform.position.x, user.GetComponent<Player>().playCam.transform.position.y - 0.1f, user.GetComponent<Player>().playCam.transform.position.z), user.GetComponent<Player> ().playCam.transform.rotation);
+			}else{
+				bullet = (GameObject)Instantiate (this.gameObject, new Vector3(user.GetComponent<PlayerMulti>().playCam.transform.position.x, user.GetComponent<PlayerMulti>().playCam.transform.position.y - 0.1f, user.GetComponent<PlayerMulti>().playCam.transform.position.z), user.GetComponent<PlayerMulti> ().playCam.transform.rotation);
+			}
 			bullet.GetComponent<Projectile> ().isPage = false;
 			bullet.GetComponent<SphereCollider> ().enabled = true;
 
@@ -381,7 +397,12 @@ public class Projectile : MonoBehaviour {
 		if (isFiring && isPage) {
 			if (currentCount <= 0) {
 				if (bulletsFired < fireAmount) {
-					GameObject bullet = (GameObject)Instantiate (this.gameObject, new Vector3(user.GetComponent<Player>().playCam.transform.position.x, user.GetComponent<Player>().playCam.transform.position.y - 0.1f, user.GetComponent<Player>().playCam.transform.position.z), user.GetComponent<Player> ().playCam.transform.rotation);
+					GameObject bullet;
+					if(user.GetComponent<Player>() != null){
+						bullet = (GameObject)Instantiate (this.gameObject, new Vector3(user.GetComponent<Player>().playCam.transform.position.x, user.GetComponent<Player>().playCam.transform.position.y - 0.1f, user.GetComponent<Player>().playCam.transform.position.z), user.GetComponent<Player> ().playCam.transform.rotation);
+					}else{
+						bullet = (GameObject)Instantiate (this.gameObject, new Vector3(user.GetComponent<PlayerMulti>().playCam.transform.position.x, user.GetComponent<PlayerMulti>().playCam.transform.position.y - 0.1f, user.GetComponent<PlayerMulti>().playCam.transform.position.z), user.GetComponent<PlayerMulti> ().playCam.transform.rotation);
+					}
 					bullet.GetComponentInChildren<MeshRenderer> ().material = transform.GetComponentInChildren<MeshRenderer> ().material;
 
 					bullet.GetComponent<Projectile> ().isPage = false;
