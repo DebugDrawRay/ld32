@@ -299,7 +299,7 @@ public class Projectile : MonoBehaviour {
 
 			if(coll.gameObject.GetComponent<PlayerMulti>() != null) {
 				if(user.GetComponent<PlayerMulti>() != null) {
-					coll.gameObject.GetComponent<PlayerMulti>().lastDamageFrom = gameObject.GetComponent<PlayerMulti>().playerNumber;
+					coll.gameObject.GetComponent<PlayerMulti>().lastDamageFrom = user.GetComponent<PlayerMulti>().playerNumber;
 				}
 			}
 

@@ -14,6 +14,11 @@ public class Temperance : UsableCard {
 	}
 	
 	public override void UseCard(GameObject user) {
-		user.GetComponent<Player> ().currentDeck.InstanceSeedDeck ();
+		if (user.GetComponent<Player> () != null) {
+			user.GetComponent<Player> ().currentDeck.InstanceSeedDeck ();
+		}
+		if (user.GetComponent<PlayerMulti> () != null) {
+			user.GetComponent<PlayerMulti> ().currentDeck.InstanceSeedDeck ();
+		}
 	}
 }

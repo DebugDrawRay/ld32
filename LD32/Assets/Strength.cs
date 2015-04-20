@@ -17,7 +17,14 @@ public class Strength : UsableCard {
 	}
 	
 	public override void UseCard(GameObject user) {
-		user.GetComponent<Player> ().damageBoost = ampAmount;
-		user.GetComponent<Player> ().damageBoostTime = ampTime;
+		if (user.GetComponent<Player> () != null) {
+			user.GetComponent<Player> ().damageBoost = ampAmount;
+			user.GetComponent<Player> ().damageBoostTime = ampTime;
+		}
+		if (user.GetComponent<PlayerMulti> () != null) {
+			user.GetComponent<PlayerMulti> ().damageBoost = ampAmount;
+			user.GetComponent<PlayerMulti> ().damageBoostTime = ampTime;
+		}
+
 	}
 }

@@ -17,7 +17,13 @@ public class TheHermit : UsableCard {
 	}
 	
 	public override void UseCard(GameObject user) {
-		user.GetComponent<Player> ().defenseBoost = ampAmount;
-		user.GetComponent<Player> ().defenseBoostTime = ampTime;
+		if (user.GetComponent<Player> () != null) {
+			user.GetComponent<Player> ().defenseBoost = ampAmount;
+			user.GetComponent<Player> ().defenseBoostTime = ampTime;
+		}
+		if (user.GetComponent<PlayerMulti> () != null) {
+			user.GetComponent<PlayerMulti> ().defenseBoost = ampAmount;
+			user.GetComponent<PlayerMulti> ().defenseBoostTime = ampTime;
+		}
 	}
 }

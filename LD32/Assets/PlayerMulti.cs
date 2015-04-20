@@ -116,7 +116,7 @@ public class PlayerMulti : MonoBehaviour {
 
 	void Awake() {
 		currentDeck = new Deck ();
-        currentDeck.AddToSeedDeck ("two-of-swords");
+        /*currentDeck.AddToSeedDeck ("two-of-swords");
         currentDeck.AddToSeedDeck ("three-of-swords");
         currentDeck.AddToSeedDeck ("four-of-swords");
         currentDeck.AddToSeedDeck ("five-of-swords");
@@ -146,8 +146,8 @@ public class PlayerMulti : MonoBehaviour {
         currentDeck.AddToSeedDeck ("queen-of-cups");
         currentDeck.AddToSeedDeck ("ace-of-cups");
 
-        currentDeck.AddToSeedDeck ("two-of-wands");
-        currentDeck.AddToSeedDeck ("three-of-wands");
+        */currentDeck.AddToSeedDeck ("two-of-wands");
+        /*currentDeck.AddToSeedDeck ("three-of-wands");
         currentDeck.AddToSeedDeck ("four-of-wands");
         currentDeck.AddToSeedDeck ("five-of-wands");
         currentDeck.AddToSeedDeck ("six-of-wands");
@@ -174,20 +174,30 @@ public class PlayerMulti : MonoBehaviour {
         currentDeck.AddToSeedDeck ("king-of-pentacles");
         currentDeck.AddToSeedDeck ("queen-of-pentacles");
         currentDeck.AddToSeedDeck ("ace-of-pentacles");
-        currentDeck.AddToSeedDeck ("two-of-pentacles");
+        currentDeck.AddToSeedDeck ("two-of-pentacles");*/
 
-        currentDeck.AddToSeedDeck("the-sun");
-        currentDeck.AddToSeedDeck("the-fool");
-        currentDeck.AddToSeedDeck("the-empress");
-        currentDeck.AddToSeedDeck("the-lovers");
-        currentDeck.AddToSeedDeck("justice");
-        currentDeck.AddToSeedDeck("the-hanged-man");
-        currentDeck.AddToSeedDeck("temperance");
-        currentDeck.AddToSeedDeck("the-tower");
-        currentDeck.AddToSeedDeck("the-star");
-        currentDeck.AddToSeedDeck("the-moon");
-        currentDeck.AddToSeedDeck("judgement");
-        currentDeck.AddToSeedDeck("the-devil");
+		currentDeck.AddToSeedDeck("the-fool");
+		currentDeck.AddToSeedDeck("the-magician");
+		currentDeck.AddToSeedDeck("the-high-priestess");
+		currentDeck.AddToSeedDeck("the-empress");
+		currentDeck.AddToSeedDeck("the-emperor");
+		currentDeck.AddToSeedDeck("the-hierophant");
+		currentDeck.AddToSeedDeck("the-lovers");
+		currentDeck.AddToSeedDeck("the-chariot");
+		currentDeck.AddToSeedDeck("strength");
+		currentDeck.AddToSeedDeck("the-hermit");
+		currentDeck.AddToSeedDeck("wheel-of-fortune");
+		currentDeck.AddToSeedDeck("justice");
+		currentDeck.AddToSeedDeck("the-hanged-man");
+		currentDeck.AddToSeedDeck("death");
+		currentDeck.AddToSeedDeck("temperance");
+		currentDeck.AddToSeedDeck("the-devil");
+		currentDeck.AddToSeedDeck("the-tower");
+		currentDeck.AddToSeedDeck("the-star");
+		currentDeck.AddToSeedDeck("the-moon");
+		currentDeck.AddToSeedDeck("the-sun");
+		currentDeck.AddToSeedDeck("judgement");
+		currentDeck.AddToSeedDeck ("the-world");
 
         /*currentDeck.AddToSeedDeck ("the-chariot");
         currentDeck.AddToSeedDeck ("the-chariot");

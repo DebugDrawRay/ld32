@@ -17,8 +17,14 @@ public class TheTower : UsableCard {
 	}
 	
 	public override void UseCard(GameObject user) {
-		user.GetComponent<Player> ().jumpBoost = boostAmount;
-		user.GetComponent<Player> ().jumpBoostTime = boostTime;
+		if (user.GetComponent<Player> () != null) {
+			user.GetComponent<Player> ().jumpBoost = boostAmount;
+			user.GetComponent<Player> ().jumpBoostTime = boostTime;
+		}
+		if (user.GetComponent<PlayerMulti> () != null) {
+			user.GetComponent<PlayerMulti> ().jumpBoost = boostAmount;
+			user.GetComponent<PlayerMulti> ().jumpBoostTime = boostTime;
+		}
 	}
 }
 

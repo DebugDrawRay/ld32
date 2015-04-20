@@ -12,6 +12,11 @@ public class MultiplayerController : MonoBehaviour {
 	public GameObject P3Spawn;
 	public GameObject P4Spawn;
 
+	public Material player1;
+	public Material player2;
+	public Material player3;
+	public Material player4;
+
 	public GameObject CanvasPrefab;
 
 	public GameObject PlayerPrefab;
@@ -173,6 +178,8 @@ public class MultiplayerController : MonoBehaviour {
 			switch (i){
 			case 0:
 				currentPlayer = (GameObject) Instantiate(PlayerPrefab, P1Spawn.transform.position, P1Spawn.transform.rotation);
+				currentPlayer.GetComponentInChildren<MeshRenderer> ().material = player1;
+				currentPlayer.layer = LayerMask.NameToLayer("PlayerCam1");
 				SetInputsToPlayer1(currentPlayer);
 
 				if(numberOfPlayers == 2){
@@ -182,43 +189,55 @@ public class MultiplayerController : MonoBehaviour {
 				}else{
 					currentPlayer.GetComponentInChildren<Camera>().rect = new Rect(0,0, 0.5f, 0.5f);
 				}
+				currentPlayer.GetComponentInChildren<Camera>().cullingMask = ~(1 << 11);
 				newcanvas = (GameObject) Instantiate(CanvasPrefab, Vector3.zero, Quaternion.identity);
 				newcanvas.GetComponent<Canvas>().worldCamera = currentPlayer.GetComponentInChildren<Camera>();
 				newcanvas.GetComponent<CardUIControllerMulti>().InitializeUIController(currentPlayer);
 				break;
 			case 1:
 				currentPlayer =  (GameObject) Instantiate(PlayerPrefab, P2Spawn.transform.position, P2Spawn.transform.rotation);
+				currentPlayer.layer = LayerMask.NameToLayer("PlayerCam2");
+				currentPlayer.GetComponentInChildren<MeshRenderer> ().material = player2;
 				SetInputsToPlayer2(currentPlayer);
 				if(numberOfPlayers == 2){
 					currentPlayer.GetComponentInChildren<Camera>().rect = new Rect(0.5f,0, 0.5f, 1);
 				}else{
 					currentPlayer.GetComponentInChildren<Camera>().rect = new Rect(0.5f,0, 0.5f, 0.5f);
 				}
+				currentPlayer.GetComponentInChildren<Camera>().cullingMask = ~(1 << 12);
 				newcanvas = (GameObject) Instantiate(CanvasPrefab, Vector3.zero, Quaternion.identity);
 				newcanvas.GetComponent<Canvas>().worldCamera = currentPlayer.GetComponentInChildren<Camera>();
 				newcanvas.GetComponent<CardUIControllerMulti>().InitializeUIController(currentPlayer);
 				break;
 			case 2:
 				currentPlayer =  (GameObject) Instantiate(PlayerPrefab, P3Spawn.transform.position, P3Spawn.transform.rotation);
+				currentPlayer.layer = LayerMask.NameToLayer("PlayerCam3");
+				currentPlayer.GetComponentInChildren<MeshRenderer> ().material = player3;
 				SetInputsToPlayer3(currentPlayer);
-				if(numberOfPlayers == 2){
-					currentPlayer.GetComponent<Camera>().rect = new Rect(0,0.5f, 0.5f, 0.5f);
+				if(numberOfPlayers == 3){
+					currentPlayer.GetComponentInChildren<Camera>().rect = new Rect(0,0.5f, 0.5f, 0.5f);
 				}else{
-					currentPlayer.GetComponent<Camera>().rect = new Rect(0,0.5f, 0.5f, 0.5f);
+					currentPlayer.GetComponentInChildren<Camera>().rect = new Rect(0,0.5f, 0.5f, 0.5f);
 				}
+				currentPlayer.GetComponentInChildren<Camera>().cullingMask = ~(1 << 13);
 				newcanvas = (GameObject) Instantiate(CanvasPrefab, Vector3.zero, Quaternion.identity);
 				newcanvas.GetComponent<Canvas>().worldCamera = currentPlayer.GetComponentInChildren<Camera>();
+				newcanvas.GetComponent<CardUIControllerMulti>().InitializeUIController(currentPlayer);
 				break;
 			case 3:
 				currentPlayer =  (GameObject) Instantiate(PlayerPrefab, P4Spawn.transform.position, P4Spawn.transform.rotation);
+				currentPlayer.layer = LayerMask.NameToLayer("PlayerCam4");
+				currentPlayer.GetComponentInChildren<MeshRenderer> ().material = player4;
 				SetInputsToPlayer4(currentPlayer);
 				if(numberOfPlayers == 2){
-					currentPlayer.GetComponent<Camera>().rect = new Rect(0.5f,0.5f, 0.5f, 0.5f);
+					currentPlayer.GetComponentInChildren<Camera>().rect = new Rect(0.5f,0.5f, 0.5f, 0.5f);
 				}else{
-					currentPlayer.GetComponent<Camera>().rect = new Rect(0.5f,0.5f, 0.5f, 0.5f);
+					currentPlayer.GetComponentInChildren<Camera>().rect = new Rect(0.5f,0.5f, 0.5f, 0.5f);
 				}
+				currentPlayer.GetComponentInChildren<Camera>().cullingMask = ~(1 << 14);
 				newcanvas = (GameObject) Instantiate(CanvasPrefab, Vector3.zero, Quaternion.identity);
 				newcanvas.GetComponent<Canvas>().worldCamera = currentPlayer.GetComponentInChildren<Camera>();
+				newcanvas.GetComponent<CardUIControllerMulti>().InitializeUIController(currentPlayer);
 				break;
 			}
 		}
@@ -229,7 +248,7 @@ public class MultiplayerController : MonoBehaviour {
 		if (PCH != null) {
 			CreatePlayers (PCH.GetComponent<PlayerCountHandler>().numberOfPlayers);
 		} else {
-			CreatePlayers(2);
+			CreatePlayers(3);
 		}
 	}
 }
