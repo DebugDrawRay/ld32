@@ -24,6 +24,7 @@ public class TheSun : UsableCard {
 			sun.GetComponent<DamageArea> ().enemyTag = user.GetComponent<Player> ().enemyTag;
 		}
 		if (user.GetComponent<PlayerMulti> () != null) {
+			sun.GetComponent<DamageArea> ().enemyTag = user.GetComponent<Player> ().enemyTag;
 			sun.GetComponent<DamageArea> ().ownerNum = user.GetComponent<PlayerMulti> ().playerNumber;
 		}
 

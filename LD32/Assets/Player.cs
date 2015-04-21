@@ -72,7 +72,7 @@ public class Player : MonoBehaviour {
 
 	void Awake() {
 		currentDeck = new Deck ();
-        currentDeck.AddToSeedDeck ("two-of-swords");
+        /*currentDeck.AddToSeedDeck ("two-of-swords");
         currentDeck.AddToSeedDeck ("three-of-swords");
         currentDeck.AddToSeedDeck ("four-of-swords");
         currentDeck.AddToSeedDeck ("five-of-swords");
@@ -153,7 +153,17 @@ public class Player : MonoBehaviour {
 		currentDeck.AddToSeedDeck("the-moon");
         currentDeck.AddToSeedDeck("the-sun");
 		currentDeck.AddToSeedDeck("judgement");
-		currentDeck.AddToSeedDeck ("the-world");
+		currentDeck.AddToSeedDeck ("the-world");*/
+
+		currentDeck.AddToSeedDeck("death");
+		currentDeck.AddToSeedDeck("death");
+		currentDeck.AddToSeedDeck("death");
+		currentDeck.AddToSeedDeck("death");
+		currentDeck.AddToSeedDeck("death");
+		currentDeck.AddToSeedDeck("death");
+		currentDeck.AddToSeedDeck("death");
+		currentDeck.AddToSeedDeck("death");
+		currentDeck.AddToSeedDeck("death");
 
 		currentDeck.InstanceSeedDeck ();
 		currentDeck.DrawCard ();

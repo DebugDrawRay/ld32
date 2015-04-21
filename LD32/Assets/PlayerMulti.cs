@@ -286,6 +286,12 @@ public class PlayerMulti : MonoBehaviour {
 				confuseTime -= Time.deltaTime;
 			}
 
+			if (reversedTime <= 0) {
+				reversed = false;
+			} else {
+				reversedTime -= Time.deltaTime;
+			}
+
 			if (Input.GetButtonDown ("Draw") || Input.GetButtonDown (InputDraw)) {
 				currentDeck.DrawCard ();
 			}

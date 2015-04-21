@@ -23,6 +23,7 @@ public class TheHangedMan : UsableCard {
 			sun.GetComponent<InstantDamge> ().enemyTag = user.GetComponent<Player> ().enemyTag;
 		}
 		if (user.GetComponent<PlayerMulti> () != null) {
+			sun.GetComponent<InstantDamge> ().enemyTag = user.GetComponent<Player> ().enemyTag;
 			sun.GetComponent<InstantDamge> ().ownerNum = user.GetComponent<PlayerMulti> ().playerNumber;
 		}
 
