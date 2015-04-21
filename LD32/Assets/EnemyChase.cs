@@ -16,14 +16,12 @@ public class EnemyChase : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		GetComponent<NavMeshAgent> ().SetDestination (transform.position);
-
 		if (!activated) {
 			Vector3 distToP = target.position - transform.position;
 			float disP = distToP.magnitude;
 			
 			if (disP < activateRange) {
-				if (Physics.Raycast (transform.position, target.position, disP, wallMask)) {
+				if (Physics.Raycast (transform.position, distToP, disP, wallMask)) {
 					
 				} else {
 					activated = true;

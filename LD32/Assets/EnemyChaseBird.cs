@@ -87,7 +87,7 @@ public class EnemyChaseBird : MonoBehaviour {
 			float disP = distToP.magnitude;
 
 			if(disP < activateRange) {
-				if(Physics.Raycast(transform.position, playerT.position, disP, wallMask)) {
+				if(Physics.Raycast(transform.position, distToP, disP, wallMask)) {
 
 				} else {
 					activated = true;
