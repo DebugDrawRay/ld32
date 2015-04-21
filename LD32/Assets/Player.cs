@@ -66,8 +66,9 @@ public class Player : MonoBehaviour {
 
 	public GameObject pauseObject;
 
-	public void OnDeath() {
-
+	public void OnDeath() 
+    {
+        Application.LoadLevel("completeScreen");
 	}
 
 	void Awake() {
