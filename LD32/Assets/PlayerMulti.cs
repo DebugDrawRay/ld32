@@ -116,7 +116,7 @@ public class PlayerMulti : MonoBehaviour {
 
 	void Awake() {
 		currentDeck = new Deck ();
-        /*currentDeck.AddToSeedDeck ("two-of-swords");
+        currentDeck.AddToSeedDeck ("two-of-swords");
         currentDeck.AddToSeedDeck ("three-of-swords");
         currentDeck.AddToSeedDeck ("four-of-swords");
         currentDeck.AddToSeedDeck ("five-of-swords");
@@ -146,8 +146,8 @@ public class PlayerMulti : MonoBehaviour {
         currentDeck.AddToSeedDeck ("queen-of-cups");
         currentDeck.AddToSeedDeck ("ace-of-cups");
 
-        */currentDeck.AddToSeedDeck ("two-of-wands");
-        /*currentDeck.AddToSeedDeck ("three-of-wands");
+        currentDeck.AddToSeedDeck ("two-of-wands");
+        currentDeck.AddToSeedDeck ("three-of-wands");
         currentDeck.AddToSeedDeck ("four-of-wands");
         currentDeck.AddToSeedDeck ("five-of-wands");
         currentDeck.AddToSeedDeck ("six-of-wands");
@@ -174,7 +174,7 @@ public class PlayerMulti : MonoBehaviour {
         currentDeck.AddToSeedDeck ("king-of-pentacles");
         currentDeck.AddToSeedDeck ("queen-of-pentacles");
         currentDeck.AddToSeedDeck ("ace-of-pentacles");
-        currentDeck.AddToSeedDeck ("two-of-pentacles");*/
+        currentDeck.AddToSeedDeck ("two-of-pentacles");
 
 		currentDeck.AddToSeedDeck("the-fool");
 		currentDeck.AddToSeedDeck("the-magician");
@@ -198,19 +198,6 @@ public class PlayerMulti : MonoBehaviour {
 		currentDeck.AddToSeedDeck("the-sun");
 		currentDeck.AddToSeedDeck("judgement");
 		currentDeck.AddToSeedDeck ("the-world");
-
-        /*currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");
-        currentDeck.AddToSeedDeck ("the-chariot");*/
 
 		currentDeck.InstanceSeedDeck ();
 		currentDeck.DrawCard ();
@@ -451,8 +438,8 @@ public class PlayerMulti : MonoBehaviour {
 		}
 
 		Vector3 finMover = new Vector3 (fMover.x, gameObject.GetComponent<Rigidbody> ().velocity.y, fMover.z);
-		finMover += knockback;
-		knockback = knockback * 0.9f;
+		//finMover += knockback;
+		//knockback = knockback * 0.9f;
 
 		gameObject.GetComponent<Rigidbody> ().velocity = finMover;
 

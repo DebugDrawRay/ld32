@@ -38,5 +38,6 @@ public class KillMaster : MonoBehaviour {
 		} else {
 			text.text = "P1: " + scorePlayer1 + "\n" + "P2: " + scorePlayer2+ "\n" + "P3: " + scorePlayer3+ "\n" + "P4: " + scorePlayer4;
 		}
+
 	}
 }

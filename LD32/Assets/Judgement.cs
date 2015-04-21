@@ -25,7 +25,7 @@ public class Judgement : UsableCard {
 		sun.transform.parent = user.transform;
 
 		if (user.GetComponent<PlayerMulti> () != null) {
-			sun.GetComponent<DamageArea> ().enemyTag = user.GetComponent<Player> ().enemyTag;
+			sun.GetComponent<DamageArea> ().enemyTag = user.GetComponent<PlayerMulti> ().enemyTag;
 			sun.GetComponent<DamageArea> ().ownerNum = user.GetComponent<PlayerMulti> ().playerNumber;
 		}
 

@@ -193,6 +193,7 @@ public class MultiplayerController : MonoBehaviour {
 				newcanvas = (GameObject) Instantiate(CanvasPrefab, Vector3.zero, Quaternion.identity);
 				newcanvas.GetComponent<Canvas>().worldCamera = currentPlayer.GetComponentInChildren<Camera>();
 				newcanvas.GetComponent<CardUIControllerMulti>().InitializeUIController(currentPlayer);
+				currentPlayer.GetComponent<PlayerMulti>().playerNumber = 1;
 				break;
 			case 1:
 				currentPlayer =  (GameObject) Instantiate(PlayerPrefab, P2Spawn.transform.position, P2Spawn.transform.rotation);
@@ -208,6 +209,7 @@ public class MultiplayerController : MonoBehaviour {
 				newcanvas = (GameObject) Instantiate(CanvasPrefab, Vector3.zero, Quaternion.identity);
 				newcanvas.GetComponent<Canvas>().worldCamera = currentPlayer.GetComponentInChildren<Camera>();
 				newcanvas.GetComponent<CardUIControllerMulti>().InitializeUIController(currentPlayer);
+				currentPlayer.GetComponent<PlayerMulti>().playerNumber = 2;
 				break;
 			case 2:
 				currentPlayer =  (GameObject) Instantiate(PlayerPrefab, P3Spawn.transform.position, P3Spawn.transform.rotation);
@@ -223,6 +225,7 @@ public class MultiplayerController : MonoBehaviour {
 				newcanvas = (GameObject) Instantiate(CanvasPrefab, Vector3.zero, Quaternion.identity);
 				newcanvas.GetComponent<Canvas>().worldCamera = currentPlayer.GetComponentInChildren<Camera>();
 				newcanvas.GetComponent<CardUIControllerMulti>().InitializeUIController(currentPlayer);
+				currentPlayer.GetComponent<PlayerMulti>().playerNumber = 3;
 				break;
 			case 3:
 				currentPlayer =  (GameObject) Instantiate(PlayerPrefab, P4Spawn.transform.position, P4Spawn.transform.rotation);
@@ -238,6 +241,7 @@ public class MultiplayerController : MonoBehaviour {
 				newcanvas = (GameObject) Instantiate(CanvasPrefab, Vector3.zero, Quaternion.identity);
 				newcanvas.GetComponent<Canvas>().worldCamera = currentPlayer.GetComponentInChildren<Camera>();
 				newcanvas.GetComponent<CardUIControllerMulti>().InitializeUIController(currentPlayer);
+				currentPlayer.GetComponent<PlayerMulti>().playerNumber = 4;
 				break;
 			}
 		}
